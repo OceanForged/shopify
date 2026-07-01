@@ -1,7 +1,7 @@
 {
   "sections": {
     "hero": {
-      "type": "page-hero",
+      "type": "hero",
       "settings": {
         "eyebrow": "About Us",
         "heading": "Innovation forged by experience.",
