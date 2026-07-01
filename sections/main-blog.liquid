@@ -1,0 +1,69 @@
+{%- paginate blog.articles by 12 -%}
+<section class="of-bg-deep" style="padding:96px 0 70px;">
+  <div class="of-container of-container--wide">
+    <p class="of-eyebrow" data-reveal>{{ section.settings.eyebrow | default: 'Field Notes' }}</p>
+    <h1 class="of-display of-h1 of-text-white" data-reveal>{{ section.settings.heading | default: blog.title | default: 'The Log' }}</h1>
+    {%- if section.settings.intro != blank -%}
+      <p style="font-size:18px;color:var(--of-on-dark-2);margin:22px 0 0;max-width:52ch;line-height:1.6;" data-reveal>{{ section.settings.intro }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="of-bg-light" style="padding:70px 0 110px;">
+  <div class="of-container of-container--wide">
+    {%- if blog.articles.size > 0 -%}
+      {%- assign feat = blog.articles.first -%}
+      {%- if section.settings.show_featured and paginate.current_page == 1 -%}
+        <a href="{{ feat.url }}" style="display:grid;grid-template-columns:1.2fr 1fr;gap:0;background:#fff;border-radius:6px;overflow:hidden;margin-bottom:48px;box-shadow:0 18px 50px rgba(21,48,47,0.08);" class="of-blog-feature" data-reveal>
+          <div style="min-height:340px;{% if feat.image %}background-image:url('{{ feat.image | image_url: width: 1200 }}');{% else %}background-image:url('{{ 'product-worn.jpg' | asset_url }}');{% endif %}background-size:cover;background-position:center 30%;"></div>
+          <div style="padding:48px 44px;display:flex;flex-direction:column;justify-content:center;">
+            <span style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);margin-bottom:14px;">Featured{% if feat.tags.size > 0 %} · {{ feat.tags.first }}{% endif %}</span>
+            <h2 style="font-family:var(--of-font-display);font-weight:800;font-size:clamp(24px,2.6vw,34px);line-height:1.05;margin:0 0 14px;text-transform:uppercase;letter-spacing:-0.5px;">{{ feat.title }}</h2>
+            <p style="font-size:16px;line-height:1.6;color:var(--of-ink-soft);margin:0 0 22px;">{{ feat.excerpt_or_content | strip_html | truncate: 150 }}</p>
+            <span style="font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Read more &rarr;</span>
+          </div>
+        </a>
+      {%- endif -%}
+
+      <div class="of-grid of-grid--3">
+        {%- for article in blog.articles -%}
+          {%- if section.settings.show_featured and paginate.current_page == 1 and forloop.first -%}{%- continue -%}{%- endif -%}
+          <a href="{{ article.url }}" style="background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 12px 36px rgba(21,48,47,0.06);display:block;" data-reveal>
+            <div style="height:200px;{% if article.image %}background:#0f2423 url('{{ article.image | image_url: width: 700 }}') center/cover;{% else %}background:repeating-linear-gradient(45deg,#e4eae8,#e4eae8 14px,#edf1f0 14px,#edf1f0 28px);display:flex;align-items:center;justify-content:center;{% endif %}">
+              {%- unless article.image -%}<span style="font-family:monospace;font-size:11px;letter-spacing:1px;color:var(--of-muted);text-transform:uppercase;">[ {{ article.title | truncate: 22 }} ]</span>{%- endunless -%}
+            </div>
+            <div style="padding:28px 26px;">
+              {%- if article.tags.size > 0 -%}<span style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);">{{ article.tags.first }}</span>{%- endif -%}
+              <h3 style="font-family:var(--of-font-display);font-weight:800;font-size:20px;line-height:1.15;margin:12px 0 10px;text-transform:uppercase;">{{ article.title }}</h3>
+              <p style="font-size:15px;line-height:1.6;color:var(--of-ink-soft);margin:0;">{{ article.excerpt_or_content | strip_html | truncate: 110 }}</p>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div style="display:flex;justify-content:center;gap:12px;margin-top:56px;">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="of-btn of-btn--outline of-btn--sm">&larr; Prev</a>{%- endif -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="of-btn of-btn--outline of-btn--sm">Next &rarr;</a>{%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <p style="text-align:center;color:var(--of-ink-soft);font-size:18px;padding:60px 0;">No posts yet. Check back soon for stories from the water.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>@media (max-width:760px){ .of-blog-feature{grid-template-columns:1fr !important;} }</style>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Field Notes" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Log" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Stories from the water, gear breakdowns, and notes from the first wave of Ocean Forged." },
+    { "type": "checkbox", "id": "show_featured", "label": "Show first post as featured", "default": true }
+  ]
+}
+{% endschema %}

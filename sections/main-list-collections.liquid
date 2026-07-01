@@ -1,0 +1,23 @@
+<section class="of-bg-deep" style="padding:96px 0 60px;">
+  <div class="of-container of-container--wide">
+    <p class="of-eyebrow" data-reveal>Shop</p>
+    <h1 class="of-display of-h1 of-text-white" data-reveal>{{ page_title }}</h1>
+  </div>
+</section>
+<section class="of-section of-bg-light">
+  <div class="of-container of-container--wide">
+    <div class="of-grid of-grid--3">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" style="position:relative;border-radius:6px;overflow:hidden;min-height:260px;display:flex;align-items:flex-end;{% if collection.featured_image %}background:#0f2423 url('{{ collection.featured_image | image_url: width: 800 }}') center/cover;{% else %}background:var(--of-deep);{% endif %}" data-reveal>
+          <div style="width:100%;padding:26px;background:linear-gradient(transparent, rgba(15,36,35,0.85));">
+            <h3 style="font-family:var(--of-font-display);font-weight:800;font-size:22px;text-transform:uppercase;color:#fff;margin:0;">{{ collection.title }}</h3>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "List collections", "settings": [] }
+{% endschema %}

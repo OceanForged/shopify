@@ -1,0 +1,37 @@
+<section class="of-section of-bg-light">
+  <div class="of-container" style="max-width:820px;">
+    <div style="display:flex;flex-direction:column;gap:26px;">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'lead' -%}
+            <p style="font-size:clamp(18px,1.8vw,23px);line-height:1.6;color:var(--of-ink);font-weight:600;margin:0;" data-reveal {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {%- when 'paragraph' -%}
+            <p style="font-size:17px;line-height:1.7;color:var(--of-ink-soft);margin:0;" data-reveal {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {%- when 'statement' -%}
+            <p style="font-family:var(--of-font-display);font-weight:800;font-size:clamp(20px,2.4vw,30px);color:var(--of-orange);margin:14px 0 0;text-transform:uppercase;letter-spacing:-0.5px;" data-reveal {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Story text",
+  "blocks": [
+    { "type": "lead", "name": "Lead line", "settings": [ { "type": "textarea", "id": "text", "label": "Text", "default": "Ocean Forged was discovered on the beach, not in a boardroom." } ] },
+    { "type": "paragraph", "name": "Paragraph", "settings": [ { "type": "textarea", "id": "text", "label": "Text" } ] },
+    { "type": "statement", "name": "Statement", "settings": [ { "type": "textarea", "id": "text", "label": "Text", "default": "Working with the ocean, not against it." } ] }
+  ],
+  "presets": [{
+    "name": "Story text",
+    "blocks": [
+      { "type": "lead", "settings": { "text": "Ocean Forged was discovered on the beach, not in a boardroom." } },
+      { "type": "paragraph", "settings": { "text": "As lifeguards and first responders, we learned first-hand, the hard way, that most \"waterproof\" radio bags fail when you need them most. Salt, sand, and water get in, and suddenly the gear that keeps you connected and safe is done. So Ocean Forged set out to build something better." } },
+      { "type": "paragraph", "settings": { "text": "Our first product, a rugged and dependable radio dry bag, was designed for one purpose: keep your gear dry, dependable, and ready, no matter the conditions. The simple design just makes sense because it came from the beach itself. The beach provided, we just listened. Tested in pounding surf and high-stakes rescues, it's built to become the standard you've been looking for." } },
+      { "type": "paragraph", "settings": { "text": "And that same lifeguard standard is what we bring to everything we make. Whether it's a radio bag, a waterproof fanny pack, or whatever comes next, every product is built with the same trust, toughness, and no-nonsense reliability demanded when lives are on the line." } },
+      { "type": "statement", "settings": { "text": "Working with the ocean, not against it." } }
+    ]
+  }]
+}
+{% endschema %}

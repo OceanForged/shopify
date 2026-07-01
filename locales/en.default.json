@@ -1,0 +1,14 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "newsletter": {
+    "success": "You're on the list. We'll be in touch."
+  }
+}

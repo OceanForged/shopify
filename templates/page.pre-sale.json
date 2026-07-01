@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "signup": {
+      "type": "presale-signup",
+      "settings": {
+        "pill": "First Run · Coming Soon",
+        "heading": "Join the first wave.",
+        "body": "The first production run of the Radio Dry Bag is on the way. Join the list to follow the build and be the first to know when it's ready.",
+        "form_title": "Get notified",
+        "form_note": "We'll email you when the first batch is ready. No spam, just the launch.",
+        "button_label": "Join the List",
+        "tag": "prospect,pre-sale",
+        "fine_print": "Agency and bulk-order inquiries welcome."
+      }
+    },
+    "why": {
+      "type": "numbered-points",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "number": "01", "title": "First Access", "body": "Be first in line when the first production run ships." } },
+        "p2": { "type": "point", "settings": { "number": "02", "title": "Follow the Build", "body": "Get behind-the-scenes notes from testing and production." } },
+        "p3": { "type": "point", "settings": { "number": "03", "title": "Shape What's Next", "body": "Your feedback directly informs the next Ocean Forged products." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": { "heading": "Why join early" }
+    }
+  },
+  "order": ["signup", "why"]
+}

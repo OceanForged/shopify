@@ -1,0 +1,93 @@
+{%- liquid
+  assign product = product
+  if product.featured_media
+    assign feat = product.featured_media
+  endif
+-%}
+<section class="of-bg-deep" style="padding:84px 0 0;">
+  <div class="of-container of-container--wide">
+    <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;">
+      {%- comment -%} ---- copy / buy column ---- {%- endcomment -%}
+      <div>
+        <p class="of-eyebrow" data-reveal>{{ section.settings.eyebrow | default: 'Ocean Forged · Product 01' }}</p>
+        <h1 class="of-display of-text-white" style="font-size:clamp(44px,7vw,104px);line-height:0.88;letter-spacing:-1.5px;" data-reveal>{{ product.title | default: 'Radio Dry Bag' }}</h1>
+
+        {%- if product.metafields.custom.tagline != blank or section.settings.tagline != blank -%}
+          <p style="font-family:var(--of-font-display);font-weight:700;color:var(--of-on-dark-3);font-size:clamp(16px,1.6vw,22px);margin:26px 0 0;text-transform:uppercase;letter-spacing:0.5px;max-width:34ch;" data-reveal>{{ product.metafields.custom.tagline | default: section.settings.tagline }}</p>
+        {%- endif -%}
+
+        <div style="margin:34px 0 0;padding-top:30px;border-top:1px solid rgba(143,168,168,0.25);" data-reveal>
+          {%- if product != blank and product.available -%}
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:24px;">
+              <span style="font-family:var(--of-font-display);font-weight:900;color:#fff;font-size:34px;">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <span style="color:var(--of-muted);text-decoration:line-through;font-size:20px;">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </div>
+            {%- form 'product', product -%}
+              {%- unless product.has_only_default_variant -%}
+                <label style="display:flex;flex-direction:column;gap:6px;margin-bottom:22px;max-width:280px;">
+                  <span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);">Options</span>
+                  <select name="id" class="of-field">
+                    {%- for variant in product.variants -%}
+                      <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}</option>
+                    {%- endfor -%}
+                  </select>
+                </label>
+              {%- else -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {%- endunless -%}
+              <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+                <button type="submit" name="add" class="of-btn of-btn--primary" style="font-size:16px;padding:18px 40px;">{{ section.settings.buy_label | default: 'Add to Cart' }}</button>
+                {%- if section.settings.secondary_label != blank -%}
+                  <a href="{{ section.settings.secondary_link }}" class="of-btn of-btn--ghost">{{ section.settings.secondary_label }}</a>
+                {%- endif -%}
+              </div>
+            {%- endform -%}
+          {%- else -%}
+            {%- comment -%} Pre-sale / no purchasable product yet {%- endcomment -%}
+            <p style="font-size:17px;color:var(--of-on-dark-2);margin:0 0 26px;line-height:1.6;max-width:44ch;">{{ section.settings.presale_note | default: 'The first production run is on the way. Join the list to be the first to know when it ships.' }}</p>
+            <a href="{{ section.settings.presale_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary" style="font-size:16px;padding:18px 40px;">{{ section.settings.presale_label | default: 'Join the List' }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} ---- image column ---- {%- endcomment -%}
+      <div data-reveal>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);background:var(--of-deeper);box-shadow:0 30px 70px rgba(0,0,0,0.4);">
+          {%- if feat -%}
+            <img src="{{ feat | image_url: width: 1200 }}" alt="{{ feat.alt | escape | default: product.title }}" style="width:100%;display:block;border-bottom:3px solid var(--of-orange);">
+          {%- else -%}
+            <div style="aspect-ratio:1002/654;background-image:url('{{ 'product-worn.jpg' | asset_url }}');background-size:cover;background-position:center;border-bottom:3px solid var(--of-orange);"></div>
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
+            {%- for media in product.media limit: 4 -%}
+              <div style="width:76px;height:76px;border-radius:5px;overflow:hidden;border:1px solid rgba(143,168,168,0.3);">
+                <img src="{{ media | image_url: width: 160 }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product header",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ocean Forged · Product 01" },
+    { "type": "text", "id": "tagline", "label": "Fallback tagline", "default": "Made by lifeguards. Built for real-world rescues." },
+    { "type": "text", "id": "buy_label", "label": "Add to cart label", "default": "Add to Cart" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary button link" },
+    { "type": "header", "content": "When product is unavailable (pre-sale)" },
+    { "type": "textarea", "id": "presale_note", "label": "Pre-sale note", "default": "The first production run is on the way. Join the list to be the first to know when it ships." },
+    { "type": "text", "id": "presale_label", "label": "Pre-sale button label", "default": "Join the List" },
+    { "type": "url", "id": "presale_link", "label": "Pre-sale button link" }
+  ]
+}
+{% endschema %}

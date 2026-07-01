@@ -1,0 +1,57 @@
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+-%}
+<header class="of-header">
+  <div class="of-header__inner">
+    <a href="{{ routes.root_url }}" class="of-brand" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 120 }}"
+             width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+             alt="{{ shop.name | escape }}" style="height:34px;width:auto;">
+      {%- else -%}
+        <img src="{{ 'wave-mark.png' | asset_url }}" width="34" height="34" alt="{{ shop.name | escape }}">
+      {%- endif -%}
+      {%- if section.settings.show_brand_text -%}
+        <span class="of-brand__type">{{ section.settings.brand_line_1 | default: 'OCEAN' }}<br>{{ section.settings.brand_line_2 | default: 'FORGED' }}</span>
+      {%- endif -%}
+    </a>
+
+    <button class="of-nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="SiteNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="SiteNav" class="of-nav" aria-label="Primary">
+      {%- if menu != blank -%}
+        {%- for link in menu.links -%}
+          <a href="{{ link.url }}" class="of-nav__link"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="{{ routes.root_url }}" class="of-nav__link">Home</a>
+        <a href="{{ routes.all_products_collection_url }}" class="of-nav__link">Product</a>
+        <a href="/pages/about" class="of-nav__link">About</a>
+        <a href="{{ blog.url | default: '/blogs/news' }}" class="of-nav__link">Blog</a>
+        <a href="/pages/pre-sale" class="of-nav__link">Pre-Sale</a>
+      {%- endif -%}
+      {%- if section.settings.show_cta -%}
+        <a href="{{ section.settings.cta_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary of-btn--sm">{{ section.settings.cta_label | default: 'Join the List' }}</a>
+      {%- endif -%}
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "checkbox", "id": "show_brand_text", "label": "Show wordmark next to logo", "default": true },
+    { "type": "text", "id": "brand_line_1", "label": "Wordmark line 1", "default": "OCEAN" },
+    { "type": "text", "id": "brand_line_2", "label": "Wordmark line 2", "default": "FORGED" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "header", "content": "Call to action" },
+    { "type": "checkbox", "id": "show_cta", "label": "Show CTA button", "default": true },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Join the List" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" }
+  ]
+}
+{% endschema %}

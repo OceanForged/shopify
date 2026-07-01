@@ -1,0 +1,60 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "eyebrow": "Ocean Forged · Product 01",
+        "tagline": "Made by lifeguards. Built for real-world rescues.",
+        "buy_label": "Add to Cart",
+        "presale_note": "The first production run is on the way. Join the list to be the first to know when it ships.",
+        "presale_label": "Join the List",
+        "presale_link": "shopify://pages/pre-sale"
+      }
+    },
+    "anatomy": {
+      "type": "product-anatomy",
+      "blocks": {
+        "l1": { "type": "label", "settings": { "side": "left", "title": "Waterproof Self-Healing TRU ZIP® Zipper", "body": "Reseals itself with a slide. Fast, reliable access. Even with cold or wet hands." } },
+        "l2": { "type": "label", "settings": { "side": "left", "title": "Welded Seams. No Threads or Glue", "body": "RF-welded TPU construction removes every traditional failure point." } },
+        "r1": { "type": "label", "settings": { "side": "right", "title": "Durable Yet Flexible Waterproof Shell", "body": "Tough enough for the rocks, flexible enough to wear all day." } },
+        "r2": { "type": "label", "settings": { "side": "right", "title": "Secure Low-Profile Harness", "body": "Stays locked in place during active rescues. Comfortable for all-day wear." } }
+      },
+      "block_order": ["l1", "l2", "r1", "r2"],
+      "settings": { "eyebrow": "The Anatomy" }
+    },
+    "specs": {
+      "type": "product-specs",
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Construction", "value": "RF-welded TPU" } },
+        "s2": { "type": "spec", "settings": { "label": "Closure", "value": "TRU ZIP® self-healing waterproof zipper" } },
+        "s3": { "type": "spec", "settings": { "label": "Protection", "value": "Waterproof. Dustproof. Submersible." } },
+        "s4": { "type": "spec", "settings": { "label": "Carry", "value": "Secure low-profile harness system" } },
+        "s5": { "type": "spec", "settings": { "label": "Fits", "value": "Handheld radios and critical comms" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"],
+      "settings": { "heading": "Specifications", "note": "Retail, agency and bulk-order pricing available upon request." }
+    },
+    "audience": {
+      "type": "audience-grid",
+      "blocks": {
+        "a1": { "type": "audience", "settings": { "title": "Lifeguards", "body": "Keep comms dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from." } },
+        "a2": { "type": "audience", "settings": { "title": "First Responders", "body": "Reliable radio protection in the harshest environments, so your equipment is ready the moment it matters most." } },
+        "a3": { "type": "audience", "settings": { "title": "Surf & Water Rescue", "body": "Built for pounding surf, salt and sand. Submersible protection that takes the impact and keeps your radio working." } },
+        "a4": { "type": "audience", "settings": { "title": "Marine & Harbor Pros", "body": "Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it." } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"],
+      "settings": { "eyebrow": "Who it's for", "heading": "Built for the people the ocean tests.", "intro": "Designed for lifeguards and professionals operating in harsh environments where reliable radio protection is critical. Comfortable enough for all-day wear." }
+    },
+    "cta": {
+      "type": "cta-band",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Want to follow the build?",
+        "body": "The first production run is on the way. Join the list and we'll keep you posted.",
+        "button_label": "Join the List",
+        "button_link": "shopify://pages/pre-sale"
+      }
+    }
+  },
+  "order": ["main", "anatomy", "specs", "audience", "cta"]
+}

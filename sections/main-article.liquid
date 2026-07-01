@@ -1,0 +1,53 @@
+<article class="of-article">
+  <section class="of-bg-deep" style="padding:96px 0 70px;">
+    <div class="of-container" style="max-width:820px;">
+      {%- if article.tags.size > 0 -%}<p class="of-eyebrow" data-reveal>{{ article.tags.first }}</p>{%- endif -%}
+      <h1 class="of-display of-text-white" style="font-size:clamp(32px,4.6vw,60px);line-height:1.0;" data-reveal>{{ article.title }}</h1>
+      <p style="font-family:var(--of-font-body);font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-muted);margin:22px 0 0;" data-reveal>
+        {{ article.published_at | date: '%B %-d, %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}
+      </p>
+    </div>
+  </section>
+
+  {%- if article.image -%}
+    <div style="background:var(--of-deep);">
+      <div class="of-container" style="max-width:1000px;">
+        <img src="{{ article.image | image_url: width: 2000 }}" alt="{{ article.image.alt | escape }}" style="width:100%;border-radius:8px;transform:translateY(-40px);box-shadow:0 20px 50px rgba(0,0,0,0.3);">
+      </div>
+    </div>
+  {%- endif -%}
+
+  <section class="of-bg-light" style="padding:{% if article.image %}30px{% else %}80px{% endif %} 0 100px;">
+    <div class="of-container of-rte" style="max-width:760px;">
+      {{ article.content }}
+    </div>
+
+    {%- if blog.comments_enabled? -%}
+      <div class="of-container" style="max-width:760px;margin-top:60px;">
+        {%- if article.comments_count > 0 -%}
+          <h3 class="of-display" style="font-size:24px;margin-bottom:24px;">{{ article.comments_count }} comment{% if article.comments_count != 1 %}s{% endif %}</h3>
+          {%- for comment in article.comments -%}
+            <div style="background:#fff;border-radius:6px;padding:24px 26px;margin-bottom:16px;box-shadow:0 6px 20px rgba(21,48,47,0.05);">
+              <p style="margin:0 0 8px;color:var(--of-ink-soft);line-height:1.6;">{{ comment.content }}</p>
+              <span style="font-size:13px;font-weight:600;color:var(--of-deep);">{{ comment.author }}</span>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </section>
+</article>
+
+<style>
+.of-rte { color: var(--of-ink-soft); font-size: 17px; line-height: 1.75; }
+.of-rte h2, .of-rte h3 { font-family: var(--of-font-display); color: var(--of-deep); text-transform: uppercase; letter-spacing: -0.5px; margin: 40px 0 14px; }
+.of-rte h2 { font-size: 28px; } .of-rte h3 { font-size: 22px; }
+.of-rte p { margin: 0 0 20px; } .of-rte a { color: var(--of-orange); text-decoration: underline; }
+.of-rte img { border-radius: 6px; margin: 24px 0; }
+.of-rte blockquote { border-left: 4px solid var(--of-orange); margin: 24px 0; padding: 4px 0 4px 24px; font-family: var(--of-font-display); font-weight: 700; font-size: 20px; color: var(--of-deep); }
+.of-rte ul, .of-rte ol { padding-left: 22px; margin: 0 0 20px; } .of-rte li { margin-bottom: 8px; }
+</style>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

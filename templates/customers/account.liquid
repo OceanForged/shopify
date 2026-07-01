@@ -1,0 +1,31 @@
+<section class="of-section of-bg-light" style="min-height:60vh;">
+  <div class="of-container" style="max-width:900px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:32px;">
+      <div>
+        <p class="of-eyebrow">My Account</p>
+        <h1 class="of-display" style="font-size:36px;">Welcome, {{ customer.first_name | default: 'friend' }}</h1>
+      </div>
+      <a href="{{ routes.account_logout_url }}" class="of-btn of-btn--outline of-btn--sm">Log out</a>
+    </div>
+
+    <h2 class="of-display" style="font-size:22px;margin-bottom:16px;">Order history</h2>
+    {%- if customer.orders.size > 0 -%}
+      <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 12px 40px rgba(21,48,47,0.06);">
+        {%- for order in customer.orders -%}
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;padding:18px 24px;{% unless forloop.last %}border-bottom:1px solid #e4eae8;{% endunless %}align-items:center;">
+            <a href="{{ order.customer_url }}" style="font-weight:700;color:var(--of-deep);">{{ order.name }}</a>
+            <span style="color:var(--of-ink-soft);">{{ order.created_at | date: '%b %-d, %Y' }}</span>
+            <span style="color:var(--of-ink-soft);">{{ order.financial_status_label }}</span>
+            <span style="text-align:right;font-weight:700;">{{ order.total_price | money }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p style="color:var(--of-ink-soft);">You haven't placed any orders yet.</p>
+    {%- endif -%}
+
+    <div style="margin-top:40px;">
+      <a href="{{ routes.account_addresses_url }}" class="of-btn of-btn--outline of-btn--sm">Manage addresses ({{ customer.addresses_count }})</a>
+    </div>
+  </div>
+</section>

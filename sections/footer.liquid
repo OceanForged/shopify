@@ -1,0 +1,70 @@
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+-%}
+<footer class="of-footer">
+  <div class="of-container">
+    <div class="of-footer__grid">
+      <div>
+        {%- if section.settings.footer_logo != blank -%}
+          <img class="of-footer__logo" src="{{ section.settings.footer_logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}">
+        {%- else -%}
+          <img class="of-footer__logo" src="{{ 'logo-lockup-white.png' | asset_url }}" alt="{{ shop.name | escape }}">
+        {%- endif -%}
+        <p style="font-size:15px;line-height:1.6;color:var(--of-muted);margin:0;max-width:38ch;">{{ section.settings.tagline }}</p>
+      </div>
+
+      <div class="of-footer__col">
+        <p class="of-footer__heading">{{ section.settings.menu_heading | default: 'Explore' }}</p>
+        <div class="of-footer__links">
+          {%- if menu != blank -%}
+            {%- for link in menu.links -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endfor -%}
+          {%- else -%}
+            <a href="{{ routes.root_url }}">Home</a>
+            <a href="/pages/about">About</a>
+            <a href="{{ blog.url | default: '/blogs/news' }}">The Log</a>
+            <a href="/pages/pre-sale">Pre-Sale</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="of-footer__col">
+        <p class="of-footer__heading">{{ section.settings.contact_heading | default: 'Contact' }}</p>
+        <div class="of-footer__links">
+          {%- if section.settings.phone != blank -%}<a href="tel:{{ section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">{{ section.settings.phone }}</a>{%- endif -%}
+          {%- if section.settings.email != blank -%}<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>{%- endif -%}
+          {%- if section.settings.website != blank -%}<span>{{ section.settings.website }}</span>{%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="of-footer__bar">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.rights | default: 'All rights reserved.' }}</span>
+      {%- if section.settings.tagline_small != blank -%}
+        <span style="font-family:var(--of-font-display);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;">{{ section.settings.tagline_small }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "image_picker", "id": "footer_logo", "label": "Footer logo" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Where the sea shapes gear you can trust. Made by lifeguards, for lifeguards." },
+    { "type": "header", "content": "Menu column" },
+    { "type": "text", "id": "menu_heading", "label": "Heading", "default": "Explore" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" },
+    { "type": "header", "content": "Contact column" },
+    { "type": "text", "id": "contact_heading", "label": "Heading", "default": "Contact" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (508) 221-5609" },
+    { "type": "text", "id": "email", "label": "Email", "default": "duke.miskiv@oceanforgedgear.com" },
+    { "type": "text", "id": "website", "label": "Website", "default": "www.oceanforgedgear.com" },
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "rights", "label": "Rights text", "default": "All rights reserved." },
+    { "type": "text", "id": "tagline_small", "label": "Small tagline", "default": "When lives are on the line, there are no second chances." }
+  ]
+}
+{% endschema %}

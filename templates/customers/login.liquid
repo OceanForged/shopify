@@ -1,0 +1,39 @@
+<section class="of-section of-bg-light" style="min-height:70vh;">
+  <div class="of-container" style="max-width:440px;">
+    <div id="recover" style="display:none;">
+      <h1 class="of-display" style="font-size:32px;margin-bottom:8px;">Reset password</h1>
+      <p style="color:var(--of-ink-soft);margin:0 0 24px;">We'll send you an email to reset it.</p>
+      {%- form 'recover_customer_password' -%}
+        {%- if form.posted_successfully? -%}<p style="color:#1f5a3a;background:#eaf4ee;padding:14px;border-radius:6px;">We've sent you an email with a link to update your password.</p>{%- endif -%}
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <input type="email" name="email" placeholder="Email" class="of-field" required>
+          <button type="submit" class="of-btn of-btn--primary">Send reset link</button>
+        </div>
+      {%- endform -%}
+      <p style="margin-top:18px;"><a href="#login" style="color:var(--of-orange);text-decoration:underline;">Back to sign in</a></p>
+    </div>
+
+    <div id="login">
+      <p class="of-eyebrow">Account</p>
+      <h1 class="of-display" style="font-size:36px;margin-bottom:24px;">Sign in</h1>
+      {%- form 'customer_login' -%}
+        {%- if form.errors -%}<p style="color:#9a2a12;background:#fbeae7;padding:14px;border-radius:6px;margin-bottom:16px;">{{ form.errors | default_errors }}</p>{%- endif -%}
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <input type="email" name="customer[email]" placeholder="Email" class="of-field" required>
+          <input type="password" name="customer[password]" placeholder="Password" class="of-field">
+          <button type="submit" class="of-btn of-btn--primary">Sign in</button>
+        </div>
+      {%- endform -%}
+      <div style="display:flex;justify-content:space-between;margin-top:18px;font-size:14px;">
+        <a href="#recover" style="color:var(--of-orange);text-decoration:underline;">Forgot password?</a>
+        <a href="{{ routes.account_register_url }}" style="color:var(--of-deep);">Create account</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  (function(){
+    function sync(){ var r=location.hash==='#recover'; document.getElementById('recover').style.display=r?'block':'none'; document.getElementById('login').style.display=r?'none':'block'; }
+    window.addEventListener('hashchange', sync); sync();
+  })();
+</script>

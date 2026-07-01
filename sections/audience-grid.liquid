@@ -1,0 +1,49 @@
+<section class="of-section of-bg-white">
+  <div class="of-container of-container--wide">
+    <div style="max-width:720px;margin:0 auto 56px;text-align:center;" data-reveal>
+      <p class="of-eyebrow">{{ section.settings.eyebrow | default: "Who it's for" }}</p>
+      <h2 class="of-display of-h2" style="line-height:1.0;margin-bottom:20px;">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}
+        <p style="font-size:17px;line-height:1.65;color:var(--of-ink-soft);margin:0;">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+    <div class="of-grid of-grid--2">
+      {%- for block in section.blocks -%}
+        <div style="background:var(--of-light);border-left:4px solid var(--of-orange);padding:34px 32px;border-radius:0 6px 6px 0;" data-reveal {{ block.shopify_attributes }}>
+          <h3 style="font-family:var(--of-font-display);font-weight:800;font-size:21px;margin:0 0 10px;text-transform:uppercase;">{{ block.settings.title }}</h3>
+          <p style="font-size:16px;line-height:1.6;color:var(--of-ink-soft);margin:0;">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Audience grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Who it's for" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Built for the people the ocean tests." },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Designed for lifeguards and professionals operating in harsh environments where reliable radio protection is critical. Comfortable enough for all-day wear." }
+  ],
+  "blocks": [
+    {
+      "type": "audience",
+      "name": "Audience",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Lifeguards" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Audience grid",
+    "blocks": [
+      { "type": "audience", "settings": { "title": "Lifeguards", "body": "Keep comms dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from." } },
+      { "type": "audience", "settings": { "title": "First Responders", "body": "Reliable radio protection in the harshest environments, so your equipment is ready the moment it matters most." } },
+      { "type": "audience", "settings": { "title": "Surf & Water Rescue", "body": "Built for pounding surf, salt and sand. Submersible protection that takes the impact and keeps your radio working." } },
+      { "type": "audience", "settings": { "title": "Marine & Harbor Pros", "body": "Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it." } }
+    ]
+  }]
+}
+{% endschema %}

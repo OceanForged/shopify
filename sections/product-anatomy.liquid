@@ -1,0 +1,76 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 900
+  endif
+  assign left = section.blocks | where: 'settings.side', 'left'
+  assign right = section.blocks | where: 'settings.side', 'right'
+-%}
+<section class="of-bg-deep" style="padding:80px 0 110px;">
+  <div class="of-container" style="max-width:1100px;">
+    <p class="of-eyebrow" style="text-align:center;margin-bottom:44px;" data-reveal>{{ section.settings.eyebrow | default: 'The Anatomy' }}</p>
+    <div class="of-anatomy" style="display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;" data-reveal>
+      <div style="display:flex;flex-direction:column;gap:48px;text-align:right;">
+        {%- for block in left -%}
+          <div {{ block.shopify_attributes }}>
+            <div style="font-family:var(--of-font-display);font-weight:800;color:#fff;font-size:15px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">{{ block.settings.title }}</div>
+            <p style="font-size:13px;color:var(--of-muted);line-height:1.5;margin:0;">{{ block.settings.body }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div style="width:clamp(220px,26vw,320px);aspect-ratio:3/5;border-radius:8px;overflow:hidden;position:relative;border:1px solid rgba(224,63,26,0.4);{% if img_url %}background-image:url('{{ img_url }}');background-size:cover;background-position:center;{% else %}background:repeating-linear-gradient(45deg,#16332f,#16332f 14px,#1b3a36 14px,#1b3a36 28px);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;{% endif %}">
+        {%- unless img_url -%}
+          <span style="font-family:monospace;font-size:12px;letter-spacing:1px;color:var(--of-muted);text-transform:uppercase;line-height:1.7;">[ product<br>front view ]<br><span style="font-size:10px;color:#5e7a78;">drop clean studio shot</span></span>
+        {%- endunless -%}
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:48px;">
+        {%- for block in right -%}
+          <div {{ block.shopify_attributes }}>
+            <div style="font-family:var(--of-font-display);font-weight:800;color:#fff;font-size:15px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">{{ block.settings.title }}</div>
+            <p style="font-size:13px;color:var(--of-muted);line-height:1.5;margin:0;">{{ block.settings.body }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 760px){
+  .of-anatomy{grid-template-columns:1fr !important;}
+  .of-anatomy > div:first-child{text-align:left !important;order:2;}
+  .of-anatomy > div:nth-child(2){order:1;margin:0 auto 20px;}
+  .of-anatomy > div:last-child{order:3;}
+}
+</style>
+
+{% schema %}
+{
+  "name": "Product anatomy",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Anatomy" },
+    { "type": "image_picker", "id": "image", "label": "Center product image" }
+  ],
+  "blocks": [
+    {
+      "type": "label",
+      "name": "Label",
+      "settings": [
+        { "type": "select", "id": "side", "label": "Side", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Product anatomy",
+    "blocks": [
+      { "type": "label", "settings": { "side": "left", "title": "Waterproof Self-Healing TRU ZIP® Zipper", "body": "Reseals itself with a slide. Fast, reliable access. Even with cold or wet hands." } },
+      { "type": "label", "settings": { "side": "left", "title": "Welded Seams. No Threads or Glue", "body": "RF-welded TPU construction removes every traditional failure point." } },
+      { "type": "label", "settings": { "side": "right", "title": "Durable Yet Flexible Waterproof Shell", "body": "Tough enough for the rocks, flexible enough to wear all day." } },
+      { "type": "label", "settings": { "side": "right", "title": "Secure Low-Profile Harness", "body": "Stays locked in place during active rescues. Comfortable for all-day wear." } }
+    ]
+  }]
+}
+{% endschema %}

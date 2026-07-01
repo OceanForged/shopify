@@ -1,0 +1,74 @@
+{%- liquid
+  assign bg = section.settings.bg_image
+  if bg != blank
+    assign bg_url = bg | image_url: width: 2400
+  else
+    assign bg_url = 'ocean-hero.jpg' | asset_url
+  endif
+  if section.settings.card_image != blank
+    assign card_url = section.settings.card_image | image_url: width: 1200
+  else
+    assign card_url = 'product-worn.jpg' | asset_url
+  endif
+-%}
+<section class="of-hero" style="position:relative;background:var(--of-deep);background-image:linear-gradient(90deg, rgba(15,36,35,0.97) 0%, rgba(15,36,35,0.82) 42%, rgba(15,36,35,0.5) 100%), url('{{ bg_url }}');background-size:cover;background-position:center;">
+  <div class="of-hero__inner" style="max-width:1320px;margin:0 auto;padding:92px 32px;display:grid;grid-template-columns:1.08fr 0.92fr;gap:60px;align-items:center;min-height:82vh;">
+    <div>
+      {%- if section.settings.badge_1 != blank or section.settings.badge_2 != blank -%}
+        <div style="display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap;" data-reveal>
+          {%- if section.settings.badge_1 != blank -%}<span class="of-badge of-badge--solid">{{ section.settings.badge_1 }}</span>{%- endif -%}
+          {%- if section.settings.badge_2 != blank -%}<span class="of-badge of-badge--outline">{{ section.settings.badge_2 }}</span>{%- endif -%}
+        </div>
+      {%- endif -%}
+      <h1 class="of-display of-text-white" style="font-size:clamp(46px,6.4vw,96px);line-height:0.9;letter-spacing:-1px;" data-reveal>{{ section.settings.heading | default: 'Radio Dry Bag' | newline_to_br }}</h1>
+      <div class="of-rule" data-reveal></div>
+      <p class="of-lede" style="color:var(--of-on-dark);max-width:44ch;margin:0 0 36px;" data-reveal>{{ section.settings.subheading }}</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;" data-reveal>
+        {%- if section.settings.button_1_label != blank -%}
+          <a href="{{ section.settings.button_1_link }}" class="of-btn of-btn--primary">{{ section.settings.button_1_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a href="{{ section.settings.button_2_link }}" class="of-btn of-btn--ghost">{{ section.settings.button_2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    <div data-reveal>
+      <div style="border:1px solid rgba(143,168,168,0.3);border-radius:8px;overflow:hidden;background:var(--of-deeper);box-shadow:0 30px 70px rgba(0,0,0,0.4);">
+        <div style="aspect-ratio:1002/654;background-image:url('{{ card_url }}');background-size:cover;background-position:center;border-bottom:3px solid var(--of-orange);"></div>
+        <div style="padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+          <span style="font-family:var(--of-font-display);font-weight:800;font-size:13px;color:#fff;text-transform:uppercase;letter-spacing:1px;">{{ section.settings.card_title | default: 'In the field' }}</span>
+          <span style="font-family:var(--of-font-body);font-size:12px;color:var(--of-muted);letter-spacing:1px;text-transform:uppercase;">{{ section.settings.card_meta | default: 'RF-welded · Submersible' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- if section.settings.show_scroll -%}
+    <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(207,224,221,0.7);">Scroll</span>
+      <span style="width:1px;height:32px;background:linear-gradient(rgba(255,255,255,0.7),transparent);display:block;"></span>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "text", "id": "badge_1", "label": "Badge 1 (solid)", "default": "Made by Lifeguards" },
+    { "type": "text", "id": "badge_2", "label": "Badge 2 (outline)", "default": "First Responders" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Radio\nDry Bag" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Waterproof comms protection forged by lifeguards. Built to keep your radio dry, dustproof, and submersible in the worst conditions the ocean can throw at it." },
+    { "type": "text", "id": "button_1_label", "label": "Button 1 label", "default": "Explore the Product" },
+    { "type": "url", "id": "button_1_link", "label": "Button 1 link" },
+    { "type": "text", "id": "button_2_label", "label": "Button 2 label", "default": "Read Our Story" },
+    { "type": "url", "id": "button_2_link", "label": "Button 2 link" },
+    { "type": "header", "content": "Preview card" },
+    { "type": "image_picker", "id": "card_image", "label": "Card image" },
+    { "type": "text", "id": "card_title", "label": "Card title", "default": "In the field" },
+    { "type": "text", "id": "card_meta", "label": "Card meta", "default": "RF-welded · Submersible" },
+    { "type": "checkbox", "id": "show_scroll", "label": "Show scroll cue", "default": true }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

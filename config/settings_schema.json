@@ -1,0 +1,32 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Ocean Forged",
+    "theme_version": "1.0.0",
+    "theme_author": "Ocean Forged",
+    "theme_documentation_url": "https://www.oceanforgedgear.com",
+    "theme_support_url": "https://www.oceanforgedgear.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (32x32)" },
+      { "type": "image_picker", "id": "share_image", "label": "Default social share image" }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_deep", "label": "Primary dark (teal)", "default": "#15302f" },
+      { "type": "color", "id": "color_deeper", "label": "Darkest (footer)", "default": "#0f2423" },
+      { "type": "color", "id": "color_accent", "label": "Accent (orange)", "default": "#E03F1A" },
+      { "type": "color", "id": "color_light", "label": "Light background", "default": "#f2f5f4" }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      { "type": "range", "id": "page_width", "label": "Max content width", "min": 1120, "max": 1440, "step": 20, "unit": "px", "default": 1280 }
+    ]
+  }
+]

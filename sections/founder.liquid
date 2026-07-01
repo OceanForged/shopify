@@ -1,0 +1,53 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 1200
+  else
+    assign img_url = 'lifeguard-bridge-1.jpeg' | asset_url
+  endif
+-%}
+<section class="of-bg-deep">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;align-items:stretch;" class="of-founder">
+    <div style="min-height:520px;background-image:url('{{ img_url }}');background-size:cover;background-position:center {{ section.settings.image_focus | default: 20 }}%;" data-reveal></div>
+    <div style="padding:84px 56px;display:flex;flex-direction:column;justify-content:center;" data-reveal>
+      <p class="of-eyebrow">{{ section.settings.eyebrow | default: 'The Founder' }}</p>
+      <h2 class="of-display of-h2 of-text-white" style="line-height:0.98;margin-bottom:10px;">{{ section.settings.name | default: 'Duke Miskiv' }}</h2>
+      <p style="font-family:var(--of-font-body);font-weight:600;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);margin:0 0 26px;">{{ section.settings.role }}</p>
+      {%- if section.settings.bio != blank -%}
+        <p style="font-size:17px;line-height:1.7;color:var(--of-on-dark-2);margin:0 0 30px;max-width:48ch;">{{ section.settings.bio }}</p>
+      {%- endif -%}
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {%- if section.settings.phone != blank -%}
+          <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Phone</span><span style="color:#fff;font-weight:600;">{{ section.settings.phone }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.email != blank -%}
+          <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Email</span><span style="color:#fff;font-weight:600;">{{ section.settings.email }}</span></div>
+        {%- endif -%}
+        {%- if section.settings.website != blank -%}
+          <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Web</span><span style="color:#fff;font-weight:600;">{{ section.settings.website }}</span></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width:760px){ .of-founder{grid-template-columns:1fr !important;} .of-founder > div:first-child{min-height:340px !important;} }
+</style>
+
+{% schema %}
+{
+  "name": "Founder",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "range", "id": "image_focus", "label": "Photo vertical focus", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 20 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Founder" },
+    { "type": "text", "id": "name", "label": "Name", "default": "Duke Miskiv" },
+    { "type": "text", "id": "role", "label": "Role", "default": "Founder · Lifeguard · First Responder" },
+    { "type": "textarea", "id": "bio", "label": "Bio", "default": "Duke has spent his career in the water, from open-water rescues to the surf line. Ocean Forged is the gear he wished he'd had on every call: dependable, tough, and ready when it counts." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (508) 221-5609" },
+    { "type": "text", "id": "email", "label": "Email", "default": "duke.miskiv@oceanforgedgear.com" },
+    { "type": "text", "id": "website", "label": "Website", "default": "www.oceanforgedgear.com" }
+  ],
+  "presets": [{ "name": "Founder" }]
+}
+{% endschema %}

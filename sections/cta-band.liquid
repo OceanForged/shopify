@@ -1,0 +1,26 @@
+<section class="of-section of-bg-orange" style="text-align:center;">
+  <div class="of-container" style="max-width:760px;" data-reveal>
+    {%- if section.settings.eyebrow != blank -%}<p class="of-eyebrow of-eyebrow--light">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <h2 class="of-display of-text-white" style="font-size:clamp(32px,4.6vw,58px);line-height:1.0;margin:0 0 22px;">{{ section.settings.heading }}</h2>
+    {%- if section.settings.body != blank -%}
+      <p style="font-size:18px;line-height:1.55;color:rgba(255,255,255,0.92);margin:0 0 34px;">{{ section.settings.body }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="of-btn of-btn--light" style="font-size:16px;padding:18px 44px;">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA band",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Join the First Wave" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "The first production run is on the way." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Join the list to follow the build and be the first to know when it's ready." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the List" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "CTA band" }]
+}
+{% endschema %}

@@ -1,0 +1,35 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 2400
+  else
+    assign img_url = 'ocean-deep.jpg' | asset_url
+  endif
+  assign o = section.settings.overlay | divided_by: 100.0
+-%}
+<section style="position:relative;padding:{{ section.settings.padding_top }}px 32px {{ section.settings.padding_bottom }}px;background-image:linear-gradient(rgba(21,48,47,{{ o }}), rgba(21,48,47,{{ o | plus: 0.1 }})), url('{{ img_url }}');background-size:cover;background-position:center;">
+  <div style="max-width:{{ section.settings.max_width | default: 900 }}px;margin:0 auto;text-align:{{ section.settings.align }};">
+    {%- if section.settings.eyebrow != blank -%}<p class="of-eyebrow" data-reveal>{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <h1 class="of-display of-text-white" style="font-size:clamp(36px,5.6vw,76px);line-height:0.96;letter-spacing:-1px;" data-reveal>{{ section.settings.heading }}</h1>
+    {%- if section.settings.subheading != blank -%}
+      <p style="font-size:18px;color:var(--of-on-dark-2);margin:22px 0 0;max-width:52ch;line-height:1.6;{% if section.settings.align == 'center' %}margin-left:auto;margin-right:auto;{% endif %}" data-reveal>{{ section.settings.subheading }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 40, "max": 95, "step": 5, "unit": "%", "default": 82 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Us" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Innovation forged by experience." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "select", "id": "align", "label": "Alignment", "options": [ { "value": "center", "label": "Center" }, { "value": "left", "label": "Left" } ], "default": "center" },
+    { "type": "range", "id": "max_width", "label": "Content width", "min": 700, "max": 1280, "step": 20, "unit": "px", "default": 900 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 60, "max": 200, "step": 10, "unit": "px", "default": 130 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 60, "max": 200, "step": 10, "unit": "px", "default": 110 }
+  ],
+  "presets": [{ "name": "Page hero" }]
+}
+{% endschema %}

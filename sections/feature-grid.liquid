@@ -1,0 +1,65 @@
+<section class="of-section of-bg-light">
+  <div class="of-container of-container--wide">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap;" data-reveal>
+      <div>
+        <p class="of-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="of-display of-h2">{{ section.settings.heading | newline_to_br }}</h2>
+      </div>
+      {%- if section.settings.intro != blank -%}
+        <p style="font-size:16px;line-height:1.6;color:var(--of-ink-soft);margin:0;max-width:38ch;">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="of-grid of-grid--4">
+      {%- for block in section.blocks -%}
+        <div class="of-feature" data-reveal {{ block.shopify_attributes }}>
+          <div class="of-feature__num">{{ block.settings.number | default: forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+          <div>
+            <h3 class="of-feature__title">{{ block.settings.title }}</h3>
+            <p class="of-feature__body">{{ block.settings.body }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div style="text-align:center;margin-top:44px;" data-reveal>
+        <a href="{{ section.settings.button_link }}" class="of-btn of-btn--outline">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature grid",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it's built" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Built to one standard.\nThe lifeguard standard." },
+    { "type": "textarea", "id": "intro", "label": "Intro paragraph", "default": "Every feature exists because a \"waterproof\" bag failed someone in the water. Here is what we changed." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "See Full Product Details" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "RF-Welded TPU" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "No stitching. No glue. No failure points. The shell is fused, not sewn." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Feature grid",
+    "blocks": [
+      { "type": "feature", "settings": { "number": "01", "title": "RF-Welded TPU", "body": "No stitching. No glue. No failure points. The shell is fused, not sewn." } },
+      { "type": "feature", "settings": { "number": "02", "title": "TRU ZIP® Zipper", "body": "A waterproof, self-healing zipper. Fast, reliable access when seconds count." } },
+      { "type": "feature", "settings": { "number": "03", "title": "Submersible", "body": "Waterproof, dustproof and submersible. Salt, sand and water stay out." } },
+      { "type": "feature", "settings": { "number": "04", "title": "Harness System", "body": "A secure, low-profile harness. Stays locked in place during active rescues." } }
+    ]
+  }]
+}
+{% endschema %}

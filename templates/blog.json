@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "eyebrow": "Field Notes",
+        "heading": "The Log",
+        "intro": "Stories from the water, gear breakdowns, and notes from the first wave of Ocean Forged.",
+        "show_featured": true
+      }
+    }
+  },
+  "order": ["main"]
+}

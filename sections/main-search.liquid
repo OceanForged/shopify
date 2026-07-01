@@ -1,0 +1,37 @@
+<section class="of-bg-deep" style="padding:96px 0 60px;">
+  <div class="of-container of-container--wide">
+    <p class="of-eyebrow" data-reveal>Search</p>
+    <h1 class="of-display of-h1 of-text-white" data-reveal>{% if search.performed %}Results{% else %}Search{% endif %}</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="margin-top:28px;max-width:560px;display:flex;gap:10px;" data-reveal>
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products &amp; posts" class="of-field">
+      <button type="submit" class="of-btn of-btn--primary">Go</button>
+    </form>
+  </div>
+</section>
+
+<section class="of-section of-bg-light">
+  <div class="of-container of-container--wide">
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <p style="color:var(--of-muted);margin:0 0 32px;">{{ search.results.size }} result{% if search.results.size != 1 %}s{% endif %} for &ldquo;{{ search.terms | escape }}&rdquo;</p>
+        <div class="of-grid of-grid--3">
+          {%- for item in search.results -%}
+            <a href="{{ item.url }}" style="background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 12px 36px rgba(21,48,47,0.06);display:block;" data-reveal>
+              <div style="aspect-ratio:16/10;{% if item.featured_media or item.image %}background:#0f2423 url('{{ item.featured_media | default: item.image | image_url: width: 700 }}') center/cover;{% else %}background:repeating-linear-gradient(45deg,#e4eae8,#e4eae8 14px,#edf1f0 14px,#edf1f0 28px);{% endif %}"></div>
+              <div style="padding:22px 24px;">
+                <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);">{{ item.object_type }}</span>
+                <h3 style="font-family:var(--of-font-display);font-weight:800;font-size:18px;line-height:1.15;margin:10px 0 0;text-transform:uppercase;">{{ item.title }}</h3>
+              </div>
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p style="text-align:center;color:var(--of-ink-soft);font-size:18px;padding:40px 0;">No results for &ldquo;{{ search.terms | escape }}&rdquo;.</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

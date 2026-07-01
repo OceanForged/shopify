@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "eyebrow": "About Us",
+        "heading": "Innovation forged by experience.",
+        "align": "center",
+        "overlay": 82,
+        "padding_top": 130,
+        "padding_bottom": 110
+      }
+    },
+    "story": {
+      "type": "story-text",
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "Ocean Forged was discovered on the beach, not in a boardroom." } },
+        "p1": { "type": "paragraph", "settings": { "text": "As lifeguards and first responders, we learned first-hand, the hard way, that most \"waterproof\" radio bags fail when you need them most. Salt, sand, and water get in, and suddenly the gear that keeps you connected and safe is done. So Ocean Forged set out to build something better." } },
+        "p2": { "type": "paragraph", "settings": { "text": "Our first product, a rugged and dependable radio dry bag, was designed for one purpose: keep your gear dry, dependable, and ready, no matter the conditions. The simple design just makes sense because it came from the beach itself. The beach provided, we just listened. Tested in pounding surf and high-stakes rescues, it's built to become the standard you've been looking for." } },
+        "p3": { "type": "paragraph", "settings": { "text": "And that same lifeguard standard is what we bring to everything we make. Whether it's a radio bag, a waterproof fanny pack, or whatever comes next, every product is built with the same trust, toughness, and no-nonsense reliability demanded when lives are on the line." } },
+        "statement": { "type": "statement", "settings": { "text": "Working with the ocean, not against it." } }
+      },
+      "block_order": ["lead", "p1", "p2", "p3", "statement"]
+    },
+    "founder": {
+      "type": "founder",
+      "settings": {
+        "eyebrow": "The Founder",
+        "name": "Duke Miskiv",
+        "role": "Founder · Lifeguard · First Responder",
+        "bio": "Duke has spent his career in the water, from open-water rescues to the surf line. Ocean Forged is the gear he wished he'd had on every call: dependable, tough, and ready when it counts.",
+        "phone": "+1 (508) 221-5609",
+        "email": "duke.miskiv@oceanforgedgear.com",
+        "website": "www.oceanforgedgear.com"
+      }
+    }
+  },
+  "order": ["hero", "story", "founder"]
+}

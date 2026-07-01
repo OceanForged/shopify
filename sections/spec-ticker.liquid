@@ -1,0 +1,19 @@
+<section class="of-ticker" aria-hidden="true">
+  <div class="of-ticker__track">
+    {%- assign txt = section.settings.text | default: 'RF Welded · TRU ZIP® · Waterproof · Dustproof · Submersible · Self-Healing Zipper · Low-Profile Harness · ' -%}
+    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spec ticker",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Ticker text (repeated)", "default": "RF Welded · TRU ZIP® · Waterproof · Dustproof · Submersible · Self-Healing Zipper · Low-Profile Harness · " }
+  ],
+  "presets": [{ "name": "Spec ticker" }]
+}
+{% endschema %}

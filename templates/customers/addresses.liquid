@@ -1,0 +1,32 @@
+<section class="of-section of-bg-light" style="min-height:60vh;">
+  <div class="of-container" style="max-width:640px;">
+    <p class="of-eyebrow">Account</p>
+    <h1 class="of-display" style="font-size:34px;margin-bottom:24px;">Your addresses</h1>
+
+    <details style="background:#fff;border-radius:8px;padding:8px 20px;margin-bottom:24px;box-shadow:0 8px 24px rgba(21,48,47,0.05);">
+      <summary style="cursor:pointer;font-weight:700;color:var(--of-deep);padding:14px 0;">+ Add a new address</summary>
+      {%- form 'customer_address', customer.new_address -%}
+        <div style="display:flex;flex-direction:column;gap:12px;padding:12px 0 20px;">
+          <input type="text" name="address[first_name]" placeholder="First name" class="of-field">
+          <input type="text" name="address[last_name]" placeholder="Last name" class="of-field">
+          <input type="text" name="address[address1]" placeholder="Address" class="of-field">
+          <input type="text" name="address[city]" placeholder="City" class="of-field">
+          <input type="text" name="address[province]" placeholder="State / Province" class="of-field">
+          <input type="text" name="address[zip]" placeholder="ZIP / Postal" class="of-field">
+          <input type="text" name="address[country]" placeholder="Country" class="of-field">
+          <input type="tel" name="address[phone]" placeholder="Phone" class="of-field">
+          <button type="submit" class="of-btn of-btn--primary">Save address</button>
+        </div>
+      {%- endform -%}
+    </details>
+
+    {%- for address in customer.addresses -%}
+      <div style="background:#fff;border-radius:8px;padding:22px 24px;margin-bottom:16px;box-shadow:0 8px 24px rgba(21,48,47,0.05);">
+        {%- if address == customer.default_address -%}<span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);">Default</span>{%- endif -%}
+        <div style="margin:8px 0;color:var(--of-ink-soft);line-height:1.6;">{{ address | format_address }}</div>
+      </div>
+    {%- endfor -%}
+
+    <p style="margin-top:20px;"><a href="{{ routes.account_url }}" style="color:var(--of-orange);text-decoration:underline;">&larr; Back to account</a></p>
+  </div>
+</section>

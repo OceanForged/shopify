@@ -1,0 +1,40 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 1600
+  else
+    assign img_url = 'ocean-deep.jpg' | asset_url
+  endif
+  assign order = section.settings.image_position
+-%}
+<section class="of-image-text of-bg-deep">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:{% if order == 'right' %}1.1fr 0.9fr{% else %}0.9fr 1.1fr{% endif %};align-items:stretch;">
+    <div style="min-height:480px;background-image:url('{{ img_url }}');background-size:cover;background-position:center {{ section.settings.image_focus | default: 30 }}%;{% if order == 'right' %}order:2;{% endif %}" data-reveal></div>
+    <div style="padding:84px 56px;display:flex;flex-direction:column;justify-content:center;{% if order == 'right' %}order:1;{% endif %}" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="of-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="of-display of-h2 of-text-white" style="margin-bottom:22px;">{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}
+        <p style="font-size:17px;line-height:1.65;color:var(--of-on-dark-2);margin:0 0 30px;max-width:46ch;">{{ section.settings.body }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="of-btn of-btn--ghost" style="align-self:flex-start;">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image + text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "image_focus", "label": "Image vertical focus", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 30 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "When lives are on the line" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "There are no second chances." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Ocean Forged was discovered on the beach, not in a boardroom. As lifeguards and first responders, we learned the hard way that most \"waterproof\" radio bags fail when you need them most. So we built something better." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Our Story" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Image + text" }]
+}
+{% endschema %}
