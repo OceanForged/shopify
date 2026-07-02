@@ -12,27 +12,58 @@
     "signup": {
       "type": "presale-signup",
       "settings": {
+        "overlay": 90,
         "pill": "Bulk & Team Orders",
-        "heading": "Gearing up a team?\nLet's talk numbers.",
-        "body": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your size.",
-        "note": "Institutional and government pricing available. We'll follow up to confirm details.",
+        "heading": "Gearing up a team?",
+        "body": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your needs.",
+        "note": "Institutional and government pricing available.",
         "form_title": "Tell us about your team",
         "form_note": "Fill this out and we'll build a quote around your unit.",
-        "button_label": "Count Me In",
-        "success": "Got it — we'll be in touch within 1–2 business days.",
+        "button_label": "Get team pricing",
+        "success": "Got it, we'll be in touch within 1–2 business days.",
         "fine_print": "No commitment, just a conversation. We usually reply within 1–2 business days."
       }
     },
     "why": {
       "type": "numbered-points",
       "blocks": {
-        "p1": { "type": "point", "settings": { "number": "01", "title": "Volume Pricing", "body": "Better per-unit pricing the more your team needs." } },
-        "p2": { "type": "point", "settings": { "number": "02", "title": "Outfit the Whole Unit", "body": "Consistent, dependable gear for everyone on the team." } },
-        "p3": { "type": "point", "settings": { "number": "03", "title": "Priority Lead Times", "body": "We plan production around your season and your size." } }
+        "p1": {
+          "type": "point",
+          "settings": {
+            "number": "01",
+            "title": "Volume Pricing",
+            "body": "Better per-unit pricing the more your team needs."
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "number": "02",
+            "title": "Outfit the Whole Unit",
+            "body": "Consistent, dependable gear for everyone on the team."
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "number": "03",
+            "title": "Priority Lead Times",
+            "body": "We plan production around your season and your size."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
-      "settings": { "heading": "Why order as a team" }
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "heading": "Why order as a team"
+      }
     }
   },
-  "order": ["signup", "why"]
+  "order": [
+    "signup",
+    "why"
+  ]
 }
