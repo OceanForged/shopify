@@ -14,14 +14,14 @@
       "settings": {
         "badge_1": "Made by Lifeguards",
         "badge_2": "For Lifeguards",
-        "heading": "Radio\nDry Bag",
+        "heading": "Radio\nDry Bag (RDB-01)",
         "subheading": "Waterproof radio protection forged by lifeguards. Built to keep your radio dry, dustproof, and sealed against salt and sand in the worst conditions the ocean can throw at it.",
         "button_1_label": "Explore the Product",
         "button_1_link": "shopify://collections/all",
         "button_2_label": "Read Our Story",
         "button_2_link": "shopify://pages/about",
-        "card_title": "In the field",
-        "card_meta": "RF-welded · Field-tested",
+        "card_title": "",
+        "card_meta": "",
         "show_card": true,
         "show_scroll": true
       }
