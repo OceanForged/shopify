@@ -1,9 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_deep": "#15302f",
     "color_deeper": "#0f2423",
     "color_accent": "#E03F1A",
     "color_light": "#f2f5f4",
-    "page_width": 1280
+    "page_width": 1280,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_height": 54,
+          "show_brand_text": false,
+          "brand_line_1": "OCEAN",
+          "brand_line_2": "FORGED",
+          "menu": "main-menu",
+          "show_cta": true,
+          "cta_label": "Radio Dry Bag",
+          "cta_link": "shopify://products/radio-dry-bag"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline": "Where the sea shapes gear you can trust. Made by lifeguards, for lifeguards.",
+          "menu_heading": "Explore",
+          "menu": "footer",
+          "contact_heading": "Contact",
+          "phone": "+1 (508) 221-5609",
+          "email": "duke.miskiv@oceanforgedgear.com",
+          "website": "www.oceanforgedgear.com",
+          "rights": "All rights reserved.",
+          "tagline_small": "When lives are on the line, there are no second chances."
+        }
+      }
+    },
+    "content_for_index": []
   }
 }
