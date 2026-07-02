@@ -1,14 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "support_shop": {
       "type": "support-shop",
       "blocks": {
-        "p1": { "type": "point", "settings": { "number": "01", "title": "Product R&D", "body": "Every run funds prototyping, materials, and real-world field testing for the next Ocean Forged product." } },
-        "p2": { "type": "point", "settings": { "number": "02", "title": "You're the crew", "body": "Wearers help shape what we build next and get early access to new drops. Buying in makes you part of the community." } },
-        "p3": { "type": "point", "settings": { "number": "03", "title": "Print on demand", "body": "Printed and shipped on demand through Printful. No overproduction, no waste — made only when you order." } }
+        "p1": {
+          "type": "point",
+          "settings": {
+            "number": "01",
+            "title": "Product R&D",
+            "body": "Every run funds prototyping, materials, and real-world field testing for the next Ocean Forged product."
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "number": "02",
+            "title": "You're the crew",
+            "body": "Wearers help shape what we build next and get early access to new drops. Buying in makes you part of the community."
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "number": "03",
+            "title": "Print on demand",
+            "body": "Printed and shipped on demand through Printful. No overproduction, no waste — made only when you order."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
+        "collection": "support-shirts",
         "pill_1": "Support the Build",
         "pill_2": "Not a profit line",
         "heading": "Wear the standard.\nFund the next one.",
@@ -22,5 +57,7 @@
       }
     }
   },
-  "order": ["support_shop"]
+  "order": [
+    "support_shop"
+  ]
 }
