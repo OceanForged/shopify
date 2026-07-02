@@ -15,7 +15,7 @@
           <span style="font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#ffd9cd;">{{ section.settings.pill }}</span>
         </div>
       {%- endif -%}
-      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:24px;">{{ section.settings.heading | default: "Gearing up a team? Let's talk numbers." | newline_to_br }}</h1>
+      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:24px;">{{ section.settings.heading | default: "Gearing up a team?" | newline_to_br }}</h1>
       <p style="font-size:18px;line-height:1.65;color:var(--of-on-dark);margin:0 0 26px;max-width:48ch;">{{ section.settings.body }}</p>
       {%- if section.settings.note != blank -%}
         <div style="display:flex;align-items:flex-start;gap:12px;padding:18px 20px;background:rgba(255,255,255,0.06);border-left:3px solid var(--of-orange);border-radius:0 6px 6px 0;max-width:46ch;">
@@ -70,8 +70,8 @@
     { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 50, "max": 95, "step": 5, "unit": "%", "default": 90 },
     { "type": "text", "id": "pill", "label": "Pill label", "default": "Bulk & Team Orders" },
     { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Gearing up a team?\nLet's talk numbers." },
-    { "type": "textarea", "id": "body", "label": "Body", "default": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your size." },
-    { "type": "textarea", "id": "note", "label": "Highlight note", "default": "Institutional and government pricing available. We'll follow up to confirm details." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your needs." },
+    { "type": "textarea", "id": "note", "label": "Highlight note", "default": "Institutional and government pricing available." },
     { "type": "header", "content": "Inquiry form" },
     { "type": "text", "id": "form_title", "label": "Form title", "default": "Tell us about your team" },
     { "type": "textarea", "id": "form_note", "label": "Form note", "default": "Fill this out and we'll build a quote around your unit." },
