@@ -32,12 +32,23 @@
         <a href="{{ blog.url | default: '/blogs/news' }}" class="of-nav__link">Blog</a>
         <a href="/pages/pre-sale" class="of-nav__link">Team Orders</a>
       {%- endif -%}
+      <button type="button" class="of-cart-toggle" data-of-cart-open aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="of-cart-count" data-of-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </button>
       {%- if section.settings.show_cta -%}
-        <a href="{{ section.settings.cta_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary of-btn--sm">{{ section.settings.cta_label | default: 'Join the List' }}</a>
+        <a href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}" class="of-btn of-btn--primary of-btn--sm">{{ section.settings.cta_label | default: 'Product' }}</a>
       {%- endif -%}
     </nav>
   </div>
 </header>
+
+<style>
+  .of-cart-toggle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:none;background:none;color:var(--of-on-dark-3);cursor:pointer;transition:color .18s ease;}
+  .of-cart-toggle:hover{color:var(--of-orange-lt);}
+  .of-cart-count{position:absolute;top:-3px;right:-4px;display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 4px;border-radius:100px;background:var(--of-orange);color:#fff;font-size:10px;font-weight:800;line-height:1;}
+  .of-cart-count[hidden]{display:none;}
+</style>
 
 {% schema %}
 {
@@ -51,7 +62,7 @@
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
     { "type": "header", "content": "Call to action" },
     { "type": "checkbox", "id": "show_cta", "label": "Show CTA button", "default": true },
-    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Get a Quote" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Product" },
     { "type": "url", "id": "cta_link", "label": "CTA link" }
   ]
 }

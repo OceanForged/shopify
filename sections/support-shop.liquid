@@ -1,0 +1,359 @@
+{%- comment -%}
+  Ocean Forged — Support shop (apparel). Catalog grid over a Printful-synced collection.
+  Quick-view picks color/size -> variant, adds to the global cart drawer (window.OFCart).
+{%- endcomment -%}
+{%- liquid
+  assign coll = collections[section.settings.collection]
+  if section.settings.hero_image != blank
+    assign hero_url = section.settings.hero_image | image_url: width: 2400
+  else
+    assign hero_url = 'ocean-deep.jpg' | asset_url
+  endif
+-%}
+
+<!-- HERO -->
+<section style="position:relative;background:var(--of-deep);background-image:linear-gradient(90deg, rgba(15,36,35,0.96) 0%, rgba(15,36,35,0.82) 52%, rgba(15,36,35,0.55) 100%), url('{{ hero_url }}');background-size:cover;background-position:center;">
+  <div class="of-container" style="padding-top:92px;padding-bottom:78px;">
+    <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;" data-reveal>
+      <span class="of-badge of-badge--solid">{{ section.settings.pill_1 | default: 'Support the Build' }}</span>
+      <span class="of-badge of-badge--outline">{{ section.settings.pill_2 | default: 'Not a profit line' }}</span>
+    </div>
+    <h1 class="of-display of-h1 of-text-white" style="max-width:16ch;" data-reveal>{{ section.settings.heading | default: 'Wear the standard. Fund the next one.' | newline_to_br }}</h1>
+    <div class="of-rule" style="margin:22px 0 26px;" data-reveal></div>
+    <p class="of-lede" style="color:var(--of-on-dark);max-width:56ch;margin:0 0 34px;" data-reveal>{{ section.settings.body | default: "Early apparel runs help support the development and testing of Ocean Forged's first technical product. These aren't about profit — buy a tee and you're funding what we build next, and joining the crew that shapes it." }}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;" data-reveal>
+      {%- assign chips = section.settings.chips | default: 'Funds R&D + testing, Community-made, Printed on demand' | split: ',' -%}
+      {%- for chip in chips -%}
+        <span style="display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--of-on-dark-3);background:rgba(255,255,255,0.06);border:1px solid rgba(143,168,168,0.3);padding:11px 16px;border-radius:100px;"><span style="width:7px;height:7px;border-radius:100px;background:var(--of-orange);display:block;"></span>{{ chip | strip }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="of-bg-light" style="padding:80px 0 104px;">
+  <div class="of-container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap;" data-reveal>
+      <div>
+        <p class="of-eyebrow">{{ section.settings.grid_eyebrow | default: 'The Support Collection' }}</p>
+        <h2 class="of-display of-h2" style="line-height:0.98;">{{ section.settings.grid_heading | default: 'Fly the flag.' }}</h2>
+      </div>
+      <p style="font-size:15px;line-height:1.6;color:var(--of-ink-soft);margin:0;max-width:38ch;">{{ section.settings.grid_note | default: 'Every piece is printed on demand through Printful and shipped to your door. Sizes and colorways vary by design.' }}</p>
+    </div>
+
+    {%- if coll != blank and coll.products_count > 0 -%}
+      <div class="of-grid of-grid--3 of-shop-grid">
+        {%- for product in coll.products -%}
+          <article class="of-shop-card" data-of-product="{{ product.id }}">
+            <button type="button" class="of-shop-card__media" data-of-open="{{ product.id }}" aria-label="View {{ product.title | escape }}">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | escape | default: product.title | escape }}" loading="lazy" width="700">
+              {%- else -%}
+                <span class="of-shop-card__ph">Printful mockup</span>
+              {%- endif -%}
+            </button>
+            <div class="of-shop-card__body">
+              <div class="of-shop-card__row">
+                <h3 class="of-shop-card__title">{{ product.title }}</h3>
+                <span class="of-shop-card__price">{{ product.price | money }}</span>
+              </div>
+              {%- if product.type != blank -%}<p class="of-shop-card__tagline">{{ product.type }}</p>{%- endif -%}
+              <div class="of-shop-card__dots" data-of-dots="{{ product.id }}"></div>
+              <button type="button" class="of-btn of-btn--outline of-shop-card__cta" data-of-open="{{ product.id }}">Choose options</button>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="of-shop-empty">
+        <h3 class="of-display">Connect your Printful products</h3>
+        <p>Sync your apparel from Printful into a Shopify collection, then choose that collection in this section's settings (theme editor &rarr; Support page &rarr; Support shop &rarr; Collection).</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- WHERE YOUR SUPPORT GOES -->
+<section class="of-bg-orange" style="padding:90px 0;">
+  <div class="of-container of-container--narrow" style="max-width:1100px;">
+    <p class="of-eyebrow of-eyebrow--light" style="text-align:center;margin-bottom:12px;">{{ section.settings.band_eyebrow | default: 'Where your support goes' }}</p>
+    <h2 class="of-display of-h2 of-text-white" style="text-align:center;margin:0 0 50px;" data-reveal>{{ section.settings.band_heading | default: 'Support, not markup.' }}</h2>
+    <div class="of-grid of-grid--3">
+      {%- for block in section.blocks -%}
+        <div class="of-support-point" {{ block.shopify_attributes }} data-reveal>
+          <div class="of-support-point__num">{{ block.settings.number }}</div>
+          <h3 class="of-support-point__title">{{ block.settings.title }}</h3>
+          <p class="of-support-point__body">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- QUICK VIEW MODAL -->
+<div id="OFQuick" class="of-quick" aria-hidden="true">
+  <div class="of-quick__backdrop" data-of-quick-close></div>
+  <div class="of-quick__panel" role="dialog" aria-modal="true" aria-label="Product options" data-of-quick-panel></div>
+</div>
+
+{%- if coll != blank and coll.products_count > 0 -%}
+<script type="application/json" id="OFShopData">
+{
+  {%- for product in coll.products -%}
+  "{{ product.id }}": {
+    "title": {{ product.title | json }},
+    "type": {{ product.type | json }},
+    "price": {{ product.price | money | json }},
+    "featured": {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 900 | json }}{%- else -%}""{%- endif -%},
+    "options": {{ product.options | json }},
+    "variants": [
+      {%- for v in product.variants -%}
+      { "id": {{ v.id }}, "available": {{ v.available }}, "price": {{ v.price | money | json }}, "o1": {{ v.option1 | json }}, "o2": {{ v.option2 | json }}, "o3": {{ v.option3 | json }}, "image": {%- if v.image -%}{{ v.image | image_url: width: 900 | json }}{%- else -%}""{%- endif -%} }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+}
+</script>
+{%- endif -%}
+
+<style>
+  .of-shop-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 12px 36px rgba(21,48,47,0.07);display:flex;flex-direction:column;}
+  .of-shop-card__media{position:relative;aspect-ratio:4/5;cursor:pointer;border:none;padding:0;width:100%;display:block;background:#e9edec;}
+  .of-shop-card__media img{width:100%;height:100%;object-fit:cover;}
+  .of-shop-card__ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--of-font-body);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-muted);background:repeating-linear-gradient(45deg,#e4eae8,#e4eae8 14px,#edf1f0 14px,#edf1f0 28px);}
+  .of-shop-card__body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .of-shop-card__row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
+  .of-shop-card__title{font-family:var(--of-font-display);font-weight:800;font-size:18px;margin:0;text-transform:uppercase;line-height:1.1;}
+  .of-shop-card__price{font-family:var(--of-font-display);font-weight:900;font-size:18px;color:var(--of-orange);}
+  .of-shop-card__tagline{font-size:14px;color:var(--of-ink-soft);margin:0;}
+  .of-shop-card__dots{display:flex;align-items:center;gap:8px;min-height:15px;}
+  .of-dot{width:15px;height:15px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(21,48,47,0.14);display:block;}
+  .of-dot-label{font-size:12px;color:var(--of-muted);letter-spacing:.5px;margin-left:2px;}
+  .of-shop-card__cta{margin-top:auto;font-size:14px;padding:13px 18px;}
+  .of-shop-card__cta::after{content:none;}
+  .of-shop-empty{background:#fff;border:1px dashed #c4d0ce;border-radius:8px;padding:56px 32px;text-align:center;max-width:640px;margin:0 auto;}
+  .of-shop-empty h3{font-size:22px;color:var(--of-deep);margin:0 0 12px;text-transform:uppercase;}
+  .of-shop-empty p{font-size:15px;color:var(--of-ink-soft);line-height:1.6;margin:0;}
+
+  .of-support-point{background:rgba(21,48,47,0.14);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:32px 28px;}
+  .of-support-point__num{font-family:var(--of-font-display);font-weight:900;font-size:15px;color:var(--of-deep);margin-bottom:16px;}
+  .of-support-point__title{font-family:var(--of-font-display);font-weight:800;color:#fff;font-size:20px;margin:0 0 10px;text-transform:uppercase;}
+  .of-support-point__body{font-size:15px;line-height:1.6;color:rgba(255,255,255,0.92);margin:0;}
+
+  .of-quick{position:fixed;inset:0;z-index:135;display:none;}
+  .of-quick.is-open{display:block;}
+  .of-quick__backdrop{position:absolute;inset:0;background:rgba(10,24,23,0.66);}
+  .of-quick__panel{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(880px,calc(100% - 40px));max-height:92vh;overflow:auto;background:#fff;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,0.5);display:grid;grid-template-columns:1fr 1fr;}
+  .of-quick__media{position:relative;min-height:360px;background-size:cover;background-position:center;display:flex;align-items:flex-end;}
+  .of-quick__mediatag{position:absolute;top:16px;left:16px;font-family:var(--of-font-body);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:rgba(21,48,47,0.5);padding:6px 10px;border-radius:3px;}
+  .of-quick__info{padding:34px 34px 32px;display:flex;flex-direction:column;gap:18px;position:relative;}
+  .of-quick__x{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(21,48,47,0.08);color:var(--of-deep);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .of-quick__x:hover{background:rgba(21,48,47,0.16);}
+  .of-quick__eyebrow{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);margin:0 0 8px;}
+  .of-quick__title{font-family:var(--of-font-display);font-weight:900;font-size:28px;margin:0 0 6px;text-transform:uppercase;line-height:1.02;letter-spacing:-0.3px;}
+  .of-quick__price{font-family:var(--of-font-display);font-weight:900;font-size:22px;color:var(--of-deep);}
+  .of-quick__label{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);display:block;margin-bottom:10px;}
+  .of-quick__swatches{display:flex;gap:12px;flex-wrap:wrap;}
+  .of-swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;border:none;padding:0;box-shadow:inset 0 0 0 1px rgba(21,48,47,0.2);}
+  .of-swatch.is-active{box-shadow:0 0 0 3px var(--of-orange), inset 0 0 0 1px rgba(255,255,255,0.35);}
+  .of-quick__sizes{display:flex;gap:10px;flex-wrap:wrap;}
+  .of-size{min-width:54px;padding:12px 4px;text-align:center;font-family:var(--of-font-body);font-weight:700;font-size:15px;letter-spacing:1px;border-radius:6px;cursor:pointer;background:#fff;color:var(--of-deep);border:2px solid rgba(21,48,47,0.2);}
+  .of-size.is-active{background:var(--of-deep);color:#fff;border-color:var(--of-deep);}
+  .of-size:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through;}
+  .of-qty{display:flex;align-items:center;gap:16px;}
+  .of-quick__add{width:100%;padding:17px;font-size:16px;}
+  .of-quick__add:disabled{opacity:.5;cursor:not-allowed;box-shadow:0 4px 0 #a82c12;}
+  .of-quick__note{font-size:12.5px;color:var(--of-muted);margin:0;text-align:center;line-height:1.5;}
+  @media (max-width:720px){ .of-quick__panel{grid-template-columns:1fr;} .of-quick__media{min-height:240px;} }
+</style>
+
+<script>
+(function () {
+  var dataEl = document.getElementById('OFShopData');
+  if (!dataEl) return;
+  var DATA = {};
+  try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+  var COLORS = {
+    'black':'#17181a','jet black':'#17181a','white':'#eef0ec','bone':'#eceee9','ivory':'#efece0',
+    'natural':'#e6ddc9','sand':'#cbbb9c','tan':'#c4a980','khaki':'#b9a882','desert':'#c9b28c',
+    'navy':'#17263f','navy blue':'#17263f','deep navy':'#17263f','french navy':'#1b2a44',
+    'ocean green':'#1d3b39','green':'#1f4d3a','forest':'#20402f','forest green':'#20402f','military green':'#4b503a','olive':'#5a5a3c','army':'#4b503a',
+    'heather grey':'#b3bab8','heather gray':'#b3bab8','grey':'#9aa2a1','gray':'#9aa2a1','sport grey':'#b3bab8','athletic heather':'#c3c8c6','charcoal':'#3a3f42','dark grey':'#4a4f4d','dark heather':'#42484a',
+    'red':'#b02a1c','cardinal':'#8a2432','maroon':'#5a2330','burgundy':'#5a2330',
+    'rescue orange':'#E03F1A','orange':'#E03F1A','royal':'#22417a','royal blue':'#22417a','blue':'#22417a','carolina blue':'#7fa9d4',
+    'teal':'#15302f','deep teal':'#15302f','pink':'#d99bab','purple':'#4b2c57','yellow':'#e8c24a','gold':'#c99a3a','brown':'#4b382c'
+  };
+  function hexFor(name) {
+    if (!name) return '#3c5654';
+    var k = String(name).trim().toLowerCase();
+    if (COLORS[k]) return COLORS[k];
+    for (var key in COLORS) { if (k.indexOf(key) !== -1) return COLORS[key]; }
+    return '#3c5654';
+  }
+  function optIndex(p, re) { for (var i = 0; i < p.options.length; i++) { if (re.test(p.options[i])) return i; } return -1; }
+  function ov(v, idx) { return idx === 0 ? v.o1 : idx === 1 ? v.o2 : idx === 2 ? v.o3 : null; }
+  function uniq(arr) { var out = [], seen = {}; arr.forEach(function (x) { if (x != null && !seen[x]) { seen[x] = 1; out.push(x); } }); return out; }
+  function colorsOf(p) { var i = optIndex(p, /colou?r/i); return i === -1 ? [] : uniq(p.variants.map(function (v) { return ov(v, i); })); }
+  function sizesOf(p) { var i = optIndex(p, /size/i); return i === -1 ? [] : uniq(p.variants.map(function (v) { return ov(v, i); })); }
+
+  // --- card swatch dots ---
+  Object.keys(DATA).forEach(function (id) {
+    var p = DATA[id];
+    var el = document.querySelector('[data-of-dots="' + id + '"]');
+    if (!el) return;
+    var cols = colorsOf(p);
+    if (!cols.length) { el.style.display = 'none'; return; }
+    el.innerHTML = cols.slice(0, 6).map(function (c) { return '<span class="of-dot" style="background:' + hexFor(c) + '"></span>'; }).join('') +
+      '<span class="of-dot-label">' + cols.length + (cols.length === 1 ? ' colorway' : ' colorways') + '</span>';
+  });
+
+  // --- quick view ---
+  var quick = document.getElementById('OFQuick');
+  var panel = quick.querySelector('[data-of-quick-panel]');
+  var state = null;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]; }); }
+
+  function currentVariant(p, s) {
+    var ci = optIndex(p, /colou?r/i), si = optIndex(p, /size/i);
+    return p.variants.filter(function (v) {
+      if (ci !== -1 && s.color != null && ov(v, ci) !== s.color) return false;
+      if (si !== -1 && s.size != null && ov(v, si) !== s.size) return false;
+      return true;
+    })[0] || null;
+  }
+  function sizeAvailable(p, color, size) {
+    var ci = optIndex(p, /colou?r/i), si = optIndex(p, /size/i);
+    return p.variants.some(function (v) {
+      if (si !== -1 && ov(v, si) !== size) return false;
+      if (ci !== -1 && color != null && ov(v, ci) !== color) return false;
+      return v.available;
+    });
+  }
+
+  function render() {
+    var p = state.p, s = state;
+    var cols = colorsOf(p), sizes = sizesOf(p);
+    var variant = currentVariant(p, s);
+    var mediaUrl = (variant && variant.image) || p.featured || '';
+    var mediaStyle = mediaUrl ? "background-image:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.10)), url('" + mediaUrl + "');" : "background:" + hexFor(s.color) + ";";
+
+    var swatchHTML = cols.length ? (
+      '<div><span class="of-quick__label">Color' + (s.color ? ' — ' + esc(s.color) : '') + '</span><div class="of-quick__swatches">' +
+      cols.map(function (c) { return '<button type="button" class="of-swatch' + (c === s.color ? ' is-active' : '') + '" data-color="' + esc(c) + '" style="background:' + hexFor(c) + '" aria-label="' + esc(c) + '"></button>'; }).join('') +
+      '</div></div>'
+    ) : '';
+
+    var sizeHTML = sizes.length ? (
+      '<div><span class="of-quick__label">Size</span><div class="of-quick__sizes">' +
+      sizes.map(function (sz) { var ok = sizeAvailable(p, s.color, sz); return '<button type="button" class="of-size' + (sz === s.size ? ' is-active' : '') + '" data-size="' + esc(sz) + '"' + (ok ? '' : ' disabled') + '>' + esc(sz) + '</button>'; }).join('') +
+      '</div></div>'
+    ) : '';
+
+    var needsSize = sizes.length > 0;
+    var canAdd = !!(variant && variant.available) && (!needsSize || s.size != null);
+    var addLabel = (variant && !variant.available) ? 'Sold out' : (needsSize && s.size == null ? 'Select a size' : 'Add to cart · ' + (variant ? variant.price : p.price));
+
+    panel.innerHTML =
+      '<div class="of-quick__media" style="' + mediaStyle + '"><span class="of-quick__mediatag">Printful mockup</span></div>' +
+      '<div class="of-quick__info">' +
+        '<button type="button" class="of-quick__x" data-of-quick-close aria-label="Close">\u2715</button>' +
+        '<div>' +
+          (p.type ? '<p class="of-quick__eyebrow">' + esc(p.type) + '</p>' : '') +
+          '<h2 class="of-quick__title">' + esc(p.title) + '</h2>' +
+          '<span class="of-quick__price">' + (variant ? variant.price : p.price) + '</span>' +
+        '</div>' +
+        swatchHTML + sizeHTML +
+        '<div class="of-qty"><span class="of-quick__label" style="margin:0;">Qty</span>' +
+          '<div class="of-step" style="border-width:2px;border-radius:6px;">' +
+            '<button type="button" data-q="-1" style="width:40px;height:42px;">\u2212</button>' +
+            '<span style="min-width:40px;font-size:16px;" data-qval>' + s.qty + '</span>' +
+            '<button type="button" data-q="1" style="width:40px;height:42px;">+</button>' +
+          '</div>' +
+        '</div>' +
+        '<button type="button" class="of-btn of-btn--primary of-quick__add" data-add' + (canAdd ? '' : ' disabled') + '>' + addLabel + '</button>' +
+        '<p class="of-quick__note">Printed &amp; shipped on demand via Printful. Your support funds the next product.</p>' +
+      '</div>';
+  }
+
+  function open(id) {
+    var p = DATA[id]; if (!p) return;
+    var cols = colorsOf(p);
+    state = { p: p, color: cols.length ? cols[0] : null, size: null, qty: 1 };
+    render();
+    quick.classList.add('is-open');
+    quick.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function close() {
+    quick.classList.remove('is-open');
+    quick.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+    state = null;
+  }
+
+  document.addEventListener('click', function (e) {
+    var opener = e.target.closest('[data-of-open]');
+    if (opener) { e.preventDefault(); open(opener.getAttribute('data-of-open')); return; }
+    if (!state) { return; }
+    if (e.target.closest('[data-of-quick-close]') || e.target.classList.contains('of-quick__backdrop')) { close(); return; }
+    var sw = e.target.closest('[data-color]'); if (sw) { state.color = sw.getAttribute('data-color'); if (state.size && !sizeAvailable(state.p, state.color, state.size)) state.size = null; render(); return; }
+    var sz = e.target.closest('[data-size]'); if (sz && !sz.disabled) { state.size = sz.getAttribute('data-size'); render(); return; }
+    var q = e.target.closest('[data-q]'); if (q) { state.qty = Math.max(1, Math.min(99, state.qty + parseInt(q.getAttribute('data-q'), 10))); var qv = panel.querySelector('[data-qval]'); if (qv) qv.textContent = state.qty; return; }
+    var add = e.target.closest('[data-add]'); if (add && !add.disabled) {
+      var v = currentVariant(state.p, state);
+      if (v && window.OFCart) { add.disabled = true; add.textContent = 'Adding…'; window.OFCart.add(v.id, state.qty).then(function () { close(); }).catch(function () { add.disabled = false; render(); }); }
+      return;
+    }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && state) close(); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Support shop",
+  "tag": "section",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Products collection", "info": "Pick the collection your Printful apparel is synced to." },
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero background" },
+    { "type": "text", "id": "pill_1", "label": "Pill 1", "default": "Support the Build" },
+    { "type": "text", "id": "pill_2", "label": "Pill 2", "default": "Not a profit line" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Wear the standard. Fund the next one." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Early apparel runs help support the development and testing of Ocean Forged's first technical product. These aren't about profit — buy a tee and you're funding what we build next, and joining the crew that shapes it." },
+    { "type": "text", "id": "chips", "label": "Hero chips (comma-separated)", "default": "Funds R&D + testing, Community-made, Printed on demand" },
+    { "type": "header", "content": "Grid heading" },
+    { "type": "text", "id": "grid_eyebrow", "label": "Eyebrow", "default": "The Support Collection" },
+    { "type": "text", "id": "grid_heading", "label": "Heading", "default": "Fly the flag." },
+    { "type": "textarea", "id": "grid_note", "label": "Note", "default": "Every piece is printed on demand through Printful and shipped to your door. Sizes and colorways vary by design." },
+    { "type": "header", "content": "Support band" },
+    { "type": "text", "id": "band_eyebrow", "label": "Eyebrow", "default": "Where your support goes" },
+    { "type": "text", "id": "band_heading", "label": "Heading", "default": "Support, not markup." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Support point",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Product R&D" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Every run funds prototyping, materials, and real-world field testing for the next Ocean Forged product." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Support shop",
+      "blocks": [
+        { "type": "point", "settings": { "number": "01", "title": "Product R&D", "body": "Every run funds prototyping, materials, and real-world field testing for the next Ocean Forged product." } },
+        { "type": "point", "settings": { "number": "02", "title": "You're the crew", "body": "Wearers help shape what we build next and get early access to new drops. Buying in makes you part of the community." } },
+        { "type": "point", "settings": { "number": "03", "title": "Print on demand", "body": "Printed and shipped on demand through Printful. No overproduction, no waste — made only when you order." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
