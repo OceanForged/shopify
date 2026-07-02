@@ -6,8 +6,8 @@
   endif
   assign o = section.settings.overlay | divided_by: 100.0
 -%}
-<section style="position:relative;padding:120px 32px;background-image:linear-gradient(rgba(21,48,47,{{ o }}), rgba(21,48,47,{{ o }})), url('{{ img_url }}');background-size:cover;background-position:center;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;" class="of-presale">
+<section style="position:relative;padding:120px 32px;background-image:linear-gradient(rgba(21,48,47,{{ o | plus: 0.04 }}), rgba(21,48,47,{{ o }})), url('{{ img_url }}');background-size:cover;background-position:center;">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 0.95fr;gap:60px;align-items:start;" class="of-presale">
     <div data-reveal>
       {%- if section.settings.pill != blank -%}
         <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(224,63,26,0.16);border:1px solid rgba(224,63,26,0.5);padding:8px 16px;border-radius:100px;margin-bottom:24px;">
@@ -15,51 +15,70 @@
           <span style="font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#ffd9cd;">{{ section.settings.pill }}</span>
         </div>
       {%- endif -%}
-      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:22px;">{{ section.settings.heading | default: 'Join the first wave.' }}</h1>
-      <p style="font-size:18px;line-height:1.6;color:var(--of-on-dark);margin:0;max-width:46ch;">{{ section.settings.body }}</p>
+      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:24px;">{{ section.settings.heading | default: "Gearing up a team? Let's talk numbers." | newline_to_br }}</h1>
+      <p style="font-size:18px;line-height:1.65;color:var(--of-on-dark);margin:0 0 26px;max-width:48ch;">{{ section.settings.body }}</p>
+      {%- if section.settings.note != blank -%}
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:18px 20px;background:rgba(255,255,255,0.06);border-left:3px solid var(--of-orange);border-radius:0 6px 6px 0;max-width:46ch;">
+          <span style="font-size:15px;line-height:1.55;color:var(--of-on-dark-3);">{{ section.settings.note }}</span>
+        </div>
+      {%- endif -%}
     </div>
 
-    <div style="background:#fff;border-radius:8px;padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,0.35);" data-reveal>
-      <h2 class="of-display" style="font-size:24px;margin:0 0 8px;letter-spacing:-0.3px;">{{ section.settings.form_title | default: 'Get notified' }}</h2>
-      <p style="font-size:14px;color:var(--of-ink-soft);margin:0 0 24px;line-height:1.5;">{{ section.settings.form_note | default: "We'll email you when the first batch is ready. No spam, just the launch." }}</p>
+    <div class="of-team-form" style="background:#fff;border-radius:10px;padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,0.4);" data-reveal>
+      <h2 class="of-display" style="font-size:24px;margin:0 0 6px;letter-spacing:-0.3px;">{{ section.settings.form_title | default: 'Tell us about your team' }}</h2>
+      <p style="font-size:14px;color:var(--of-ink-soft);margin:0 0 24px;line-height:1.5;">{{ section.settings.form_note | default: "Fill this out and we'll build a quote around your unit." }}</p>
 
-      {%- form 'customer', id: 'presale-signup' -%}
-        <input type="hidden" name="contact[tags]" value="{{ section.settings.tag | default: 'prospect,pre-sale' }}">
+      {%- form 'contact', id: 'team-order' -%}
         {%- if form.posted_successfully? -%}
-          <div style="background:#eaf4ee;border:1px solid #a9d6bd;border-radius:6px;padding:16px 18px;color:#1f5a3a;font-weight:600;margin-bottom:16px;">{{ 'newsletter.success' | t | default: "You're on the list. We'll be in touch." }}</div>
+          <div style="background:#eaf4ee;border:1px solid #a9d6bd;border-radius:6px;padding:16px 18px;color:#1f5a3a;font-weight:600;margin-bottom:16px;">{{ section.settings.success | default: "Got it — we'll be in touch within 1–2 business days." }}</div>
         {%- endif -%}
         {%- if form.errors -%}
           <div style="background:#fbeae7;border:1px solid #e3a493;border-radius:6px;padding:16px 18px;color:#9a2a12;margin-bottom:16px;">{{ form.errors | default_errors }}</div>
         {%- endif -%}
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <input type="text" name="contact[first_name]" placeholder="Name" class="of-field" autocomplete="name">
-          <input type="email" name="contact[email]" placeholder="Email address" class="of-field" autocomplete="email" required>
-          <button type="submit" class="of-btn of-btn--primary" style="width:100%;font-size:16px;padding:17px;margin-top:4px;">{{ section.settings.button_label | default: 'Join the List' }}</button>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Name</span><input type="text" name="contact[name]" placeholder="Your name" class="of-field" autocomplete="name" required></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Email</span><input type="email" name="contact[email]" placeholder="you@organization.com" class="of-field" autocomplete="email" required></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Phone</span><input type="tel" name="contact[phone]" placeholder="(000) 000-0000" class="of-field" autocomplete="tel"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">What beach or organization are you with?</span><input type="text" name="contact[Organization]" placeholder="Beach, patrol, agency or team" class="of-field"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">How many units do you think your team would need?</span>
+            <select name="contact[Units needed]" class="of-field">
+              <option value="" disabled selected>Select a range</option>
+              <option>1–3</option>
+              <option>4–10</option>
+              <option>10+</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <button type="submit" class="of-btn of-btn--primary" style="width:100%;font-size:16px;padding:18px;margin-top:4px;">{{ section.settings.button_label | default: 'Count Me In' }}</button>
         </div>
       {%- endform -%}
-      <p style="font-size:12px;color:var(--of-muted);margin:16px 0 0;line-height:1.5;text-align:center;">{{ section.settings.fine_print | default: 'Agency and bulk-order inquiries welcome.' }}</p>
+      <p style="font-size:12.5px;color:var(--of-muted);margin:16px 0 0;line-height:1.5;text-align:center;">{{ section.settings.fine_print | default: 'No commitment, just a conversation. We usually reply within 1–2 business days.' }}</p>
     </div>
   </div>
 </section>
 
-<style>@media (max-width:760px){ .of-presale{grid-template-columns:1fr !important;} }</style>
+<style>@media (max-width:760px){ .of-presale{grid-template-columns:1fr !important;} }
+.of-team-form .of-field{border:2px solid var(--of-deep);border-radius:6px;background:#fff;font-weight:600;color:var(--of-deep);}
+.of-team-form .of-field:focus{border-color:var(--of-orange);}
+.of-team-form select.of-field{cursor:pointer;}</style>
 
 {% schema %}
 {
-  "name": "Pre-sale signup",
+  "name": "Bulk & team orders",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Background image" },
-    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 50, "max": 95, "step": 5, "unit": "%", "default": 85 },
-    { "type": "text", "id": "pill", "label": "Pill label", "default": "First Run, Coming Soon" },
-    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Join the first wave." },
-    { "type": "textarea", "id": "body", "label": "Body", "default": "The first production run of the Radio Dry Bag is on the way. Join the list to follow the build and be the first to know when it is ready." },
-    { "type": "header", "content": "Signup form" },
-    { "type": "text", "id": "form_title", "label": "Form title", "default": "Get notified" },
-    { "type": "textarea", "id": "form_note", "label": "Form note", "default": "We will email you when the first batch is ready. No spam, just the launch." },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the List" },
-    { "type": "text", "id": "tag", "label": "Customer tag", "default": "prospect,pre-sale" },
-    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "Agency and bulk-order inquiries welcome." }
+    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 50, "max": 95, "step": 5, "unit": "%", "default": 90 },
+    { "type": "text", "id": "pill", "label": "Pill label", "default": "Bulk & Team Orders" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Gearing up a team?\nLet's talk numbers." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your size." },
+    { "type": "textarea", "id": "note", "label": "Highlight note", "default": "Institutional and government pricing available. We'll follow up to confirm details." },
+    { "type": "header", "content": "Inquiry form" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Tell us about your team" },
+    { "type": "textarea", "id": "form_note", "label": "Form note", "default": "Fill this out and we'll build a quote around your unit." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Count Me In" },
+    { "type": "textarea", "id": "success", "label": "Success message", "default": "Got it, we'll be in touch within 1-2 business days." },
+    { "type": "textarea", "id": "fine_print", "label": "Fine print", "default": "No commitment, just a conversation. We usually reply within 1-2 business days." }
   ],
-  "presets": [{ "name": "Pre-sale signup" }]
+  "presets": [{ "name": "Bulk & team orders" }]
 }
 {% endschema %}

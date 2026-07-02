@@ -9,11 +9,11 @@
     <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;">
       {%- comment -%} ---- copy / buy column ---- {%- endcomment -%}
       <div>
-        <p class="of-eyebrow" data-reveal>{{ section.settings.eyebrow | default: 'Ocean Forged · Product 01' }}</p>
         <h1 class="of-display of-text-white" style="font-size:clamp(44px,7vw,104px);line-height:0.88;letter-spacing:-1.5px;" data-reveal>{{ product.title | default: 'Radio Dry Bag' }}</h1>
+        <p class="of-eyebrow" style="margin:18px 0 0;" data-reveal>{{ section.settings.eyebrow | default: 'Ocean Forged · Product 01' }}</p>
 
         {%- if product.metafields.custom.tagline != blank or section.settings.tagline != blank -%}
-          <p style="font-family:var(--of-font-display);font-weight:700;color:var(--of-on-dark-3);font-size:clamp(16px,1.6vw,22px);margin:26px 0 0;text-transform:uppercase;letter-spacing:0.5px;max-width:34ch;" data-reveal>{{ product.metafields.custom.tagline | default: section.settings.tagline }}</p>
+          <p style="font-family:var(--of-font-display);font-weight:700;color:var(--of-on-dark-3);font-size:clamp(16px,1.6vw,22px);margin:16px 0 0;text-transform:uppercase;letter-spacing:0.5px;max-width:34ch;" data-reveal>{{ product.metafields.custom.tagline | default: section.settings.tagline }}</p>
         {%- endif -%}
 
         <div style="margin:34px 0 0;padding-top:30px;border-top:1px solid rgba(143,168,168,0.25);" data-reveal>
@@ -79,7 +79,7 @@
 {
   "name": "Product header",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ocean Forged · Product 01" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ocean Forged - Product 01" },
     { "type": "text", "id": "tagline", "label": "Fallback tagline", "default": "Made by lifeguards. Built for real-world rescues." },
     { "type": "text", "id": "buy_label", "label": "Add to cart label", "default": "Add to Cart" },
     { "type": "text", "id": "secondary_label", "label": "Secondary button label" },

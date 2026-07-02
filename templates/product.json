@@ -17,9 +17,10 @@
         "l1": { "type": "label", "settings": { "side": "left", "title": "Waterproof Self-Healing TRU ZIP® Zipper", "body": "Reseals itself with a slide. Fast, reliable access. Even with cold or wet hands." } },
         "l2": { "type": "label", "settings": { "side": "left", "title": "Welded Seams. No Threads or Glue", "body": "RF-welded TPU construction removes every traditional failure point." } },
         "r1": { "type": "label", "settings": { "side": "right", "title": "Durable Yet Flexible Waterproof Shell", "body": "Tough enough for the rocks, flexible enough to wear all day." } },
-        "r2": { "type": "label", "settings": { "side": "right", "title": "Secure Low-Profile Harness", "body": "Stays locked in place during active rescues. Comfortable for all-day wear." } }
+        "r2": { "type": "label", "settings": { "side": "right", "title": "Secure Low-Profile Harness", "body": "Stays locked in place during active rescues. Comfortable for all-day wear." } },
+        "r3": { "type": "label", "settings": { "side": "right", "title": "Molded EVA Back Panel", "body": "A contoured EVA back for support and comfort during extended wear." } }
       },
-      "block_order": ["l1", "l2", "r1", "r2"],
+      "block_order": ["l1", "l2", "r1", "r2", "r3"],
       "settings": { "eyebrow": "The Anatomy" }
     },
     "specs": {
@@ -27,22 +28,25 @@
       "blocks": {
         "s1": { "type": "spec", "settings": { "label": "Construction", "value": "RF-welded TPU" } },
         "s2": { "type": "spec", "settings": { "label": "Closure", "value": "TRU ZIP® self-healing waterproof zipper" } },
-        "s3": { "type": "spec", "settings": { "label": "Protection", "value": "Waterproof. Dustproof. Submersible." } },
+        "s3": { "type": "spec", "settings": { "label": "Protection", "value": "Waterproof. Dustproof. Sandproof." } },
         "s4": { "type": "spec", "settings": { "label": "Carry", "value": "Secure low-profile harness system" } },
-        "s5": { "type": "spec", "settings": { "label": "Fits", "value": "Handheld radios and critical comms" } }
+        "s6": { "type": "spec", "settings": { "label": "Back Panel", "value": "Molded EVA back for support & comfort" } },
+        "s7": { "type": "spec", "settings": { "label": "Inside Dimensions", "value": "Approx. 4″ × 4″ × 16″ · final specs confirming" } },
+        "s5": { "type": "spec", "settings": { "label": "Fits", "value": "Handheld radios and other critical gear" } }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5"],
+      "block_order": ["s1", "s2", "s3", "s4", "s6", "s7", "s5"],
       "settings": { "heading": "Specifications", "note": "Retail, agency and bulk-order pricing available upon request." }
     },
     "audience": {
       "type": "audience-grid",
       "blocks": {
-        "a1": { "type": "audience", "settings": { "title": "Lifeguards", "body": "Keep comms dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from." } },
+        "a1": { "type": "audience", "settings": { "title": "Lifeguards", "body": "Keep radios dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from." } },
         "a2": { "type": "audience", "settings": { "title": "First Responders", "body": "Reliable radio protection in the harshest environments, so your equipment is ready the moment it matters most." } },
-        "a3": { "type": "audience", "settings": { "title": "Surf & Water Rescue", "body": "Built for pounding surf, salt and sand. Submersible protection that takes the impact and keeps your radio working." } },
-        "a4": { "type": "audience", "settings": { "title": "Marine & Harbor Pros", "body": "Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it." } }
+        "a3": { "type": "audience", "settings": { "title": "Surf & Water Rescue", "body": "Built for pounding surf, salt and sand. Sealed protection that takes the impact and keeps your radio working." } },
+        "a4": { "type": "audience", "settings": { "title": "Marine & Harbor Pros", "body": "Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it." } },
+        "a5": { "type": "audience", "settings": { "title": "Water Sports & Recreation", "body": "Kayakers, kite surfers, boaters, paddlers — anyone recreating on the water who needs a radio, phone or keys to stay dry and within reach." } }
       },
-      "block_order": ["a1", "a2", "a3", "a4"],
+      "block_order": ["a1", "a2", "a3", "a4", "a5"],
       "settings": { "eyebrow": "Who it's for", "heading": "Built for the people the ocean tests.", "intro": "Designed for lifeguards and professionals operating in harsh environments where reliable radio protection is critical. Comfortable enough for all-day wear." }
     },
     "cta": {
@@ -50,8 +54,8 @@
       "settings": {
         "eyebrow": "",
         "heading": "Want to follow the build?",
-        "body": "The first production run is on the way. Join the list and we'll keep you posted.",
-        "button_label": "Join the List",
+        "body": "The first production run is on the way, and teams are already lining up. Get pricing built for your unit.",
+        "button_label": "Team Orders",
         "button_link": "shopify://pages/pre-sale"
       }
     }

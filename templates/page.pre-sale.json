@@ -3,25 +3,26 @@
     "signup": {
       "type": "presale-signup",
       "settings": {
-        "pill": "First Run · Coming Soon",
-        "heading": "Join the first wave.",
-        "body": "The first production run of the Radio Dry Bag is on the way. Join the list to follow the build and be the first to know when it's ready.",
-        "form_title": "Get notified",
-        "form_note": "We'll email you when the first batch is ready. No spam, just the launch.",
-        "button_label": "Join the List",
-        "tag": "prospect,pre-sale",
-        "fine_print": "Agency and bulk-order inquiries welcome."
+        "pill": "Bulk & Team Orders",
+        "heading": "Gearing up a team?\nLet's talk numbers.",
+        "body": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your size.",
+        "note": "Institutional and government pricing available. We'll follow up to confirm details.",
+        "form_title": "Tell us about your team",
+        "form_note": "Fill this out and we'll build a quote around your unit.",
+        "button_label": "Count Me In",
+        "success": "Got it — we'll be in touch within 1–2 business days.",
+        "fine_print": "No commitment, just a conversation. We usually reply within 1–2 business days."
       }
     },
     "why": {
       "type": "numbered-points",
       "blocks": {
-        "p1": { "type": "point", "settings": { "number": "01", "title": "First Access", "body": "Be first in line when the first production run ships." } },
-        "p2": { "type": "point", "settings": { "number": "02", "title": "Follow the Build", "body": "Get behind-the-scenes notes from testing and production." } },
-        "p3": { "type": "point", "settings": { "number": "03", "title": "Shape What's Next", "body": "Your feedback directly informs the next Ocean Forged products." } }
+        "p1": { "type": "point", "settings": { "number": "01", "title": "Volume Pricing", "body": "Better per-unit pricing the more your team needs." } },
+        "p2": { "type": "point", "settings": { "number": "02", "title": "Outfit the Whole Unit", "body": "Consistent, dependable gear for everyone on the team." } },
+        "p3": { "type": "point", "settings": { "number": "03", "title": "Priority Lead Times", "body": "We plan production around your season and your size." } }
       },
       "block_order": ["p1", "p2", "p3"],
-      "settings": { "heading": "Why join early" }
+      "settings": { "heading": "Why order as a team" }
     }
   },
   "order": ["signup", "why"]

@@ -20,7 +20,7 @@
             <span style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange);margin-bottom:14px;">Featured{% if feat.tags.size > 0 %} · {{ feat.tags.first }}{% endif %}</span>
             <h2 style="font-family:var(--of-font-display);font-weight:800;font-size:clamp(24px,2.6vw,34px);line-height:1.05;margin:0 0 14px;text-transform:uppercase;letter-spacing:-0.5px;">{{ feat.title }}</h2>
             <p style="font-size:16px;line-height:1.6;color:var(--of-ink-soft);margin:0 0 22px;">{{ feat.excerpt_or_content | strip_html | truncate: 150 }}</p>
-            <span style="font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Read more &rarr;</span>
+            <span style="align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--of-orange);padding:12px 22px;border-radius:3px;">Read more &rarr;</span>
           </div>
         </a>
       {%- endif -%}
