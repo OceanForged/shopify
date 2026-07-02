@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "badge_1": "Made by Lifeguards",
-        "badge_2": "First Responders",
+        "badge_2": "For Lifeguards",
         "heading": "Radio\nDry Bag",
         "subheading": "Waterproof radio protection forged by lifeguards. Built to keep your radio dry, dustproof, and sealed against salt and sand in the worst conditions the ocean can throw at it.",
         "button_1_label": "Explore the Product",
@@ -22,24 +22,58 @@
         "button_2_link": "shopify://pages/about",
         "card_title": "In the field",
         "card_meta": "RF-welded · Field-tested",
+        "show_card": true,
         "show_scroll": true
       }
     },
     "ticker": {
       "type": "spec-ticker",
       "settings": {
-        "text": "Radio Frequency Welded · TRU ZIP® · Waterproof · Dustproof · Sandproof · Self-Healing Zipper · Low-Profile Harness · "
+        "text": "Radio Frequency Welded · TRU ZIP® · Waterproof · Dustproof · Sandproof · Self-Healing Zipper · Low-Profile Harness ·"
       }
     },
     "features": {
       "type": "feature-grid",
       "blocks": {
-        "b1": { "type": "feature", "settings": { "number": "01", "title": "Radio Frequency Welded", "body": "No stitching. No glue. No failure points. The seams are fused, not sewn." } },
-        "b2": { "type": "feature", "settings": { "number": "02", "title": "TRU ZIP® Zipper", "body": "A waterproof, self-healing zipper. Fast, reliable access when seconds count." } },
-        "b3": { "type": "feature", "settings": { "number": "03", "title": "Sealed Tight", "body": "Waterproof, dustproof and sandproof. Salt, sand and water stay out." } },
-        "b4": { "type": "feature", "settings": { "number": "04", "title": "Harness System", "body": "A secure, low-profile harness. Stays locked in place during active rescues." } }
+        "b1": {
+          "type": "feature",
+          "settings": {
+            "number": "01",
+            "title": "Radio Frequency Welded",
+            "body": "No stitching. No glue. No failure points. The seams are fused, not sewn."
+          }
+        },
+        "b2": {
+          "type": "feature",
+          "settings": {
+            "number": "02",
+            "title": "TRU ZIP® Zipper",
+            "body": "A waterproof, self-healing zipper. Fast, reliable access when seconds count."
+          }
+        },
+        "b3": {
+          "type": "feature",
+          "settings": {
+            "number": "03",
+            "title": "Sealed Tight",
+            "body": "Waterproof, dustproof and sandproof. Salt, sand and water stay out."
+          }
+        },
+        "b4": {
+          "type": "feature",
+          "settings": {
+            "number": "04",
+            "title": "Harness System",
+            "body": "A secure, low-profile harness. Stays locked in place during active rescues."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {
         "eyebrow": "How it's built",
         "heading": "Built to one standard.\nThe lifeguard standard.",
@@ -71,5 +105,11 @@
       }
     }
   },
-  "order": ["hero", "ticker", "features", "proof", "cta"]
+  "order": [
+    "hero",
+    "ticker",
+    "features",
+    "proof",
+    "cta"
+  ]
 }
