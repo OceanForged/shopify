@@ -1,0 +1,65 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 2400
+  else
+    assign img_url = 'ocean-hero.jpg' | asset_url
+  endif
+  assign o = section.settings.overlay | divided_by: 100.0
+-%}
+<section style="position:relative;padding:120px 32px;background-image:linear-gradient(rgba(21,48,47,{{ o }}), rgba(21,48,47,{{ o }})), url('{{ img_url }}');background-size:cover;background-position:center;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;" class="of-presale">
+    <div data-reveal>
+      {%- if section.settings.pill != blank -%}
+        <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(224,63,26,0.16);border:1px solid rgba(224,63,26,0.5);padding:8px 16px;border-radius:100px;margin-bottom:24px;">
+          <span style="width:8px;height:8px;border-radius:100px;background:var(--of-orange);display:block;"></span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#ffd9cd;">{{ section.settings.pill }}</span>
+        </div>
+      {%- endif -%}
+      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:22px;">{{ section.settings.heading | default: 'Join the first wave.' }}</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--of-on-dark);margin:0;max-width:46ch;">{{ section.settings.body }}</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,0.35);" data-reveal>
+      <h2 class="of-display" style="font-size:24px;margin:0 0 8px;letter-spacing:-0.3px;">{{ section.settings.form_title | default: 'Get notified' }}</h2>
+      <p style="font-size:14px;color:var(--of-ink-soft);margin:0 0 24px;line-height:1.5;">{{ section.settings.form_note | default: "We'll email you when the first batch is ready. No spam, just the launch." }}</p>
+
+      {%- form 'customer', id: 'presale-signup' -%}
+        <input type="hidden" name="contact[tags]" value="{{ section.settings.tag | default: 'prospect,pre-sale' }}">
+        {%- if form.posted_successfully? -%}
+          <div style="background:#eaf4ee;border:1px solid #a9d6bd;border-radius:6px;padding:16px 18px;color:#1f5a3a;font-weight:600;margin-bottom:16px;">{{ 'newsletter.success' | t | default: "You're on the list. We'll be in touch." }}</div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div style="background:#fbeae7;border:1px solid #e3a493;border-radius:6px;padding:16px 18px;color:#9a2a12;margin-bottom:16px;">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <input type="text" name="contact[first_name]" placeholder="Name" class="of-field" autocomplete="name">
+          <input type="email" name="contact[email]" placeholder="Email address" class="of-field" autocomplete="email" required>
+          <button type="submit" class="of-btn of-btn--primary" style="width:100%;font-size:16px;padding:17px;margin-top:4px;">{{ section.settings.button_label | default: 'Join the List' }}</button>
+        </div>
+      {%- endform -%}
+      <p style="font-size:12px;color:var(--of-muted);margin:16px 0 0;line-height:1.5;text-align:center;">{{ section.settings.fine_print | default: 'Agency and bulk-order inquiries welcome.' }}</p>
+    </div>
+  </div>
+</section>
+
+<style>@media (max-width:760px){ .of-presale{grid-template-columns:1fr !important;} }</style>
+
+{% schema %}
+{
+  "name": "Pre-sale signup",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 50, "max": 95, "step": 5, "unit": "%", "default": 85 },
+    { "type": "text", "id": "pill", "label": "Pill label", "default": "First Run, Coming Soon" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Join the first wave." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "The first production run of the Radio Dry Bag is on the way. Join the list to follow the build and be the first to know when it is ready." },
+    { "type": "header", "content": "Signup form" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Get notified" },
+    { "type": "textarea", "id": "form_note", "label": "Form note", "default": "We will email you when the first batch is ready. No spam, just the launch." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the List" },
+    { "type": "text", "id": "tag", "label": "Customer tag", "default": "prospect,pre-sale" },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "Agency and bulk-order inquiries welcome." }
+  ],
+  "presets": [{ "name": "Pre-sale signup" }]
+}
+{% endschema %}
