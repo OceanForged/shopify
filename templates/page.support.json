@@ -42,6 +42,7 @@
         "p2",
         "p3"
       ],
+      "name": "Shop Shirts",
       "settings": {
         "collection": "support-shirts",
         "pill_1": "Support the Build",
