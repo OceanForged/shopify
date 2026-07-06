@@ -17,7 +17,11 @@
         "heading": "Innovation forged\nby experience.",
         "subheading": "Where the sea shapes gear you can trust. Made by lifeguards, for lifeguards.",
         "button_1_label": "",
+        "button_1_link": "",
         "button_2_label": "",
+        "button_2_link": "",
+        "card_title": "In the field",
+        "card_meta": "RF-welded, Field-tested",
         "show_card": false,
         "show_scroll": false
       }
@@ -68,10 +72,11 @@
     "founder": {
       "type": "founder",
       "settings": {
+        "image_focus": 20,
         "eyebrow": "The Founder",
         "name": "Duke Miskiv",
         "role": "Founder, Lifeguard, First Responder",
-        "bio": "Duke has spent his career in and around the water, from open-water rescues to surfing every chance he gets. Ocean Forged is the gear he wished he'd had on every call: dependable, tough, and ready when it counts.",
+        "bio": "Duke has spent 15+ years as an ocean lifeguard, including a long tenure at Ocean Beach in San Francisco, one of the most demanding stretches of coastline in the country, running open-water rescues in conditions most people would never enter. Ocean Forged is the gear he wished he'd had on every call: dependable, fast, tough, and ready when it counts.",
         "phone": "+1 (508) 221-5609",
         "email": "duke.miskiv@oceanforgedgear.com",
         "website": "www.oceanforgedgear.com"

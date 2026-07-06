@@ -13,13 +13,13 @@
       "type": "presale-signup",
       "settings": {
         "overlay": 90,
-        "pill": "Bulk & Team Orders",
-        "heading": "Gearing up a team?",
-        "body": "We work directly with lifeguard agencies, beach patrols, and water rescue teams to outfit entire units. Tell us what you need, and we'll get back to you with pricing and lead times built for your needs.",
-        "note": "Institutional and government pricing available.",
-        "form_title": "Tell us about your team",
-        "form_note": "Fill this out and we'll build a quote around your unit.",
-        "button_label": "Get team pricing",
+        "pill": "Bulk & Agency Orders",
+        "heading": "Gearing up an agency?",
+        "body": "We work directly with lifeguard agencies, water rescue teams, fire departments, and police departments. Tell us what you need, and we'll get back to you with pricing and lead times built for your needs.",
+        "note": "Institutional and government pricing available. We accept tax-exemption certificates for qualifying agencies.",
+        "form_title": "Tell us about your agency",
+        "form_note": "Fill this out and we'll build a quote around your needs.",
+        "button_label": "Get agency pricing",
         "success": "Got it, we'll be in touch within 1–2 business days.",
         "fine_print": "No commitment, just a conversation. We usually reply within 1–2 business days."
       }
@@ -32,7 +32,7 @@
           "settings": {
             "number": "01",
             "title": "Volume Pricing",
-            "body": "Better per-unit pricing the more your team needs."
+            "body": "Better per-unit pricing the more your unit needs."
           }
         },
         "p2": {
@@ -40,7 +40,7 @@
           "settings": {
             "number": "02",
             "title": "Outfit the Whole Unit",
-            "body": "Consistent, dependable gear for everyone on the team."
+            "body": "Consistent, dependable gear for everyone in the unit."
           }
         },
         "p3": {
@@ -48,7 +48,7 @@
           "settings": {
             "number": "03",
             "title": "Priority Lead Times",
-            "body": "We plan production around your season and your size."
+            "body": "We work to plan production around your season and your size."
           }
         }
       },
@@ -58,7 +58,7 @@
         "p3"
       ],
       "settings": {
-        "heading": "Why order as a team"
+        "heading": "Why order as a Unit"
       }
     }
   },

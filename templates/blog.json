@@ -1,14 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-blog",
       "settings": {
-        "eyebrow": "Field Notes",
+        "eyebrow": "Forged Notes",
         "heading": "The Log",
-        "intro": "Stories from the water, gear breakdowns, and notes from the first wave of Ocean Forged.",
+        "intro": "Conversations on service, leadership, and work done when no one is watching.",
         "show_featured": true
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

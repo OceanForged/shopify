@@ -12,8 +12,8 @@
     "main": {
       "type": "main-product",
       "settings": {
-        "eyebrow": "Ocean Forged · Product 01",
-        "tagline": "Made by lifeguards. Built for real world rescues.",
+        "eyebrow": "Ocean Forged · RDB-01",
+        "tagline": "Made by lifeguards. Built to survive real conditions, not just real rescues.",
         "buy_label": "Add to Cart",
         "secondary_label": "",
         "secondary_link": "",
@@ -151,7 +151,7 @@
           "type": "audience",
           "settings": {
             "title": "Lifeguards",
-            "body": "Keep radios dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from."
+            "body": "Keep radios dry and reachable through every rescue, all day on the sand and in the surf. Where it all started."
           }
         },
         "a2": {
@@ -171,15 +171,15 @@
         "a4": {
           "type": "audience",
           "settings": {
-            "title": "Marine & Harbor Pros",
-            "body": "Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it."
+            "title": "MARINE PROFESSIONALS",
+            "body": "Harbor masters, marina staff, and other on-the-water professionals who need reliable radio protection through wet, physical shifts."
           }
         },
         "a5": {
           "type": "audience",
           "settings": {
             "title": "Water Sports & Recreation",
-            "body": "Kayakers, kite surfers, boaters, paddlers, anyone recreating on the water who needs a radio, phone or keys to stay dry and within reach."
+            "body": "Kayakers, kite surfers, fishermen, whitewater rafters, sailors, boaters, and paddlers. Anyone recreating on the water who needs a radio, phone, or keys to stay dry and within reach."
           }
         }
       },
@@ -201,7 +201,7 @@
       "settings": {
         "eyebrow": "",
         "heading": "Want to follow the build?",
-        "body": "The first production run is on the way, and teams are already lining up. Get pricing built for your unit.",
+        "body": "The first production run is on the way, and agencies are already lining up. Get pricing built for your unit.",
         "button_label": "Team Orders",
         "button_link": "shopify://pages/pre-sale"
       }

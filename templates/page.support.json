@@ -24,8 +24,8 @@
           "type": "point",
           "settings": {
             "number": "02",
-            "title": "You're the crew",
-            "body": "Wearers help shape what we build next and get early access to new drops. Buying in makes you part of the community."
+            "title": "YOU'RE PART OF THE CREW",
+            "body": "Not a loyalty program, not a point system,  just people who rep the gear because they believe in what it stands for. Every shirt worn is word-of-mouth we can't buy."
           }
         },
         "p3": {
@@ -33,7 +33,7 @@
           "settings": {
             "number": "03",
             "title": "Print on demand",
-            "body": "Printed and shipped on demand through Printful. No overproduction, no waste — made only when you order."
+            "body": "Printed and shipped on demand. No overproduction, no waste, made only when you order."
           }
         }
       },
@@ -46,12 +46,12 @@
       "settings": {
         "collection": "support-shirts",
         "pill_1": "Support the Build",
-        "pill_2": "Not a profit line",
-        "heading": "Wear the standard.\nFund the next one.",
-        "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product. These aren't about profit — buy a tee and you're funding what we build next, and joining the crew that shapes it.",
-        "chips": "Funds R&D + testing, Community-made, Printed on demand",
+        "pill_2": "REP the Brand",
+        "heading": "Wear it with pride. Help fund what's next.",
+        "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product. These aren't about profit, buy a tee and you're funding what we build next, and joining the crew that shapes it.",
+        "chips": "Funds R&D + testing, Community-designed, NO WASTE MADE FRESH",
         "grid_eyebrow": "The Support Collection",
-        "grid_heading": "Fly the flag.",
+        "grid_heading": "Back the build",
         "grid_note": "Every piece is printed on demand through Printful and shipped to your door. Sizes and colorways vary by design.",
         "band_eyebrow": "Where your support goes",
         "band_heading": "Support, not markup."
