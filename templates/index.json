@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "badge_1": "Made by Lifeguards",
+        "badge_1": "Waterproof gear",
         "badge_2": "",
         "heading": "Forged by the ocean. Built for the job.",
         "subheading": "We build gear the way the ocean demands it: dependable, honest, and tested where it matters.",
@@ -76,7 +76,7 @@
       ],
       "settings": {
         "eyebrow": "How it's built",
-        "heading": "Built to one standard.\nThe rescue standard.",
+        "heading": "Radio drybag Built to one standard.\nThe rescue standard.",
         "intro": "After watching 'waterproof' gear fail in the field, again and again. Here's what we built differently.",
         "button_label": "See Full Product Details",
         "button_link": "shopify://collections/all"
