@@ -12,9 +12,9 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "badge_1": "Waterproof gear",
+        "badge_1": "Forged by the ocean. Built for the job.",
         "badge_2": "",
-        "heading": "Forged by the ocean. Built for the job.",
+        "heading": "radio \ndry bag",
         "subheading": "We build gear the way the ocean demands it: dependable, honest, and tested where it matters.",
         "button_1_label": "Explore the Product",
         "button_1_link": "shopify://collections/all",
@@ -76,7 +76,7 @@
       ],
       "settings": {
         "eyebrow": "How it's built",
-        "heading": "Radio drybag Built to one standard.\nThe rescue standard.",
+        "heading": "Built to one standard.\nThe rescue standard.",
         "intro": "After watching 'waterproof' gear fail in the field, again and again. Here's what we built differently.",
         "button_label": "See Full Product Details",
         "button_link": "shopify://collections/all"
@@ -97,11 +97,11 @@
     "cta": {
       "type": "cta-band",
       "settings": {
-        "eyebrow": "",
-        "heading": "The first production run is on the way.",
-        "body": "Outfitting an agency? Get bulk pricing and lead times built for your unit.",
-        "button_label": "Agency Orders",
-        "button_link": "shopify://pages/pre-sale"
+        "eyebrow": "Rep the brand",
+        "heading": "Wear it with pride. Help fund what's next.",
+        "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product.",
+        "button_label": "shop Shirts",
+        "button_link": "shopify://pages/shop"
       }
     }
   },
