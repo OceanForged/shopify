@@ -1,18 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "product_detail": {
       "type": "product-detail",
       "settings": {
-        "product": "radio-dry-bag",
         "title": "Radio Dry Bag",
         "eyebrow": "Ocean Forged · Product 01",
         "subtitle": "Made by lifeguards. Built for real world rescues.",
@@ -20,7 +10,5 @@
       }
     }
   },
-  "order": [
-    "product_detail"
-  ]
+  "order": ["product_detail"]
 }
