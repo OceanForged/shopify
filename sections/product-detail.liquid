@@ -6,47 +6,59 @@
 {%- liquid
   assign product = section.settings.product
   assign variant = product.selected_or_first_available_variant
-  assign hero_img   = 'product-worn.jpg' | asset_url
-  assign bag_img    = 'studio-bag-square.png' | asset_url
-  assign ocean_img  = 'ocean-hero.jpg' | asset_url
+  assign wave_img = 'ocean-wave-hero.jpg' | asset_url
+  assign jetski_img = 'bag-jetski.jpeg' | asset_url
+  assign group_img = 'lifeguards-sfo-group.jpeg' | asset_url
+  assign kite_img = 'watersports-kite.jpg' | asset_url
+  assign diver_img = 'diver-woman-fins-2.jpeg' | asset_url
+  assign ocean_img = 'ocean-hero.jpg' | asset_url
   assign img_harness = 'detail-harness.png' | asset_url
   assign img_anchor  = 'detail-anchor.png' | asset_url
   assign img_window  = 'detail-window.png' | asset_url
-  if product.featured_image != blank
-    assign buy_img = product.featured_image | image_url: width: 1200
-  else
-    assign buy_img = hero_img
-  endif
+  assign img_zipper  = 'detail-zipper.png' | asset_url
+  assign carousel1 = 'lifestyle-back.jpg' | asset_url
+  assign carousel2 = 'lifestyle-side.jpg' | asset_url
+  assign carousel3 = 'lifestyle-front.jpg' | asset_url
 -%}
 
 <!-- ================= PRODUCT HERO ================= -->
-<section class="of-bg-deep" style="padding:84px 0 0;">
+<section style="background:#15302f; padding:48px 32px 0;">
   <div class="of-container">
-    <h1 class="of-display of-text-white" style="font-size:clamp(48px,8vw,116px);line-height:0.88;letter-spacing:-1.5px;margin:0;text-transform:uppercase;" data-reveal>{{ section.settings.title | default: 'Radio Dry Bag' }}</h1>
-    <p class="of-eyebrow" style="margin:18px 0 0;" data-reveal>{{ section.settings.eyebrow | default: 'Ocean Forged · Product 01' }}</p>
-    <p class="of-pd-tagline" data-reveal>{{ section.settings.subtitle | default: 'Made by lifeguards. Built for real world rescues.' }}</p>
+    <h1 class="of-display of-text-white" style="font-size:clamp(32px,4.4vw,60px);line-height:0.9;letter-spacing:-1px;margin:0;text-transform:uppercase;" data-reveal>{{ section.settings.title | default: 'Radio Dry Bag' }}</h1>
+    <p class="of-eyebrow" style="margin:14px 0 0;" data-reveal>{{ section.settings.eyebrow | default: 'Ocean Forged · Product 01' }}</p>
+    <p style="font-family:var(--of-font-display);font-weight:700;color:#dbe7e5;font-size:clamp(14px,1.4vw,18px);margin:12px 0 0;text-transform:uppercase;letter-spacing:0.5px;max-width:44ch;padding-bottom:28px;border-bottom:1px solid rgba(143,168,168,0.25);" data-reveal>{{ section.settings.subtitle | default: 'Made by lifeguards. Built for real world rescues.' }}</p>
   </div>
 </section>
 
 <!-- ================= BUY BOX ================= -->
-<section class="of-bg-deep" style="padding:56px 0 76px;">
-  <div class="of-container">
+<section style="position:relative;background-image:linear-gradient(180deg, rgba(15,36,35,0.86) 0%, rgba(15,36,35,0.94) 100%), url('{{ wave_img }}');background-size:cover;background-position:center;padding:56px 32px 44px;">
+  <div style="max-width:920px;margin:0 auto;">
     <div class="of-pd-buy">
-      <div class="of-pd-buy__media" style="background-image:url('{{ buy_img }}');" data-reveal>
-        <div class="of-pd-buy__tag">
-          <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange-lt,#ff6a3d);">RDB-01</span>
-          <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);">Field-tested · Ocean Beach, CA</span>
+      <div class="of-pd-buy__media" data-pd-carousel>
+        <div class="of-pd-buy__slide" data-pd-slide style="background-image:url('{{ carousel1 }}'); background-size:150%; background-position:center 46%;"></div>
+        <button type="button" class="of-pd-arrow of-pd-arrow--l" data-pd-prev aria-label="Previous photo">&lsaquo;</button>
+        <button type="button" class="of-pd-arrow of-pd-arrow--r" data-pd-next aria-label="Next photo">&rsaquo;</button>
+        <div class="of-pd-buy__caption">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange-lt,#ff6a3d);">RDB-01</span>
+            <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);" data-pd-label>On the back</span>
+          </div>
+          <div style="display:flex;justify-content:center;gap:8px;" data-pd-dots>
+            <button type="button" class="of-pd-dot is-active" data-pd-dot="0" aria-label="Show photo 1"></button>
+            <button type="button" class="of-pd-dot" data-pd-dot="1" aria-label="Show photo 2"></button>
+            <button type="button" class="of-pd-dot" data-pd-dot="2" aria-label="Show photo 3"></button>
+          </div>
         </div>
       </div>
-      <div class="of-pd-buy__card" data-reveal>
+      <div class="of-pd-buy__card">
         <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-          <span class="of-pd-chip of-pd-chip--solid">{% if variant.available %}In stock{% else %}Made to order{% endif %}</span>
-          <span class="of-pd-chip">READY TO SHIP</span>
+          <span class="of-pd-chip of-pd-chip--solid">{% if variant.available %}In Stock{% else %}Made to order{% endif %}</span>
+          <span class="of-pd-chip">Ready to Ship</span>
         </div>
-        <h2 class="of-display" style="font-size:30px;margin:0 0 6px;text-transform:uppercase;letter-spacing:-0.5px;line-height:1;">{{ product.title | default: 'Radio Dry Bag' }}</h2>
-        <p style="font-size:14px;color:var(--of-ink-soft);margin:0 0 20px;line-height:1.55;text-transform:uppercase;letter-spacing:0.4px;">FAST LOADING · RF-WELDED · WATERPROOF · CROSS-BODY HARNESS</p>
+        <h2 class="of-display" style="font-size:30px;margin:0 0 6px;text-transform:uppercase;letter-spacing:-0.5px;line-height:1;">{{ product.title | default: 'Radio Dry Bag' | upcase }}</h2>
+        <p style="font-family:var(--of-font-body);font-size:14px;color:var(--of-ink-soft);margin:0 0 20px;line-height:1.55;text-transform:uppercase;letter-spacing:0.4px;">Fast Loading · RF-Welded · Waterproof · Cross-Body Harness</p>
         <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:22px;">
-          <span class="of-display" style="font-size:44px;color:var(--of-orange);letter-spacing:-1px;">{% if product != blank %}{{ variant.price | money }}{% else %}$110{% endif %}</span>
+          <span class="of-display" style="font-size:44px;color:var(--of-orange);letter-spacing:-1px;">{% if product != blank %}{{ variant.price | money }}{% else %}$120{% endif %}</span>
           <span style="font-family:var(--of-font-body);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--of-muted);">per unit</span>
         </div>
 
@@ -74,159 +86,297 @@
   </div>
 </section>
 
-<!-- ================= SPEC PLATE ================= -->
-<section class="of-bg-deep" style="padding:100px 0;">
+<!-- ================= SPEC PLATE (military) ================= -->
+<section style="background:#15302f;padding:52px 32px 72px;border-top:1px solid rgba(143,168,168,0.18);">
   <div class="of-container of-container--narrow" style="max-width:1080px;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px;" data-reveal>
       <div>
-        <p class="of-eyebrow">// Equipment Specifications</p>
-        <h2 class="of-display of-text-white" style="font-size:clamp(28px,3.6vw,46px);line-height:0.98;text-transform:uppercase;letter-spacing:-0.5px;">The Spec Plate</h2>
+        <p class="of-eyebrow">// EQUIPMENT SPECIFICATIONS</p>
+        <h2 class="of-display of-text-white" style="font-size:clamp(28px,3.6vw,46px);line-height:0.98;text-transform:uppercase;letter-spacing:-0.5px;">THE SPEC PLATE</h2>
       </div>
-      <div style="font-family:var(--of-font-body);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);text-align:right;line-height:1.9;">Batch: OF-001<br>Serial: RDB01-00001</div>
+      <div style="font-family:var(--of-font-body);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);text-align:right;line-height:1.9;">BATCH: OF-001<br>SERIAL: RDB01-00001</div>
     </div>
     <div class="of-spec">
       <div class="of-spec__head">
-        <span style="font-family:var(--of-font-display);font-weight:900;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#fff;">RDB-01 · Radio Dry Bag</span>
-        <span style="font-family:var(--of-font-body);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-deep);background:#fff;padding:5px 12px;border-radius:3px;">Inspect before deployment</span>
+        <span style="font-family:var(--of-font-display);font-weight:900;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#fff;">RDB-01 · RADIO DRY BAG</span>
+        <span style="font-family:var(--of-font-body);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--of-deep);background:#fff;padding:5px 12px;border-radius:3px;">INSPECT BEFORE DEPLOYMENT</span>
       </div>
       <div class="of-spec__grid">
-        <div class="of-spec__cell"><div class="of-spec__key">Body</div><div class="of-spec__val">420D ripstop nylon, TPU-laminated with PU coat</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Construction</div><div class="of-spec__val">Fully RF-welded seams — no thread, no glue</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Closure</div><div class="of-spec__val">TRU ZIP® self-healing waterproof zipper makes loading fast and easy</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Protection</div><div class="of-spec__val">Waterproof · Dustproof · Sandproof</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Carry</div><div class="of-spec__val">Secure low-profile cross-body harness + molded EVA back</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Interior</div><div class="of-spec__val">14¼" × 3¾" × 2¼" — fits radio body &amp; antenna</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Fits</div><div class="of-spec__val">Handheld radios and other critical gear</div></div>
-        <div class="of-spec__cell"><div class="of-spec__key">Designed for</div><div class="of-spec__val">Coastal rescue operations · tested at Ocean Beach, CA</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">BODY</div><div class="of-spec__val">420D RIPSTOP NYLON, TPU-LAMINATED WITH PU COAT</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">CONSTRUCTION</div><div class="of-spec__val">FULLY RF-WELDED SEAMS, NO THREAD, NO GLUE</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">CLOSURE</div><div class="of-spec__val">TRU ZIP® SELF-HEALING WATERPROOF ZIPPER MAKES LOADING FAST AND EASY</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">PROTECTION</div><div class="of-spec__val">WATERPROOF · DUSTPROOF · SANDPROOF</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">CARRY</div><div class="of-spec__val">SECURE LOW-PROFILE CROSS-BODY HARNESS + MOLDED EVA BACK</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">INTERIOR</div><div class="of-spec__val">14¼" × 3¾" × 2¼", FITS RADIO BODY &amp; ANTENNA</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">FITS</div><div class="of-spec__val">HANDHELD RADIOS AND OTHER CRITICAL GEAR</div></div>
+        <div class="of-spec__cell"><div class="of-spec__key">DESIGNED FOR</div><div class="of-spec__val">COASTAL RESCUE OPERATIONS · TESTED AT OCEAN BEACH, CA</div></div>
       </div>
     </div>
-    <p style="font-family:var(--of-font-body);font-size:12px;letter-spacing:1px;color:var(--of-on-dark-3,#8fa8a8);margin:20px 0 0;text-align:center;text-transform:uppercase;">Retail, agency &amp; bulk-order pricing available on request</p>
+    <p style="font-family:var(--of-font-body);font-size:12px;letter-spacing:1px;color:var(--of-on-dark-3,#8fa8a8);margin:20px 0 0;text-align:center;text-transform:uppercase;">RETAIL, AGENCY &amp; BULK-ORDER PRICING AVAILABLE ON REQUEST</p>
   </div>
 </section>
 
-<!-- ================= THE BREAKDOWN (callouts) ================= -->
-<section class="of-bg-light" style="padding:80px 0 96px;">
+<!-- ================= BREAKDOWN (annotated) ================= -->
+<section style="background:#fff;padding:90px 32px 100px;">
   <div class="of-container of-container--narrow" style="max-width:1120px;">
     <div style="text-align:center;max-width:640px;margin:0 auto 56px;" data-reveal>
       <p class="of-eyebrow" style="font-family:var(--of-font-body);">// The Breakdown</p>
-      <h2 class="of-display" style="font-size:clamp(30px,4vw,52px);line-height:0.98;text-transform:uppercase;letter-spacing:-0.5px;">Every part, engineered.</h2>
+      <h2 class="of-display" style="font-size:clamp(28px,3.6vw,46px);line-height:0.98;text-transform:uppercase;letter-spacing:-0.5px;">Every part, engineered.</h2>
     </div>
 
-    <div class="of-callouts" data-reveal>
-      <div class="of-callouts__col of-callouts__col--left">
-        <div class="of-callout of-callout--left">
-          <div><h3 class="of-callout__title">Clear Operating Window</h3><p class="of-callout__body">See the display and work the radio without ever breaking the seal.</p></div>
-          <span class="of-leader"><span class="of-leader__line"></span><span class="of-leader__arrow of-leader__arrow--r"></span></span>
+    <div class="of-bd">
+      <div class="of-bd__col of-bd__col--left">
+        <div class="of-bd__row">
+          <div class="of-bd__box"><h3 class="of-bd__title">Padded Branded Harness</h3><p class="of-bd__body">Contoured yoke stays put in the surf.</p></div>
+          <span class="of-bd__leader" style="--w:70px;"><span class="of-bd__line"></span><span class="of-bd__arrow of-bd__arrow--r"></span></span>
         </div>
-        <div class="of-callout of-callout--left">
-          <div><h3 class="of-callout__title">RF-Welded Waterproof Shell</h3><p class="of-callout__body">420D ripstop nylon, fused seams — no thread, no glue, no failure points.</p></div>
-          <span class="of-leader"><span class="of-leader__line"></span><span class="of-leader__arrow of-leader__arrow--r"></span></span>
+        <div class="of-bd__row">
+          <div class="of-bd__box"><h3 class="of-bd__title">Adjustable Chest Strap</h3><p class="of-bd__body">Cinches flat so it never swings or shifts.</p></div>
+          <span class="of-bd__leader" style="--w:130px;"><span class="of-bd__line"></span><span class="of-bd__arrow of-bd__arrow--r"></span></span>
         </div>
-        <div class="of-callout of-callout--left">
-          <div><h3 class="of-callout__title">Padded Branded Harness</h3><p class="of-callout__body">Contoured shoulder yoke spreads the load and stays put in the surf.</p></div>
-          <span class="of-leader"><span class="of-leader__line"></span><span class="of-leader__arrow of-leader__arrow--r"></span></span>
+        <div class="of-bd__row">
+          <div class="of-bd__box"><h3 class="of-bd__title">Quick-Release Buckle</h3><p class="of-bd__body">Drops the bag off fast when seconds count.</p></div>
+          <span class="of-bd__leader" style="--w:95px;"><span class="of-bd__line"></span><span class="of-bd__arrow of-bd__arrow--r"></span></span>
         </div>
       </div>
-      <div class="of-callouts__img">
-        <div style="position:absolute;inset:10px;background:url('{{ bag_img }}') center/contain no-repeat;"></div>
+      <div class="of-bd__img">
+        <img src="{{ jetski_img }}" alt="Radio dry bag mounted on rescue jet ski" loading="lazy">
       </div>
-      <div class="of-callouts__col of-callouts__col--right">
-        <div class="of-callout of-callout--right">
-          <span class="of-leader"><span class="of-leader__arrow of-leader__arrow--l"></span><span class="of-leader__line"></span></span>
-          <div><h3 class="of-callout__title">TRU ZIP® Self-Healing Zipper</h3><p class="of-callout__body">Waterproof closure that reseals with a single slide, even wet-handed.</p></div>
+      <div class="of-bd__col of-bd__col--right">
+        <div class="of-bd__row of-bd__row--right">
+          <span class="of-bd__leader" style="--w:120px;"><span class="of-bd__arrow of-bd__arrow--l"></span><span class="of-bd__line"></span></span>
+          <div class="of-bd__box"><h3 class="of-bd__title">Clear Operating Window</h3><p class="of-bd__body">Work the radio without breaking the seal.</p></div>
         </div>
-        <div class="of-callout of-callout--right">
-          <span class="of-leader"><span class="of-leader__arrow of-leader__arrow--l"></span><span class="of-leader__line"></span></span>
-          <div><h3 class="of-callout__title">Quick-Release Buckle</h3><p class="of-callout__body">Side-release buckle drops the bag off fast when seconds count.</p></div>
+        <div class="of-bd__row of-bd__row--right">
+          <span class="of-bd__leader" style="--w:75px;"><span class="of-bd__arrow of-bd__arrow--l"></span><span class="of-bd__line"></span></span>
+          <div class="of-bd__box"><h3 class="of-bd__title">TRU ZIP® Zipper</h3><p class="of-bd__body">Waterproof, self-healing, reseals in one slide.</p></div>
         </div>
-        <div class="of-callout of-callout--right">
-          <span class="of-leader"><span class="of-leader__arrow of-leader__arrow--l"></span><span class="of-leader__line"></span></span>
-          <div><h3 class="of-callout__title">Adjustable Chest Strap</h3><p class="of-callout__body">Cinches the bag flat to your body so it never swings or shifts.</p></div>
+        <div class="of-bd__row of-bd__row--right">
+          <span class="of-bd__leader" style="--w:105px;"><span class="of-bd__arrow of-bd__arrow--l"></span><span class="of-bd__line"></span></span>
+          <div class="of-bd__box"><h3 class="of-bd__title">RF-Welded Shell</h3><p class="of-bd__body">Fused seams, no thread, no glue, no failure points.</p></div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="of-pd-trio" data-reveal>
-      <p class="of-eyebrow" style="font-family:var(--of-font-body);color:var(--of-muted);text-align:center;margin:0 0 22px;">// In the details</p>
-      <div class="of-pd-trio__grid">
-        <div class="of-pd-trio__item">
-          <div class="of-pd-trio__media"><img src="{{ img_harness }}" alt="Padded branded harness" loading="lazy"></div>
-          <h3 class="of-pd-trio__title">Padded Harness</h3>
-          <p class="of-pd-trio__body">Contoured shoulder yoke, embossed with the Ocean Forged mark.</p>
-        </div>
-        <div class="of-pd-trio__item">
-          <div class="of-pd-trio__media"><img src="{{ img_anchor }}" alt="Reinforced anchor point" loading="lazy"></div>
-          <h3 class="of-pd-trio__title">Anchor Point</h3>
-          <p class="of-pd-trio__body">Welded triangle ties the harness to the waist strap.</p>
-        </div>
-        <div class="of-pd-trio__item">
-          <div class="of-pd-trio__media"><img src="{{ img_window }}" alt="Clear operating window" loading="lazy"></div>
-          <h3 class="of-pd-trio__title">Clear Window</h3>
-          <p class="of-pd-trio__body">Work the radio and read the display without breaking the seal.</p>
-        </div>
+<!-- ================= IN THE DETAILS ================= -->
+<section style="background:#15302f;padding:56px 32px 72px;">
+  <div style="margin:0 auto;max-width:1160px;text-align:center;" data-reveal>
+    <p class="of-eyebrow" style="font-family:var(--of-font-body);color:var(--of-on-dark-3,#8fa8a8);">// In the details</p>
+    <div class="of-pd-trio__grid" style="grid-template-columns:repeat(4,1fr);margin-top:22px;">
+      <div class="of-pd-trio__item">
+        <div class="of-pd-trio__media"><img src="{{ img_harness }}" alt="Padded branded harness" loading="lazy"></div>
+        <h3 class="of-pd-trio__title">Padded Harness</h3>
+        <p class="of-pd-trio__body">Contoured shoulder yoke, embossed with the Ocean Forged mark.</p>
+      </div>
+      <div class="of-pd-trio__item">
+        <div class="of-pd-trio__media"><img src="{{ img_anchor }}" alt="Reinforced anchor point" loading="lazy"></div>
+        <h3 class="of-pd-trio__title">Anchor Point</h3>
+        <p class="of-pd-trio__body">Welded triangle ties the harness to the waist strap.</p>
+      </div>
+      <div class="of-pd-trio__item">
+        <div class="of-pd-trio__media"><img src="{{ img_window }}" alt="Clear operating window" loading="lazy"></div>
+        <h3 class="of-pd-trio__title">Clear Window</h3>
+        <p class="of-pd-trio__body">Work the radio and read the display without breaking the seal.</p>
+      </div>
+      <div class="of-pd-trio__item">
+        <div class="of-pd-trio__media"><img src="{{ img_zipper }}" alt="Vertical waterproof zipper" loading="lazy"></div>
+        <h3 class="of-pd-trio__title">Fast Loading</h3>
+        <p class="of-pd-trio__body">Vertical zipper, so the radio drops in and out fast.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= WHO IT'S FOR ================= -->
-<section class="of-bg-white" style="padding:100px 0;">
+<section style="background:#fff;padding:100px 32px;">
   <div class="of-container">
     <div style="max-width:720px;margin:0 auto 52px;text-align:center;" data-reveal>
       <p class="of-eyebrow" style="font-family:var(--of-font-body);">// Who It's For</p>
       <h2 class="of-display" style="font-size:clamp(30px,4vw,52px);line-height:1.0;margin:0 0 18px;text-transform:uppercase;letter-spacing:-0.5px;">Built for the people the ocean tests.</h2>
       <p style="font-size:17px;line-height:1.65;color:var(--of-ink-soft);margin:0;">Designed for lifeguards and professionals operating in harsh environments where reliable radio protection is critical. Comfortable enough for all-day wear.</p>
     </div>
-    <div class="of-pd-who">
+    <div class="of-pd-who4">
       <div class="of-pd-who__card" data-reveal>
-        <div class="of-pd-who__ph"><span>[ lifeguard photo ]</span></div>
-        <h3 class="of-pd-who__title">Lifeguards</h3>
-        <p class="of-pd-who__body">Keep radios dry and reachable through every rescue, all day on the sand and in the surf. The bag the product was born from.</p>
+        <div class="of-pd-who__photo" style="background-image:url('{{ group_img }}');background-position:center 42%;"></div>
+        <h3 class="of-pd-who__title">Lifeguards &amp; Water Rescue</h3>
+        <p class="of-pd-who__body">Where it all started. Built by an active lifeguard to stay locked to your body through fast entries, heavy surf, and every rescue. Dry, secure, and ready every shift.</p>
       </div>
       <div class="of-pd-who__card" data-reveal>
         <div class="of-pd-who__ph"><span>[ first responder photo ]</span></div>
         <h3 class="of-pd-who__title">First Responders</h3>
-        <p class="of-pd-who__body">Reliable radio protection in the harshest environments, so your equipment is ready the moment it matters most.</p>
-      </div>
-      <div class="of-pd-who__card" data-reveal>
-        <div class="of-pd-who__ph"><span>[ surf rescue photo ]</span></div>
-        <h3 class="of-pd-who__title">Surf &amp; Water Rescue</h3>
-        <p class="of-pd-who__body">Built for pounding surf, salt and sand. Sealed protection that takes the impact and keeps your radio working.</p>
+        <p class="of-pd-who__body">Built for crews who can't afford a radio failure. Fire, EMS, police, and rescue teams who need gear that works the first time, every time, no matter the call.</p>
       </div>
       <div class="of-pd-who__card" data-reveal>
         <div class="of-pd-who__ph"><span>[ marine pro photo ]</span></div>
         <h3 class="of-pd-who__title">Marine &amp; Harbor Pros</h3>
-        <p class="of-pd-who__body">Dependable on deck and in the spray. A low-profile harness that stays out of the way until you reach for it.</p>
+        <p class="of-pd-who__body">Built for long shifts on deck. Spray, wet hands, and gear that stays out of your way while you work.</p>
       </div>
       <div class="of-pd-who__card" data-reveal>
-        <div class="of-pd-who__ph"><span>[ water sports photo ]</span></div>
+        <div class="of-pd-who__photo" style="background-image:url('{{ kite_img }}');background-position:center 30%;"></div>
         <h3 class="of-pd-who__title">Water Sports &amp; Recreation</h3>
-        <p class="of-pd-who__body">Kayakers, kite surfers, boaters, paddlers — anyone on the water who needs a radio, phone or keys to stay dry and within reach.</p>
+        <p class="of-pd-who__body">Kayakers, fishermen, whitewater rafters, and sailors. Anyone recreating on the water who needs a radio, phone, or keys to stay dry and within reach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="background:#15302f;padding:100px 32px;">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div style="margin-bottom:44px;text-align:center;" data-reveal>
+      <p class="of-eyebrow">// FAQ</p>
+      <h2 class="of-display of-text-white" style="font-size:clamp(28px,3.6vw,44px);line-height:1.0;text-transform:uppercase;letter-spacing:-0.5px;">Common Questions</h2>
+    </div>
+    <div class="of-faq-grid">
+      <div class="of-faq-img" data-reveal>
+        <img src="{{ diver_img }}" alt="Ocean Forged in the field" loading="lazy">
+      </div>
+      <div class="of-faq-list" data-of-faq>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>What's the best waterproof case for a lifeguard radio?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>Look for three things: a true submersible rating (not just splash resistant), a hands-free carry system, and a seal built for constant daily use, not occasional storms. The RDB-01 covers all three with RF-welded TPU construction and a cross-body harness built specifically for lifeguard shifts.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>Is the RDB-01 actually waterproof, or just water resistant?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>It's fully waterproof, rated for submersion, not just rain or splashes. The RF-welded seams and Tru Zip closure are built to handle full immersion, which matters if you're going into the water with your radio still on you.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>Can you still talk and hear through the bag?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>Yes. The TPU material is designed so you can operate the radio and hear clearly through the case without opening it.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>How do you wear the RDB-01 during a shift?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>It comes with a cross-body harness, so it sits secure against your body while you run, swim, or respond to a rescue, no fumbling with a strap.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>What's the RDB-01 made of?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>RF-welded TPU with a Tru Zip waterproof zipper, built for daily exposure to saltwater, sand, and sun, not just occasional use.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>What does RF-welded mean?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>RF welding (radio frequency welding) fuses seams together with heat and pressure instead of stitching or glue, so there are no needle holes for water to work through. It's the same seam technique used in dry bags and medical-grade waterproof gear, and it's why the RDB-01 doesn't leak at the seams.</p></div>
+        </div>
+        <div class="of-faq-item">
+          <button type="button" class="of-faq-q" data-faq-toggle>
+            <h3>What is TPU?</h3>
+            <span class="of-faq-plus">+</span>
+          </button>
+          <div class="of-faq-a"><p>TPU stands for thermoplastic polyurethane, a flexible, durable material that holds up to saltwater, abrasion, and UV exposure better than standard vinyl or PVC. It's why the RDB-01 stays waterproof and doesn't crack or degrade after repeated ocean, sun, and sand exposure.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= BULK / TEAM ORDERS ================= -->
-<section class="of-pd-bulk" style="background-image:linear-gradient(90deg, rgba(15,36,35,0.95) 0%, rgba(15,36,35,0.74) 58%, rgba(15,36,35,0.42) 100%), url('{{ ocean_img }}');">
-  <div class="of-container">
-    <div style="max-width:600px;" data-reveal>
+<section style="position:relative;background-image:linear-gradient(90deg, rgba(15,36,35,0.95) 0%, rgba(15,36,35,0.74) 58%, rgba(15,36,35,0.42) 100%), url('{{ ocean_img }}');background-size:cover;background-position:center;padding:52px 32px;">
+  <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+    <div style="max-width:640px;" data-reveal>
       <p class="of-eyebrow">// Bulk &amp; Team Orders</p>
-      <h2 class="of-display of-text-white" style="font-size:clamp(30px,4.4vw,56px);line-height:1.0;margin:0 0 18px;text-transform:uppercase;letter-spacing:-0.5px;">Outfitting a team?</h2>
-      <p class="of-lede" style="color:var(--of-on-dark);margin:0 0 30px;max-width:46ch;">We work with agencies and patrols to gear up entire units — with volume pricing and priority lead times built for your unit.</p>
-      <a href="{{ section.settings.bulk_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary">Team Orders &rarr;</a>
+      <h2 class="of-display of-text-white" style="font-size:clamp(26px,3.2vw,42px);line-height:1.0;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.5px;">Outfitting a team?</h2>
+      <p class="of-lede" style="color:var(--of-on-dark);margin:0;max-width:52ch;">We work with agencies and patrols to gear up entire units, with volume pricing and priority lead times built for your unit.</p>
     </div>
+    <a href="{{ section.settings.bulk_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary" style="flex-shrink:0;">Team Orders &rarr;</a>
   </div>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the best waterproof case for a lifeguard radio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for three things: a true submersible rating (not just splash resistant), a hands-free carry system, and a seal built for constant daily use, not occasional storms. The RDB-01 covers all three with RF-welded TPU construction and a cross-body harness built specifically for lifeguard shifts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the RDB-01 actually waterproof, or just water resistant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's fully waterproof, rated for submersion, not just rain or splashes. The RF-welded seams and Tru Zip closure are built to handle full immersion, which matters if you're going into the water with your radio still on you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you still talk and hear through the bag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The TPU material is designed so you can operate the radio and hear clearly through the case without opening it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you wear the RDB-01 during a shift?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It comes with a cross-body harness, so it sits secure against your body while you run, swim, or respond to a rescue, no fumbling with a strap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the RDB-01 made of?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RF-welded TPU with a Tru Zip waterproof zipper, built for daily exposure to saltwater, sand, and sun, not just occasional use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does RF-welded mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RF welding (radio frequency welding) fuses seams together with heat and pressure instead of stitching or glue, so there are no needle holes for water to work through. It's the same seam technique used in dry bags and medical-grade waterproof gear, and it's why the RDB-01 doesn't leak at the seams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is TPU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TPU stands for thermoplastic polyurethane, a flexible, durable material that holds up to saltwater, abrasion, and UV exposure better than standard vinyl or PVC. It's why the RDB-01 stays waterproof and doesn't crack or degrade after repeated ocean, sun, and sand exposure."
+      }
+    }
+  ]
+}
+</script>
 
 <style>
   .of-bg-deep{background:var(--of-deep,#15302f);}
   .of-bg-white{background:#fff;}
-  .of-pd-tagline{font-family:var(--of-font-display);font-weight:700;color:var(--of-on-dark,#dbe7e5);font-size:clamp(16px,1.6vw,22px);margin:16px 0 0;text-transform:uppercase;letter-spacing:0.5px;max-width:34ch;padding-bottom:46px;border-bottom:1px solid rgba(143,168,168,0.25);}
-
-  .of-pd-buy{display:grid;grid-template-columns:1.05fr 0.95fr;gap:44px;align-items:stretch;}
-  .of-pd-buy__media{border-radius:10px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);position:relative;min-height:420px;background-size:cover;background-position:center 28%;}
-  .of-pd-buy__tag{position:absolute;left:0;bottom:0;padding:14px 20px;background:linear-gradient(0deg, rgba(15,36,35,0.9), transparent);width:100%;display:flex;align-items:center;gap:12px;}
+  .of-pd-buy{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch;}
+  .of-pd-buy__media{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);background:#0f2423;}
+  .of-pd-buy__slide{position:absolute;inset:0;background-repeat:no-repeat;transition:opacity 0.25s ease;}
+  .of-pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(15,36,35,0.55);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(2px);}
+  .of-pd-arrow:hover{background:rgba(224,63,26,0.85);}
+  .of-pd-arrow--l{left:14px;} .of-pd-arrow--r{right:14px;}
+  .of-pd-buy__caption{position:absolute;left:0;bottom:0;width:100%;padding:16px 20px 14px;background:linear-gradient(0deg, rgba(15,36,35,0.92), transparent);}
+  .of-pd-dot{width:7px;height:7px;border-radius:4px;border:none;padding:0;cursor:pointer;background:rgba(255,255,255,0.4);transition:width 0.2s ease, background 0.2s ease;}
+  .of-pd-dot.is-active{width:18px;background:var(--of-orange);}
   .of-pd-buy__card{background:#fff;border-radius:10px;padding:38px 36px;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(0,0,0,0.4);}
   .of-pd-chip{font-family:var(--of-font-body);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-ink-soft);border:1px solid rgba(21,48,47,0.18);padding:5px 10px;border-radius:3px;}
   .of-pd-chip--solid{color:var(--of-deep);background:rgba(224,63,26,0.14);border:none;}
@@ -242,81 +392,142 @@
   .of-spec__cell:nth-child(odd){border-right:1px solid rgba(143,168,168,0.18);}
   .of-spec__cell:nth-last-child(-n+2){border-bottom:none;}
   .of-spec__key{font-family:var(--of-font-body);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--of-orange-lt,#ff6a3d);margin-bottom:8px;}
-  .of-spec__val{font-family:var(--of-font-body);font-size:15.5px;font-weight:600;color:#eef2f0;line-height:1.55;}
+  .of-spec__val{font-family:var(--of-font-body);font-size:15.5px;font-weight:600;color:#eef2f0;line-height:1.55;text-transform:uppercase;}
 
-  .of-callouts{display:grid;grid-template-columns:1fr 1.02fr 1fr;gap:24px;align-items:center;max-width:1060px;margin:0 auto;}
-  .of-callouts__col{display:flex;flex-direction:column;gap:44px;}
-  .of-callout{display:flex;align-items:center;gap:16px;}
-  .of-callout--left{justify-content:flex-end;text-align:right;}
-  .of-callout--right{text-align:left;}
-  .of-callout__title{font-family:var(--of-font-display);font-weight:800;color:var(--of-deep);font-size:15px;margin:0 0 5px;text-transform:uppercase;letter-spacing:0.3px;}
-  .of-callout__body{font-size:12.5px;line-height:1.5;color:var(--of-ink-soft);margin:0;text-transform:uppercase;letter-spacing:0.4px;}
-  .of-leader{display:flex;align-items:center;flex-shrink:0;}
-  .of-leader__line{width:38px;height:2px;background:var(--of-orange);display:block;}
-  .of-leader__arrow{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;}
-  .of-leader__arrow--r{border-left:9px solid var(--of-orange);}
-  .of-leader__arrow--l{border-right:9px solid var(--of-orange);}
-  .of-callouts__img{position:relative;aspect-ratio:1/1;background:#fff;border-radius:16px;border:1px solid #e0e6e4;box-shadow:0 26px 60px rgba(21,48,47,0.12);overflow:hidden;}
+  .of-bd{display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:0;align-items:center;}
+  .of-bd__col{display:flex;flex-direction:column;gap:40px;position:relative;z-index:2;}
+  .of-bd__col--left{margin-right:-100px;}
+  .of-bd__col--right{margin-left:-100px;}
+  .of-bd__row{display:flex;align-items:center;gap:0;justify-content:flex-end;text-align:right;}
+  .of-bd__row--right{justify-content:flex-start;text-align:left;}
+  .of-bd__box{background:var(--of-deep,#15302f);border-radius:8px;padding:14px 16px;width:fit-content;max-width:180px;}
+  .of-bd__title{font-family:var(--of-font-display);font-weight:800;color:#fff;font-size:14px;margin:0 0 5px;text-transform:uppercase;letter-spacing:0.3px;}
+  .of-bd__body{font-family:var(--of-font-body);font-size:12px;line-height:1.5;color:#bcd0cd;margin:0;text-transform:uppercase;letter-spacing:0.3px;}
+  .of-bd__leader{display:flex;align-items:center;flex-shrink:0;}
+  .of-bd__line{width:var(--w,90px);height:2px;background:var(--of-orange);display:block;}
+  .of-bd__arrow{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  .of-bd__arrow--r{border-left:9px solid var(--of-orange);}
+  .of-bd__arrow--l{border-right:9px solid var(--of-orange);}
+  .of-bd__img{position:relative;aspect-ratio:3/4;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.25);background:#0f2423;z-index:1;}
+  .of-bd__img img{width:100%;height:100%;object-fit:cover;display:block;}
 
-  .of-pd-trio{margin:56px auto 0;max-width:840px;text-align:center;}
-  .of-pd-trio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;}
-  .of-pd-trio__media{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;border:1px solid #e0e6e4;background:#f4f6f4;}
+  .of-pd-trio__grid{display:grid;gap:26px;}
+  .of-pd-trio__media{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);background:#0f2423;}
   .of-pd-trio__media img{width:100%;height:100%;object-fit:cover;display:block;}
-  .of-pd-trio__title{font-family:var(--of-font-display);font-weight:800;font-size:12px;color:var(--of-deep);margin:14px 0 6px;text-transform:uppercase;letter-spacing:0.5px;}
-  .of-pd-trio__body{font-size:12px;color:var(--of-ink-soft);line-height:1.5;margin:0;text-transform:uppercase;letter-spacing:0.3px;}
+  .of-pd-trio__title{font-family:var(--of-font-display);font-weight:800;font-size:12px;color:#fff;margin:14px 0 6px;text-transform:uppercase;letter-spacing:0.5px;}
+  .of-pd-trio__body{font-family:var(--of-font-body);font-size:12px;color:var(--of-on-dark-3,#8fa8a8);line-height:1.5;margin:0;text-transform:uppercase;letter-spacing:0.3px;}
 
-  .of-pd-who{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .of-pd-who4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   .of-pd-who__card{display:flex;flex-direction:column;}
+  .of-pd-who__photo{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background-size:cover;margin-bottom:18px;}
   .of-pd-who__ph{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,#eceeeb,#eceeeb 16px,#f4f6f4 16px,#f4f6f4 32px);display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid #e4eae8;}
   .of-pd-who__ph span{font-family:var(--of-font-body);font-size:11px;letter-spacing:1px;color:#a8b8b6;text-transform:uppercase;}
-  .of-pd-who__title{font-family:var(--of-font-display);font-weight:800;font-size:20px;margin:0 0 10px;text-transform:uppercase;}
-  .of-pd-who__body{font-size:15px;line-height:1.6;color:var(--of-ink-soft);margin:0;}
+  .of-pd-who__title{font-family:var(--of-font-display);font-weight:800;font-size:18px;margin:0 0 10px;text-transform:uppercase;color:var(--of-deep);line-height:1.1;}
+  .of-pd-who__body{font-family:var(--of-font-body);font-size:14px;line-height:1.6;color:var(--of-ink-soft);margin:0;}
 
-  .of-pd-bulk{position:relative;background-size:cover;background-position:center;padding:100px 0;}
+  .of-faq-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:start;}
+  .of-faq-img{border-radius:14px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 70px rgba(0,0,0,0.4);}
+  .of-faq-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .of-faq-list{display:flex;flex-direction:column;gap:12px;}
+  .of-faq-item{background:#1a3a38;border:1px solid rgba(143,168,168,0.2);border-radius:8px;overflow:hidden;}
+  .of-faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px;background:transparent;border:none;cursor:pointer;text-align:left;}
+  .of-faq-q h3{font-family:var(--of-font-display);font-weight:800;font-size:16px;margin:0;text-transform:uppercase;letter-spacing:0.2px;color:#fff;}
+  .of-faq-plus{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,106,61,0.5);color:var(--of-orange-lt,#ff6a3d);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;transition:transform 0.2s ease;}
+  .of-faq-item.is-open .of-faq-plus{transform:rotate(45deg);}
+  .of-faq-a{max-height:0;overflow:hidden;transition:max-height 0.28s ease;}
+  .of-faq-a p{font-family:var(--of-font-body);font-size:15.5px;line-height:1.65;color:#bcd0cd;margin:0;padding:0 24px 22px;}
 
   @media (max-width:820px){
     .of-pd-buy{grid-template-columns:1fr;}
-    .of-callouts{grid-template-columns:1fr;gap:34px;}
-    .of-callout--left,.of-callout--right{justify-content:flex-start;text-align:left;flex-direction:row-reverse;}
-    .of-callout--left .of-leader,.of-callout--right .of-leader{transform:scaleX(-1);}
-    .of-callouts__img{max-width:360px;margin:0 auto;order:-1;}
-    .of-pd-trio__grid{gap:22px;}
-    .of-pd-who{grid-template-columns:1fr 1fr;}
+    .of-bd{grid-template-columns:1fr;}
+    .of-bd__col--left,.of-bd__col--right{margin:0;}
+    .of-bd__row,.of-bd__row--right{justify-content:flex-start;text-align:left;}
+    .of-bd__img{max-width:360px;margin:0 auto;order:-1;}
+    .of-pd-trio__grid{grid-template-columns:repeat(2,1fr);}
+    .of-pd-who4{grid-template-columns:1fr 1fr;}
+    .of-faq-grid{grid-template-columns:1fr;}
+    .of-faq-img{max-width:360px;margin:0 auto;}
   }
-  @media (max-width:560px){ .of-pd-who{grid-template-columns:1fr;} .of-spec__grid{grid-template-columns:1fr;} .of-spec__cell:nth-child(odd){border-right:none;} }
+  @media (max-width:560px){ .of-pd-who4{grid-template-columns:1fr;} .of-spec__grid{grid-template-columns:1fr;} .of-spec__cell:nth-child(odd){border-right:none;} .of-pd-trio__grid{grid-template-columns:1fr 1fr;} }
 </style>
 
 <script>
 (function () {
-  var root = document.currentScript && document.currentScript.previousElementSibling;
+  // buy-box qty + add/buy
   var form = document.querySelector('[data-of-pd-form]');
-  if (!form) return;
-  var qty = 1;
-  var qval = form.querySelector('[data-pd-qval]');
-  var variantId = form.getAttribute('data-variant');
+  if (form) {
+    var qty = 1;
+    var qval = form.querySelector('[data-pd-qval]');
+    var variantId = form.getAttribute('data-variant');
 
-  form.addEventListener('click', function (e) {
-    var step = e.target.closest('[data-pd-q]');
-    if (step) { qty = Math.max(1, Math.min(99, qty + parseInt(step.getAttribute('data-pd-q'), 10))); if (qval) qval.textContent = qty; return; }
+    form.addEventListener('click', function (e) {
+      var step = e.target.closest('[data-pd-q]');
+      if (step) { qty = Math.max(1, Math.min(99, qty + parseInt(step.getAttribute('data-pd-q'), 10))); if (qval) qval.textContent = qty; return; }
 
-    var add = e.target.closest('[data-pd-add]');
-    if (add && !add.disabled) {
-      if (window.OFCart) { add.disabled = true; add.textContent = 'Adding…'; window.OFCart.add(variantId, qty).then(function () { add.disabled = false; add.textContent = 'Add to Cart'; }).catch(function () { add.disabled = false; add.textContent = 'Add to Cart'; }); }
-      else { fallbackAdd(false); }
-      return;
+      var add = e.target.closest('[data-pd-add]');
+      if (add && !add.disabled) {
+        if (window.OFCart) { add.disabled = true; add.textContent = 'Adding…'; window.OFCart.add(variantId, qty).then(function () { add.disabled = false; add.textContent = 'Add to Cart'; }).catch(function () { add.disabled = false; add.textContent = 'Add to Cart'; }); }
+        else { fallbackAdd(false); }
+        return;
+      }
+      var buy = e.target.closest('[data-pd-buynow]');
+      if (buy && !buy.disabled) { fallbackAdd(true); return; }
+    });
+
+    function fallbackAdd(checkout) {
+      fetch('/cart/add.js', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: qty })
+      }).then(function () {
+        if (checkout) window.location.href = '/checkout';
+        else if (window.OFCart && window.OFCart.open) window.OFCart.open();
+        else window.location.href = '/cart';
+      });
     }
-    var buy = e.target.closest('[data-pd-buynow]');
-    if (buy && !buy.disabled) { fallbackAdd(true); return; }
-  });
+  }
 
-  function fallbackAdd(checkout) {
-    fetch('/cart/add.js', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity: qty })
-    }).then(function () {
-      if (checkout) window.location.href = '/checkout';
-      else if (window.OFCart && window.OFCart.open) window.OFCart.open();
-      else window.location.href = '/cart';
+  // buy-box photo carousel
+  var carousel = document.querySelector('[data-pd-carousel]');
+  if (carousel) {
+    var slides = [
+      { url: {{ carousel1 | json }}, pos: 'center 46%', zoom: '150%', label: 'On the back' },
+      { url: {{ carousel2 | json }}, pos: 'center 52%', zoom: '190%', label: 'Cross-body carry' },
+      { url: {{ carousel3 | json }}, pos: 'center 58%', zoom: '190%', label: 'In the field' }
+    ];
+    var idx = 0;
+    var slideEl = carousel.querySelector('[data-pd-slide]');
+    var labelEl = carousel.querySelector('[data-pd-label]');
+    var dots = carousel.querySelectorAll('[data-pd-dot]');
+    function render() {
+      var s = slides[idx];
+      slideEl.style.backgroundImage = "url('" + s.url + "')";
+      slideEl.style.backgroundPosition = s.pos;
+      slideEl.style.backgroundSize = s.zoom;
+      if (labelEl) labelEl.textContent = s.label;
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
+    }
+    carousel.querySelector('[data-pd-prev]').addEventListener('click', function () { idx = (idx + slides.length - 1) % slides.length; render(); });
+    carousel.querySelector('[data-pd-next]').addEventListener('click', function () { idx = (idx + 1) % slides.length; render(); });
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { idx = i; render(); }); });
+  }
+
+  // FAQ accordion
+  var faqList = document.querySelector('[data-of-faq]');
+  if (faqList) {
+    faqList.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-faq-toggle]');
+      if (!btn) return;
+      var item = btn.closest('.of-faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      faqList.querySelectorAll('.of-faq-item.is-open').forEach(function (openItem) {
+        openItem.classList.remove('is-open');
+        openItem.querySelector('.of-faq-a').style.maxHeight = '0px';
+      });
+      if (!wasOpen) {
+        item.classList.add('is-open');
+        var panel = item.querySelector('.of-faq-a');
+        panel.style.maxHeight = panel.scrollHeight + 40 + 'px';
+      }
     });
   }
 })();
