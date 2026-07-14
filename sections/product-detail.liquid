@@ -16,9 +16,9 @@
   assign img_anchor  = 'detail-anchor.png' | asset_url
   assign img_window  = 'detail-window.png' | asset_url
   assign img_zipper  = 'detail-zipper.png' | asset_url
-  assign carousel1 = 'lifestyle-back.jpg' | asset_url
-  assign carousel2 = 'lifestyle-side.jpg' | asset_url
-  assign carousel3 = 'lifestyle-front.jpg' | asset_url
+  assign carousel1 = 'lifestyle-front-2.jpg' | asset_url
+  assign carousel2 = 'lifestyle-side-2.jpg' | asset_url
+  assign carousel3 = 'lifestyle-back-2.jpg' | asset_url
 -%}
 
 <!-- ================= PRODUCT HERO ================= -->
@@ -31,17 +31,17 @@
 </section>
 
 <!-- ================= BUY BOX ================= -->
-<section style="position:relative;background-image:linear-gradient(180deg, rgba(15,36,35,0.86) 0%, rgba(15,36,35,0.94) 100%), url('{{ wave_img }}');background-size:cover;background-position:center;padding:56px 32px 44px;">
+<section style="position:relative;background-image:linear-gradient(180deg, rgba(15,36,35,0.86) 0%, rgba(15,36,35,0.94) 100%), url('{{ wave_img }}');background-size:cover;background-position:center;padding:56px 32px 80px;">
   <div style="max-width:920px;margin:0 auto;">
     <div class="of-pd-buy">
       <div class="of-pd-buy__media" data-pd-carousel>
-        <div class="of-pd-buy__slide" data-pd-slide style="background-image:url('{{ carousel1 }}'); background-size:150%; background-position:center 46%;"></div>
+        <div class="of-pd-buy__slide" data-pd-slide style="background-image:url('{{ carousel1 }}'); background-size:cover; background-position:center;"></div>
         <button type="button" class="of-pd-arrow of-pd-arrow--l" data-pd-prev aria-label="Previous photo">&lsaquo;</button>
         <button type="button" class="of-pd-arrow of-pd-arrow--r" data-pd-next aria-label="Next photo">&rsaquo;</button>
         <div class="of-pd-buy__caption">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
             <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-orange-lt,#ff6a3d);">RDB-01</span>
-            <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);" data-pd-label>On the back</span>
+            <span style="font-family:var(--of-font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--of-on-dark-3,#8fa8a8);" data-pd-label>Cross-body carry</span>
           </div>
           <div style="display:flex;justify-content:center;gap:8px;" data-pd-dots>
             <button type="button" class="of-pd-dot is-active" data-pd-dot="0" aria-label="Show photo 1"></button>
@@ -204,7 +204,7 @@
         <p class="of-pd-who__body">Where it all started. Built by an active lifeguard to stay locked to your body through fast entries, heavy surf, and every rescue. Dry, secure, and ready every shift.</p>
       </div>
       <div class="of-pd-who__card" data-reveal>
-        <div class="of-pd-who__ph"><img src="{{ 'first-responder.jpeg' | asset_url }}" alt="First responders using the RDB-01" loading="lazy"></div>
+        <div class="of-pd-who__ph"><span>[ first responder photo ]</span></div>
         <h3 class="of-pd-who__title">First Responders</h3>
         <p class="of-pd-who__body">Built for crews who can't afford a radio failure. Fire, EMS, police, and rescue teams who need gear that works the first time, every time, no matter the call.</p>
       </div>
@@ -369,7 +369,7 @@
   .of-bg-deep{background:var(--of-deep,#15302f);}
   .of-bg-white{background:#fff;}
   .of-pd-buy{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch;}
-  .of-pd-buy__media{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);background:#0f2423;}
+  .of-pd-buy__media{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(143,168,168,0.25);background:#0f2423;aspect-ratio:4/5;}
   .of-pd-buy__slide{position:absolute;inset:0;background-repeat:no-repeat;transition:opacity 0.25s ease;}
   .of-pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(15,36,35,0.55);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(2px);}
   .of-pd-arrow:hover{background:rgba(224,63,26,0.85);}
@@ -490,9 +490,9 @@
   var carousel = document.querySelector('[data-pd-carousel]');
   if (carousel) {
     var slides = [
-      { url: {{ carousel1 | json }}, pos: 'center 46%', zoom: '150%', label: 'On the back' },
-      { url: {{ carousel2 | json }}, pos: 'center 52%', zoom: '190%', label: 'Cross-body carry' },
-      { url: {{ carousel3 | json }}, pos: 'center 58%', zoom: '190%', label: 'In the field' }
+      { url: {{ carousel1 | json }}, pos: 'center', zoom: 'cover', label: 'Cross-body carry' },
+      { url: {{ carousel2 | json }}, pos: 'center', zoom: 'cover', label: 'In the field' },
+      { url: {{ carousel3 | json }}, pos: 'center', zoom: 'cover', label: 'On the back' }
     ];
     var idx = 0;
     var slideEl = carousel.querySelector('[data-pd-slide]');
