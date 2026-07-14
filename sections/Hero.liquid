@@ -52,6 +52,13 @@
   {%- endif -%}
 </section>
 
+<style>
+  @media (max-width: 760px) {
+    .of-hero__inner{grid-template-columns:1fr !important;min-height:auto !important;padding:56px 24px 64px !important;}
+    .of-hero__inner > div:nth-child(2){margin-top:36px;}
+  }
+</style>
+
 {% schema %}
 {
   "name": "Hero",
