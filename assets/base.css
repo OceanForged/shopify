@@ -100,7 +100,7 @@ button { font-family: inherit; }
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .of-brand { display: flex; align-items: center; gap: 12px; }
-.of-brand img { height: 34px; width: auto; border-radius: 4px; }
+.of-brand img { height: 34px; width: auto; border-radius: 0; background: none; }
 .of-brand__type {
   font-family: var(--of-font-display); font-weight: 800; color: #fff;
   font-size: 18px; letter-spacing: 0.5px; line-height: 0.95;
@@ -141,7 +141,7 @@ button { font-family: inherit; }
 .of-grid--2 { grid-template-columns: repeat(2, 1fr); }
 
 .of-feature {
-  background: var(--of-deep); border: 2px solid var(--of-orange); border-radius: 4px;
+  background: var(--of-deep); border: 2px solid var(--of-orange); border-radius: 14px;
   padding: 30px 24px; min-height: 230px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
@@ -163,7 +163,7 @@ button { font-family: inherit; }
   display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px;
   padding-bottom: 54px; border-bottom: 1px solid rgba(143,168,168,0.18);
 }
-.of-footer__logo { height: 88px; width: auto; margin-bottom: 22px; border-radius: 4px; }
+.of-footer__logo { height: 88px; width: auto; margin-bottom: 22px; border-radius: 0; }
 .of-footer__heading { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--of-orange); margin: 0 0 20px; }
 .of-footer__col a, .of-footer__col span { font-size: 15px; color: var(--of-on-dark-3); }
 .of-footer__col a:hover { color: #fff; }
