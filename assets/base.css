@@ -184,6 +184,7 @@ button { font-family: inherit; }
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .of-section { padding: 72px 0; }
+  .of-image-text .of-btn--ghost { white-space: nowrap; font-size: 13px; padding: 13px 22px; }
   .of-feature { min-height: 0; padding: 20px 18px; gap: 12px; }
   .of-feature__title { font-size: 16px; }
   .of-feature__body { font-size: 13px; }
