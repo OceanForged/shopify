@@ -184,6 +184,9 @@ button { font-family: inherit; }
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .of-section { padding: 72px 0; }
+  .of-feature { min-height: 0; padding: 20px 18px; gap: 12px; }
+  .of-feature__title { font-size: 16px; }
+  .of-feature__body { font-size: 13px; }
   .of-nav { position: absolute; top: 100%; right: 0; width: min(80vw, 320px); max-height: calc(100vh - 60px); overflow-y: auto;
     flex-direction: column; align-items: flex-start; justify-content: flex-start;
     gap: 20px; background: var(--of-deep); padding: 32px 32px 40px; box-shadow: -8px 12px 32px rgba(0,0,0,0.35);
