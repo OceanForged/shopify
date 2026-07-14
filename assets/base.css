@@ -184,11 +184,12 @@ button { font-family: inherit; }
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .of-section { padding: 72px 0; }
-  .of-nav { position: fixed; inset: 0 0 0 auto; width: min(80vw, 320px);
+  .of-nav { position: absolute; top: 100%; right: 0; width: min(80vw, 320px); max-height: calc(100vh - 60px); overflow-y: auto;
     flex-direction: column; align-items: flex-start; justify-content: flex-start;
-    gap: 20px; background: var(--of-deep); padding: 90px 32px 32px;
-    transform: translateX(100%); transition: transform .3s ease; z-index: 60; }
+    gap: 20px; background: var(--of-deep); padding: 32px 32px 40px; box-shadow: -8px 12px 32px rgba(0,0,0,0.35);
+    transform: translateX(110%); transition: transform .3s ease; z-index: 60; }
   .of-nav.is-open { transform: translateX(0); }
+  .of-header { overflow: visible; }
   .of-nav__toggle { display: block; z-index: 61; }
   .of-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .of-grid--3 { grid-template-columns: 1fr; }
