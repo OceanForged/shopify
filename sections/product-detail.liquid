@@ -16,9 +16,25 @@
   assign img_anchor  = 'detail-anchor.png' | asset_url
   assign img_window  = 'detail-window.png' | asset_url
   assign img_zipper  = 'detail-zipper.png' | asset_url
-  assign carousel1 = 'lifestyle-front-2.jpg' | asset_url
-  assign carousel2 = 'lifestyle-side-2.jpg' | asset_url
-  assign carousel3 = 'lifestyle-back-2.jpg' | asset_url
+  assign img_first_responder = 'first-responder.jpeg' | asset_url
+  assign carousel1 = product.images[0] | default: nil
+  assign carousel2 = product.images[1] | default: nil
+  assign carousel3 = product.images[2] | default: nil
+  if carousel1 != nil
+    assign carousel1 = carousel1 | image_url: width: 1200
+  else
+    assign carousel1 = product.featured_image | image_url: width: 1200
+  endif
+  if carousel2 != nil
+    assign carousel2 = carousel2 | image_url: width: 1200
+  else
+    assign carousel2 = product.featured_image | image_url: width: 1200
+  endif
+  if carousel3 != nil
+    assign carousel3 = carousel3 | image_url: width: 1200
+  else
+    assign carousel3 = product.featured_image | image_url: width: 1200
+  endif
 -%}
 
 <!-- ================= PRODUCT HERO ================= -->
@@ -204,7 +220,7 @@
         <p class="of-pd-who__body">Where it all started. Built by an active lifeguard to stay locked to your body through fast entries, heavy surf, and every rescue. Dry, secure, and ready every shift.</p>
       </div>
       <div class="of-pd-who__card" data-reveal>
-        <div class="of-pd-who__ph"><span>[ first responder photo ]</span></div>
+        <div class="of-pd-who__ph" style="background-image:url('{{ img_first_responder }}');background-size:cover;background-position:center;"></div>
         <h3 class="of-pd-who__title">First Responders</h3>
         <p class="of-pd-who__body">Built for crews who can't afford a radio failure. Fire, EMS, police, and rescue teams who need gear that works the first time, every time, no matter the call.</p>
       </div>
