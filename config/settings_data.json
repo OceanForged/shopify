@@ -23,7 +23,7 @@
           "brand_line_1": "OCEAN",
           "brand_line_2": "FORGED",
           "menu": "main-menu",
-          "show_cta": true,
+          "show_cta": false,
           "cta_label": "Buy now",
           "cta_link": "shopify://products/radio-dry-bag"
         }
