@@ -11,6 +11,7 @@
   "sections": {
     "product_detail": {
       "type": "product-detail",
+      "disabled": true,
       "settings": {
         "product": "radio-dry-bag",
         "title": "Radio Dry Bag",
