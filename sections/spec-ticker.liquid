@@ -1,10 +1,10 @@
 <section class="of-ticker" aria-hidden="true">
   <div class="of-ticker__track">
     {%- assign txt = section.settings.text | default: 'Radio Frequency Welded · TRU<sup>®</sup> Zip · Waterproof · Dustproof · Sandproof · Self-Healing Zipper · Low-Profile Harness · ' -%}
-    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
-    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
-    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
-    <span class="of-ticker__item">{{ txt }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt | replace: 'TRU®', 'TRU<sup>®</sup>' }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt | replace: 'TRU®', 'TRU<sup>®</sup>' }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt | replace: 'TRU®', 'TRU<sup>®</sup>' }}&nbsp;&nbsp;</span>
+    <span class="of-ticker__item">{{ txt | replace: 'TRU®', 'TRU<sup>®</sup>' }}&nbsp;&nbsp;</span>
   </div>
 </section>
 
