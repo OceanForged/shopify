@@ -48,7 +48,7 @@
     function setHeight() { root.style.setProperty('--of-header-h', header.offsetHeight + 'px'); }
     function update() {
       var hero = document.querySelector('.template-index .of-hero');
-      var past = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight - header.offsetHeight : true;
+      var past = hero ? hero.getBoundingClientRect().bottom <= header.offsetHeight : true;
       var open = (nav && nav.classList.contains('is-open')) || (drawer && drawer.classList.contains('is-open'));
       header.classList.toggle('is-solid', past || !!open);
     }
