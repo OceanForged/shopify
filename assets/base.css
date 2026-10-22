@@ -221,11 +221,16 @@ button { font-family: inherit; }
   .of-header .of-nav .of-nav__link:hover, .of-header .of-nav .of-nav__link[aria-current="page"] { color: var(--of-orange-lt); }
 }
 @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
-  .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 83px)); padding-top: var(--of-header-h, 83px); }
+  .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 123px)); padding-top: var(--of-header-h, 123px); }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) { background-color: transparent; border-bottom-color: transparent; }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-nav__link,
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-cart-toggle,
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__type { color: #fff; }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__logos > img:first-child { opacity: 1; }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__logos > img.of-brand__logo-dark { opacity: 0; }
+}
+/* larger desktop header, sized to match the faroboardbags.com proportions */
+@media (min-width: 901px) {
+  .of-header__inner { padding-top: 19px; padding-bottom: 19px; }
+  .of-brand__logos > img { height: 84px !important; }
 }
