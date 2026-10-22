@@ -221,7 +221,7 @@ button { font-family: inherit; }
   .of-header .of-nav .of-nav__link:hover, .of-header .of-nav .of-nav__link[aria-current="page"] { color: var(--of-orange-lt); }
 }
 @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
-  .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 123px)); padding-top: var(--of-header-h, 123px); }
+  .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 123px) / var(--of-body-zoom, 1)); padding-top: calc(var(--of-header-h, 123px) / var(--of-body-zoom, 1)); }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) { background-color: transparent; border-bottom-color: transparent; }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-nav__link,
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-cart-toggle,
@@ -233,4 +233,10 @@ button { font-family: inherit; }
 @media (min-width: 901px) {
   .of-header__inner { padding-top: 19px; padding-bottom: 19px; }
   .of-brand__logos > img { height: 84px !important; }
+}
+/* page body shown at 80% on desktop while the header stays full size */
+:root { --of-body-zoom: 1; }
+@media (min-width: 901px) {
+  :root { --of-body-zoom: 0.8; }
+  #MainContent, .of-footer { zoom: var(--of-body-zoom); }
 }
