@@ -3,14 +3,14 @@
 -%}
 <header class="of-header">
   <div class="of-header__inner">
-    <a href="{{ routes.root_url }}" class="of-brand" aria-label="{{ shop.name }}">
+    <a href="{{ routes.root_url }}" class="of-brand" aria-label="{{ shop.name }}"><span class="of-brand__logos">
       {%- if section.settings.logo != blank -%}
         <img src="{{ section.settings.logo | image_url: width: 200 }}"
              width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
              alt="{{ shop.name | escape }}" style="height:{{ section.settings.logo_height | default: 54 }}px;width:auto;">
       {%- else -%}
         <img src="{{ 'logo-mark-transparent.png' | asset_url }}" alt="{{ shop.name | escape }}" style="height:{{ section.settings.logo_height | default: 56 }}px;width:auto;">
-      {%- endif -%}
+      {%- endif -%}<img src="{{ 'logo-dark.png' | file_url }}" class="of-brand__logo-dark" width="580" height="470" alt="" aria-hidden="true" style="height:{{ section.settings.logo_height | default: 54 }}px;width:auto;"></span>
       {%- if section.settings.show_brand_text -%}
         <span class="of-brand__type">{{ section.settings.brand_line_1 | default: 'OCEAN' }}<br>{{ section.settings.brand_line_2 | default: 'FORGED' }}</span>
       {%- endif -%}

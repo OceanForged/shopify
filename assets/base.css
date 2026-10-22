@@ -203,3 +203,29 @@ button { font-family: inherit; }
   .of-container, .of-header__inner { padding-left: 20px; padding-right: 20px; }
   .of-grid--4, .of-grid--2 { grid-template-columns: 1fr; }
 }
+
+/* ---------- header states: solid by default, transparent over the homepage hero (desktop) ---------- */
+.of-header { background: #F7F5F2; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: rgba(20,32,30,0.1); transition: background-color .3s ease, border-color .3s ease; }
+.of-header .of-nav__link { color: #14201E; transition: color .3s ease; }
+.of-header .of-nav__link:hover, .of-header .of-nav__link[aria-current="page"] { color: #D9411E; }
+.of-header .of-cart-toggle { color: #14201E; transition: color .3s ease; }
+.of-header .of-cart-toggle:hover { color: #D9411E; }
+.of-header .of-brand__type { color: #14201E; transition: color .3s ease; }
+.of-header .of-nav__toggle span { background: #14201E; }
+.of-brand__logos { display: grid; }
+.of-brand__logos > img { grid-area: 1 / 1; transition: opacity .3s ease; }
+.of-brand__logos > img:first-child { opacity: 0; }
+.of-brand__logos > img.of-brand__logo-dark { opacity: 1; }
+@media (max-width: 900px) {
+  .of-header .of-nav .of-nav__link, .of-header .of-nav .of-cart-toggle { color: var(--of-on-dark-3); }
+  .of-header .of-nav .of-nav__link:hover, .of-header .of-nav .of-nav__link[aria-current="page"] { color: var(--of-orange-lt); }
+}
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+  .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 83px)); padding-top: var(--of-header-h, 83px); }
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) { background-color: transparent; border-bottom-color: transparent; }
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-nav__link,
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-cart-toggle,
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__type { color: #fff; }
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__logos > img:first-child { opacity: 1; }
+  .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-brand__logos > img.of-brand__logo-dark { opacity: 0; }
+}

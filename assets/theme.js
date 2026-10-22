@@ -38,11 +38,36 @@
     });
   }
 
+  /* ---------- header: transparent over homepage hero, solid elsewhere ---------- */
+  function initHeader() {
+    var header = document.querySelector('.of-header');
+    if (!header) return;
+    var root = document.documentElement;
+    var nav = document.querySelector('.of-nav');
+    var drawer = document.querySelector('.of-cartd');
+    function setHeight() { root.style.setProperty('--of-header-h', header.offsetHeight + 'px'); }
+    function update() {
+      var hero = document.querySelector('.template-index .of-hero');
+      var past = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight - header.offsetHeight : true;
+      var open = (nav && nav.classList.contains('is-open')) || (drawer && drawer.classList.contains('is-open'));
+      header.classList.toggle('is-solid', past || !!open);
+    }
+    setHeight();
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function () { setHeight(); update(); });
+    if ('MutationObserver' in window) {
+      var mo = new MutationObserver(update);
+      if (nav) mo.observe(nav, { attributes: true, attributeFilter: ['class'] });
+      if (drawer) mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
-  ready(function () { initReveal(); initNav(); });
+  ready(function () { initReveal(); initNav(); initHeader(); });
 
   /* re-run reveal inside Shopify theme editor when sections reload */
   document.addEventListener('shopify:section:load', initReveal);
