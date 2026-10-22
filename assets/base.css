@@ -220,7 +220,7 @@ button { font-family: inherit; }
   .of-header .of-nav .of-nav__link, .of-header .of-nav .of-cart-toggle { color: var(--of-on-dark-3); }
   .of-header .of-nav .of-nav__link:hover, .of-header .of-nav .of-nav__link[aria-current="page"] { color: var(--of-orange-lt); }
 }
-@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
   .template-index .of-hero { margin-top: calc(-1 * var(--of-header-h, 83px)); padding-top: var(--of-header-h, 83px); }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) { background-color: transparent; border-bottom-color: transparent; }
   .template-index .of-header:not(.is-solid):not(:hover):not(:focus-within) .of-nav__link,
