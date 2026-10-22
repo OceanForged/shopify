@@ -240,3 +240,20 @@ button { font-family: inherit; }
   :root { --of-body-zoom: 0.8; }
   #MainContent, .of-footer { zoom: var(--of-body-zoom); }
 }
+/* keep page widths and side margins at full size while the body is scaled */
+@media (min-width: 901px) {
+  #MainContent .of-container, .of-footer .of-container { max-width: calc(var(--of-page-max) / var(--of-body-zoom)); padding-left: calc(32px / var(--of-body-zoom)); padding-right: calc(32px / var(--of-body-zoom)); }
+  #MainContent .of-container--wide { max-width: calc(1320px / var(--of-body-zoom)); }
+  #MainContent .of-container--narrow { max-width: 900px; }
+  #MainContent [style*="max-width:1000px"] { max-width: calc(1000px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1080px"] { max-width: calc(1080px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1100px"] { max-width: calc(1100px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1120px"] { max-width: calc(1120px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1140px"] { max-width: calc(1140px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1160px"] { max-width: calc(1160px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1180px"] { max-width: calc(1180px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1240px"] { max-width: calc(1240px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1280px"] { max-width: calc(1280px / var(--of-body-zoom)) !important; }
+  #MainContent [style*="max-width:1320px"] { max-width: calc(1320px / var(--of-body-zoom)) !important; }
+  #MainContent .of-hero__inner { max-width: calc(var(--of-page-max) / var(--of-body-zoom)) !important; padding-left: calc(32px / var(--of-body-zoom)) !important; padding-right: calc(32px / var(--of-body-zoom)) !important; }
+}
