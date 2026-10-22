@@ -20,6 +20,8 @@
         "button_1_link": "shopify://products/radio-dry-bag",
         "button_2_label": "Read Our Story",
         "button_2_link": "shopify://pages/about",
+        "card_zoom": 120,
+        "card_focus_y": 100,
         "card_title": "Flagship Radio Dry bag",
         "card_meta": "RF-welded, Field-tested",
         "show_card": true,
