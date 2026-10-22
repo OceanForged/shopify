@@ -34,7 +34,7 @@
     </div>
     {%- unless section.settings.show_card == false -%}
     <div data-reveal>
-        <div style="aspect-ratio:1002/654;background-image:url('{{ card_url }}');background-size:cover;background-position:center;border-bottom:3px solid var(--of-orange);"></div>
+        <div style="aspect-ratio:1002/654;background-image:url('{{ card_url }}');background-size:{{ section.settings.card_zoom | default: 130 }}% auto;background-position:center {{ section.settings.card_focus_y | default: 100 }}%;border-bottom:3px solid var(--of-orange);"></div>
         <div style="padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
           <span style="font-family:var(--of-font-display);font-weight:800;font-size:13px;color:#fff;text-transform:uppercase;letter-spacing:1px;">{{ section.settings.card_title | default: 'In the field' }}</span>
           <span style="font-family:var(--of-font-body);font-size:12px;color:var(--of-muted);letter-spacing:1px;text-transform:uppercase;">{{ section.settings.card_meta | default: 'RF-welded, Field-tested' }}</span>
@@ -66,7 +66,7 @@
     { "type": "url", "id": "button_2_link", "label": "Button 2 link" },
     { "type": "header", "content": "Preview card" },
     { "type": "image_picker", "id": "card_image", "label": "Card image" },
-    { "type": "text", "id": "card_title", "label": "Card title", "default": "In the field" },
+    { "type": "range", "id": "card_zoom", "label": "Card image zoom", "min": 100, "max": 200, "step": 5, "unit": "%", "default": 130 }, { "type": "range", "id": "card_focus_y", "label": "Card image vertical position (0 = top, 100 = bottom)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 }, { "type": "text", "id": "card_title", "label": "Card title", "default": "In the field" },
     { "type": "text", "id": "card_meta", "label": "Card meta", "default": "RF-welded, Field-tested" },
     { "type": "checkbox", "id": "show_card", "label": "Show preview card", "default": true },
     { "type": "checkbox", "id": "show_scroll", "label": "Show scroll cue", "default": true }
