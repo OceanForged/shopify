@@ -13,25 +13,23 @@
       "type": "hero",
       "settings": {
         "badge_1": "Forged by the ocean. Built for the job.",
-        "badge_2": "",
-        "heading": "radio \ndry bag",
-        "subheading": "Built to load fast and seal tight. A heavy-duty radio dry bag made with the ocean in mind  honest, dependable, ready when you are.",
-        "button_1_label": "Explore the Product",
-        "button_1_link": "shopify://products/radio-dry-bag",
-        "button_2_label": "Read Our Story",
-        "button_2_link": "shopify://pages/about",
-        "card_zoom": 120,
-        "card_focus_y": 100,
-        "card_title": "Flagship Radio Dry bag",
-        "card_meta": "RF-welded, Field-tested",
+        "heading": "The Radio\nDry Bag",
+        "subheading": "Built for ocean rescue. Ready for anyone who needs their radio working after the waves hit.",
+        "cta_mode": "email",
+        "signup_label": "Launching Spring 2027. Get notified at launch.",
+        "signup_button": "Notify Me",
+        "signup_note": "Be first in line when preorders open.",
+        "signup_success": "You're on the list. We'll email you as soon as preorders open.",
+        "preorder_label": "Preorder",
+        "credibility": "Designed by an ocean-rescue lifeguard after watching \"waterproof\" gear fail on duty.",
+        "link_label": "See how it's built →",
+        "link_target": "#how-its-built",
+        "card_alt": "Radio Dry Bag worn by an ocean rescue lifeguard",
+        "card_crop": 10,
+        "spec_tag": "Model RDB01",
+        "show_panel": false,
         "show_card": true,
         "show_scroll": false
-      }
-    },
-    "ticker": {
-      "type": "spec-ticker",
-      "settings": {
-        "text": "Radio Frequency Welded · TRU® Zip · Waterproof · Dustproof · Sandproof · Self-Healing Zipper · Low-Profile Harness ·"
       }
     },
     "features": {
@@ -81,7 +79,8 @@
         "heading": "Built to one standard.\nThe rescue standard.",
         "intro": "After watching 'waterproof' gear fail in the field, again and again. Here's what we built differently.",
         "button_label": "See Full Product Details",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/all",
+        "anchor_id": "how-its-built"
       }
     },
     "proof": {
@@ -102,14 +101,52 @@
         "eyebrow": "Rep the brand",
         "heading": "Wear it with pride. Help fund what's next.",
         "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product.",
-        "button_label": "shop Shirts",
+        "button_label": "Shop Shirts",
         "button_link": "shopify://pages/shop"
+      }
+    },
+    "strip": {
+      "type": "feature-strip",
+      "blocks": {
+        "f1": {
+          "type": "item",
+          "settings": {
+            "text": "RF-Welded Seams"
+          }
+        },
+        "f2": {
+          "type": "item",
+          "settings": {
+            "text": "TRU<sup>®</sup> Zip Waterproof Zipper"
+          }
+        },
+        "f3": {
+          "type": "item",
+          "settings": {
+            "text": "Sand & Dustproof"
+          }
+        },
+        "f4": {
+          "type": "item",
+          "settings": {
+            "text": "Low-Profile Harness"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "label": "Key features"
       }
     }
   },
   "order": [
     "hero",
-    "ticker",
+    "strip",
     "features",
     "proof",
     "cta"
