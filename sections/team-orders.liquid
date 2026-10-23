@@ -1,0 +1,76 @@
+{%- liquid
+  if section.settings.image != blank
+    assign img_url = section.settings.image | image_url: width: 2400
+  else
+    assign img_url = 'ocean-hero.jpg' | asset_url
+  endif
+  assign o = section.settings.overlay | divided_by: 100.0
+-%}
+<section style="position:relative;padding:120px 32px;background-image:linear-gradient(rgba(21,48,47,{{ o | plus: 0.04 }}), rgba(21,48,47,{{ o }})), url('{{ img_url }}');background-size:cover;background-position:center;">
+  <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 0.95fr;gap:60px;align-items:start;" class="of-presale of-team-orders">
+    <div data-reveal>
+      {%- if section.settings.pill != blank -%}
+        <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(224,63,26,0.16);border:1px solid rgba(224,63,26,0.5);padding:8px 16px;border-radius:100px;margin-bottom:24px;">
+          <span style="width:8px;height:8px;border-radius:100px;background:var(--of-orange);display:block;"></span>
+          <span style="font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#ffd9cd;">{{ section.settings.pill }}</span>
+        </div>
+      {%- endif -%}
+      <h1 class="of-display of-h1 of-text-white" style="margin-bottom:24px;">{{ section.settings.heading | default: "Team Orders" | newline_to_br }}</h1>
+      <p style="font-size:18px;line-height:1.65;color:var(--of-on-dark);margin:0 0 26px;max-width:48ch;">{{ section.settings.body }}</p>
+      {%- if section.settings.note != blank -%}
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:18px 20px;background:rgba(255,255,255,0.06);border-left:3px solid var(--of-orange);border-radius:0 6px 6px 0;max-width:46ch;">
+          <span style="font-size:15px;line-height:1.55;color:var(--of-on-dark-3);">{{ section.settings.note }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="of-team-form" style="background:#fff;border-radius:10px;padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,0.4);" data-reveal>
+      <h2 class="of-display" style="font-size:24px;margin:0 0 6px;letter-spacing:-0.3px;">{{ section.settings.form_title | default: 'Tell us about your team' }}</h2>
+      <p style="font-size:14px;color:var(--of-ink-soft);margin:0 0 24px;line-height:1.5;">{{ section.settings.form_note | default: "Fill this out and we'll reach out before launch." }}</p>
+
+      {%- form 'contact', id: 'team-orders-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="background:#eaf4ee;border:1px solid #a9d6bd;border-radius:6px;padding:16px 18px;color:#1f5a3a;font-weight:600;margin-bottom:16px;">{{ section.settings.success | default: "Got it. We'll reach out before launch." }}</div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div style="background:#fbeae7;border:1px solid #e3a493;border-radius:6px;padding:16px 18px;color:#9a2a12;margin-bottom:16px;">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Name</span><input type="text" name="contact[name]" placeholder="Your name" class="of-field" autocomplete="name" required></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Organization</span><input type="text" name="contact[Organization]" placeholder="Agency, patrol, team or crew" class="of-field" autocomplete="organization"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Email</span><input type="email" name="contact[email]" placeholder="you@organization.com" class="of-field" autocomplete="email" required></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Estimated quantity</span><input type="text" name="contact[Estimated quantity]" placeholder="e.g. 12" class="of-field" inputmode="numeric"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--of-deep);">Message</span><textarea name="contact[body]" rows="4" placeholder="Tell us about your team and timeline" class="of-field" style="resize:vertical;font:inherit;"></textarea></label>
+          <button type="submit" class="of-btn of-btn--primary" style="width:100%;font-size:16px;padding:18px;margin-top:4px;">{{ section.settings.button_label | default: 'Send Inquiry' }}</button>
+        </div>
+      {%- endform -%}
+      <p style="font-size:12.5px;color:var(--of-muted);margin:16px 0 0;line-height:1.5;text-align:center;">{{ section.settings.fine_print | default: 'No commitment, just a conversation. We usually reply within 1-2 business days.' }}</p>
+    </div>
+  </div>
+</section>
+
+<style>@media (max-width:760px){ .of-presale{grid-template-columns:1fr !important;} }
+.of-team-form .of-field{border:2px solid var(--of-deep);border-radius:6px;background:#fff;font-weight:600;color:var(--of-deep);}
+.of-team-form .of-field:focus{border-color:var(--of-orange);}
+.of-team-form select.of-field{cursor:pointer;}</style>
+
+{% schema %}
+{
+  "name": "Team orders",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "overlay", "label": "Overlay opacity", "min": 50, "max": 95, "step": 5, "unit": "%", "default": 90 },
+    { "type": "text", "id": "pill", "label": "Pill label" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Team Orders" },
+    { "type": "textarea", "id": "body", "label": "Intro text", "default": "Outfitting a lifeguard agency, rescue team, or crew? Tell us what you need and we'll reach out before launch." },
+    { "type": "textarea", "id": "note", "label": "Highlight note" },
+    { "type": "header", "content": "Inquiry form" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Tell us about your team" },
+    { "type": "textarea", "id": "form_note", "label": "Form note", "default": "Fill this out and we'll reach out before launch." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send Inquiry" },
+    { "type": "textarea", "id": "success", "label": "Success message", "default": "Got it. We'll reach out before launch." },
+    { "type": "textarea", "id": "fine_print", "label": "Fine print", "default": "No commitment, just a conversation. We usually reply within 1-2 business days." }
+  ],
+  "presets": [{ "name": "Team orders" }]
+}
+{% endschema %}
