@@ -1,10 +1,10 @@
 {% comment %} Basic SEO / social meta tags {% endcomment %}
-<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:site_name" content="{{ settings.og_site_name | default: shop.name | escape }}">
 <meta property="og:url" content="{{ canonical_url }}">
-<meta property="og:title" content="{{ page_title }}">
+<meta property="og:title" content="{{ seo_title | default: page_title | escape }}">
 <meta property="og:type" content="{% if request.page_type == 'product' %}product{% elsif request.page_type == 'article' %}article{% else %}website{% endif %}">
-{%- if page_description -%}
-  <meta property="og:description" content="{{ page_description | escape }}">
+{%- if seo_description != blank -%}
+  <meta property="og:description" content="{{ seo_description | escape }}">
 {%- endif -%}
 {%- if request.page_type == 'product' -%}
   <meta property="og:image" content="http:{{ product.featured_image | image_url: width: 1200 }}">
@@ -12,7 +12,7 @@
   <meta property="og:image" content="http:{{ settings.share_image | image_url: width: 1200 }}">
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page_title }}">
-{%- if page_description -%}
-  <meta name="twitter:description" content="{{ page_description | escape }}">
+<meta name="twitter:title" content="{{ seo_title | default: page_title | escape }}">
+{%- if seo_description != blank -%}
+  <meta name="twitter:description" content="{{ seo_description | escape }}">
 {%- endif -%}
