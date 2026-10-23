@@ -1,4 +1,4 @@
-<section class="of-section of-bg-light">
+<section class="of-section of-bg-light"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id | handle }}"{% endif %}>
   <div class="of-container of-container--wide">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap;" data-reveal>
       <div>
@@ -35,6 +35,7 @@
   "name": "Feature grid",
   "max_blocks": 4,
   "settings": [
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "info": "Lets links jump to this section, e.g. #how-its-built" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it's built" },
     { "type": "textarea", "id": "heading", "label": "Heading", "default": "Built to one standard.\nThe lifeguard standard." },
     { "type": "textarea", "id": "intro", "label": "Intro paragraph", "default": "Every feature exists because a \"waterproof\" bag failed someone in the water. Here is what we changed." },
