@@ -47,7 +47,7 @@
           {%- else -%}
             {%- comment -%} Pre-sale / no purchasable product yet {%- endcomment -%}
             <p style="font-size:17px;color:var(--of-on-dark-2);margin:0 0 26px;line-height:1.6;max-width:44ch;">{{ section.settings.presale_note | default: 'The first production run is on the way. Join the list to be the first to know when it ships.' }}</p>
-            <a href="{{ section.settings.presale_link | default: '/pages/pre-sale' }}" class="of-btn of-btn--primary" style="font-size:16px;padding:18px 40px;">{{ section.settings.presale_label | default: 'Join the List' }}</a>
+            <a href="{{ section.settings.presale_link | default: '/pages/team-orders' }}" class="of-btn of-btn--primary" style="font-size:16px;padding:18px 40px;">{{ section.settings.presale_label | default: 'Join the List' }}</a>
           {%- endif -%}
         </div>
       </div>
