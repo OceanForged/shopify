@@ -47,7 +47,21 @@
           {%- else -%}
             {%- comment -%} Pre-sale / no purchasable product yet {%- endcomment -%}
             <p style="font-size:17px;color:var(--of-on-dark-2);margin:0 0 26px;line-height:1.6;max-width:44ch;">{{ section.settings.presale_note | default: 'The first production run is on the way. Join the list to be the first to know when it ships.' }}</p>
-            <a href="{{ section.settings.presale_link | default: '/pages/team-orders' }}" class="of-btn of-btn--primary" style="font-size:16px;padding:18px 40px;">{{ section.settings.presale_label | default: 'Join the List' }}</a>
+            {%- form 'customer', id: 'launch-signup-product', class: 'of-launch-form' -%}
+              {%- if form.posted_successfully? -%}
+                <p class="of-launch-form__success" role="status">{{ section.settings.presale_success | default: "You're on the list. We'll email you as soon as preorders open." }}</p>
+              {%- else -%}
+                <input type="hidden" name="contact[tags]" value="newsletter,launch-list">
+                <div class="of-launch-form__row">
+                  <label for="ProductLaunchEmail" class="of-visually-hidden">Email address</label>
+                  <input id="ProductLaunchEmail" class="of-launch-form__input" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" autocapitalize="off" spellcheck="false" required{% if form.errors %} aria-invalid="true" aria-describedby="ProductLaunchError"{% endif %}>
+                  <button type="submit" class="of-btn of-btn--primary of-launch-form__submit">{{ section.settings.presale_label | default: 'Join the List' }}</button>
+                </div>
+                {%- if form.errors -%}
+                  <p id="ProductLaunchError" class="of-launch-form__error" role="alert">{{ form.errors | default_errors }}</p>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endform -%}
           {%- endif -%}
         </div>
       </div>
@@ -75,6 +89,18 @@
   </div>
 </section>
 
+<style>
+  .of-launch-form { max-width: 520px; }
+  .of-launch-form__row { display: flex; gap: 10px; }
+  .of-launch-form__input { flex: 1 1 auto; min-width: 0; padding: 0 18px; min-height: 54px; font: inherit; font-size: 16px; color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(207, 224, 221, 0.4); border-radius: 6px; }
+  .of-launch-form__input::placeholder { color: rgba(207, 224, 221, 0.65); }
+  .of-launch-form__input:focus { outline: none; border-color: var(--of-orange); background: rgba(255, 255, 255, 0.12); }
+  .of-launch-form__submit { flex: 0 0 auto; white-space: nowrap; }
+  .of-launch-form__success { margin: 0; padding: 14px 18px; font-size: 16px; font-weight: 600; color: #fff; background: rgba(255, 255, 255, 0.08); border-left: 3px solid var(--of-orange); border-radius: 0 6px 6px 0; }
+  .of-launch-form__error { margin: 10px 0 0; font-size: 14px; color: #ffb8a6; }
+  @media (max-width: 420px) { .of-launch-form__row { flex-direction: column; } .of-launch-form__submit { width: 100%; } }
+</style>
+
 {% schema %}
 {
   "name": "Product header",
@@ -87,6 +113,7 @@
     { "type": "header", "content": "When product is unavailable (pre-sale)" },
     { "type": "textarea", "id": "presale_note", "label": "Pre-sale note", "default": "The first production run is on the way. Join the list to be the first to know when it ships." },
     { "type": "text", "id": "presale_label", "label": "Pre-sale button label", "default": "Join the List" },
+    { "type": "text", "id": "presale_success", "label": "Signup success message", "default": "You're on the list. We'll email you as soon as preorders open." },
     { "type": "url", "id": "presale_link", "label": "Pre-sale button link" }
   ]
 }
