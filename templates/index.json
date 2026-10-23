@@ -21,6 +21,7 @@
         "signup_note": "Be first in line when preorders open.",
         "signup_success": "You're on the list. We'll email you as soon as preorders open.",
         "preorder_label": "Preorder",
+        "preorder_link": "",
         "credibility": "Designed by an ocean-rescue lifeguard after watching \"waterproof\" gear fail on duty.",
         "link_label": "See how it's built →",
         "link_target": "#how-its-built",
@@ -30,6 +31,44 @@
         "show_panel": false,
         "show_card": true,
         "show_scroll": false
+      }
+    },
+    "strip": {
+      "type": "feature-strip",
+      "blocks": {
+        "f1": {
+          "type": "item",
+          "settings": {
+            "text": "RF-Welded Seams"
+          }
+        },
+        "f2": {
+          "type": "item",
+          "settings": {
+            "text": "TRU<sup>®</sup> Zip Waterproof Zipper"
+          }
+        },
+        "f3": {
+          "type": "item",
+          "settings": {
+            "text": "Sand & Dustproof"
+          }
+        },
+        "f4": {
+          "type": "item",
+          "settings": {
+            "text": "Low-Profile Harness"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "label": "Key features"
       }
     },
     "features": {
@@ -75,12 +114,12 @@
         "b4"
       ],
       "settings": {
+        "anchor_id": "how-its-built",
         "eyebrow": "How it's built",
         "heading": "Built to one standard.\nThe rescue standard.",
         "intro": "After watching 'waterproof' gear fail in the field, again and again. Here's what we built differently.",
         "button_label": "See Full Product Details",
-        "button_link": "shopify://collections/all",
-        "anchor_id": "how-its-built"
+        "button_link": "shopify://products/radio-dry-bag"
       }
     },
     "proof": {
@@ -103,44 +142,6 @@
         "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product.",
         "button_label": "Shop Shirts",
         "button_link": "shopify://pages/shop"
-      }
-    },
-    "strip": {
-      "type": "feature-strip",
-      "blocks": {
-        "f1": {
-          "type": "item",
-          "settings": {
-            "text": "RF-Welded Seams"
-          }
-        },
-        "f2": {
-          "type": "item",
-          "settings": {
-            "text": "TRU<sup>®</sup> Zip Waterproof Zipper"
-          }
-        },
-        "f3": {
-          "type": "item",
-          "settings": {
-            "text": "Sand & Dustproof"
-          }
-        },
-        "f4": {
-          "type": "item",
-          "settings": {
-            "text": "Low-Profile Harness"
-          }
-        }
-      },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3",
-        "f4"
-      ],
-      "settings": {
-        "label": "Key features"
       }
     }
   },
