@@ -231,7 +231,7 @@ button { font-family: inherit; }
 }
 /* larger desktop header, sized to match the faroboardbags.com proportions */
 @media (min-width: 901px) {
-  .of-header__inner { padding-top: 19px; padding-bottom: 19px; }
+  .of-header__inner { padding-top: 19px; padding-bottom: 19px; width: 92%; max-width: 1800px; padding-left: 0; padding-right: 0; }
   .of-brand__logos > img { height: 84px !important; }
 }
 /* page body shown at 80% on desktop while the header stays full size */
