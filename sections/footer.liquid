@@ -40,7 +40,7 @@
     </div>
 
     <div class="of-footer__bar">
-      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.rights | default: 'All rights reserved.' }}</span>
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_name | default: 'Ocean Forged LLC' }}. {{ section.settings.rights | default: 'All rights reserved.' }}</span>
       {%- if section.settings.tagline_small != blank -%}
         <span style="font-family:var(--of-font-display);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;">{{ section.settings.tagline_small }}</span>
       {%- endif -%}
@@ -63,8 +63,9 @@
     { "type": "text", "id": "email", "label": "Email", "default": "duke.miskiv@oceanforgedgear.com" },
     { "type": "text", "id": "website", "label": "Website", "default": "www.oceanforgedgear.com" },
     { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "copyright_name", "label": "Copyright name", "default": "Ocean Forged LLC" },
     { "type": "text", "id": "rights", "label": "Rights text", "default": "All rights reserved." },
-    { "type": "text", "id": "tagline_small", "label": "Small tagline", "default": "When lives are on the line, there are no second chances." }
+    { "type": "text", "id": "tagline_small", "label": "Small tagline" }
   ]
 }
 {% endschema %}
