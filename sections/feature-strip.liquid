@@ -1,0 +1,57 @@
+{%- comment -%}
+  Quiet, static row of key features. Replaces the scrolling spec ticker on the homepage.
+  Item text can contain simple HTML, e.g. TRU<sup>®</sup> Zip.
+{%- endcomment -%}
+<section class="of-strip" aria-label="{{ section.settings.label | default: 'Key features' | escape }}">
+  <ul class="of-strip__list">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.text != blank -%}
+        <li class="of-strip__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</section>
+
+<style>
+  .of-strip { background: var(--of-light); border-bottom: 1px solid rgba(21, 48, 47, 0.1); padding: 18px 32px; }
+  .of-strip__list { list-style: none; margin: 0 auto; padding: 0; max-width: var(--of-page-max); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; row-gap: 8px; }
+  .of-strip__item { font-family: var(--of-font-display); font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--of-deep); white-space: nowrap; }
+  .of-strip__item + .of-strip__item::before { content: "\00B7"; display: inline-block; margin: 0 16px; color: var(--of-orange); font-weight: 900; }
+  .of-strip__item sup { font-size: 0.6em; line-height: 0; }
+  @media (max-width: 700px) {
+    .of-strip { padding: 16px 20px; }
+    .of-strip__list { flex-direction: column; row-gap: 6px; }
+    .of-strip__item { font-size: 12px; white-space: normal; text-align: center; }
+    .of-strip__item + .of-strip__item::before { content: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Feature strip",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Accessible label", "default": "Key features" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Feature" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Feature strip",
+      "blocks": [
+        { "type": "item", "settings": { "text": "RF-Welded Seams" } },
+        { "type": "item", "settings": { "text": "TRU<sup>®</sup> Zip Waterproof Zipper" } },
+        { "type": "item", "settings": { "text": "Sand & Dustproof" } },
+        { "type": "item", "settings": { "text": "Low-Profile Harness" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
