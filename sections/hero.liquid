@@ -5,44 +5,95 @@
   else
     assign bg_url = 'ocean-hero.jpg' | asset_url
   endif
+
+  assign card_crop = section.settings.card_crop | default: 10
+  assign card_keep = 100 | minus: card_crop
   if section.settings.card_image != blank
-    assign card_url = section.settings.card_image | image_url: width: 1200
+    assign card_url = section.settings.card_image | image_url: width: 3000
+    assign card_natural_w = section.settings.card_image.width
+    assign card_natural_h = section.settings.card_image.height
   else
     assign card_url = 'product-worn.jpg' | asset_url
+    # Natural size of assets/product-worn.jpg is 3506 x 2245 px.
+    assign card_natural_w = 3506
+    assign card_natural_h = 2245
   endif
+  # Never show the photo larger than its natural resolution on a 2x (Retina) screen:
+  # the visible part of the photo is capped at half its natural pixel size.
+  assign card_max_w = card_natural_w | divided_by: 2
+  assign card_max_h = card_natural_h | times: card_keep | divided_by: 200
+
+  assign cta_mode = section.settings.cta_mode | default: 'email'
 -%}
 <section class="of-hero" style="position:relative;background:var(--of-deep);background-image:linear-gradient(90deg, rgba(15,36,35,0.97) 0%, rgba(15,36,35,0.82) 42%, rgba(15,36,35,0.5) 100%), url('{{ bg_url }}');background-size:cover;background-position:center;">
-  <div class="of-hero__inner" style="max-width:1320px;margin:0 auto;padding:92px 32px;display:grid;grid-template-columns:{% if section.settings.show_card == false %}1fr{% else %}1.08fr 0.92fr{% endif %};gap:60px;align-items:center;min-height:{% if section.settings.show_card == false %}60vh{% else %}82vh{% endif %};">
-    <div>
-      {%- if section.settings.badge_1 != blank or section.settings.badge_2 != blank -%}
+  <div class="of-hero__inner of-hero__grid{% if section.settings.show_card == false %} of-hero__grid--solo{% endif %}" style="max-width:1320px;margin:0 auto;padding:92px 32px;min-height:{% if section.settings.show_card == false %}60vh{% else %}82vh{% endif %};">
+
+    <div class="of-hero__head">
+      {%- if section.settings.badge_1 != blank -%}
         <div style="display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap;" data-reveal>
-          {%- if section.settings.badge_1 != blank -%}<span class="of-badge of-badge--solid">{{ section.settings.badge_1 }}</span>{%- endif -%}
-          {%- if section.settings.badge_2 != blank -%}<span class="of-badge of-badge--outline">{{ section.settings.badge_2 }}</span>{%- endif -%}
+          <span class="of-badge of-badge--solid">{{ section.settings.badge_1 }}</span>
         </div>
       {%- endif -%}
-      <h1 class="of-display of-text-white" style="font-size:clamp(46px,6.4vw,96px);line-height:0.9;letter-spacing:-1px;" data-reveal>{{ section.settings.heading | default: 'Radio Dry Bag' | newline_to_br }}</h1>
-      <div class="of-rule" data-reveal></div>
-      <p class="of-lede" style="color:var(--of-on-dark);max-width:44ch;margin:0 0 36px;" data-reveal>{{ section.settings.subheading }}</p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;" data-reveal>
-        {%- if section.settings.button_1_label != blank -%}
-          <a href="{{ section.settings.button_1_link }}" class="of-btn of-btn--primary">{{ section.settings.button_1_label }}</a>
-        {%- endif -%}
-        {%- if section.settings.button_2_label != blank -%}
-          <a href="{{ section.settings.button_2_link }}" class="of-btn of-btn--ghost">{{ section.settings.button_2_label }}</a>
-        {%- endif -%}
-      </div>
+      <h1 class="of-display of-text-white" style="font-size:clamp(46px,6.4vw,96px);line-height:0.9;letter-spacing:-1px;margin:0;" data-reveal>{{ section.settings.heading | default: 'The Radio Dry Bag' | newline_to_br }}</h1>
     </div>
+
     {%- unless section.settings.show_card == false -%}
-    <div data-reveal>
-        <div style="aspect-ratio:1002/654;background-image:url('{{ card_url }}');background-size:{{ section.settings.card_zoom | default: 130 }}% auto;background-position:center {{ section.settings.card_focus_y | default: 100 }}%;border-bottom:3px solid var(--of-orange);"></div>
-        <div style="padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
-          <span style="font-family:var(--of-font-display);font-weight:800;font-size:13px;color:#fff;text-transform:uppercase;letter-spacing:1px;">{{ section.settings.card_title | default: 'In the field' }}</span>
-          <span style="font-family:var(--of-font-body);font-size:12px;color:var(--of-muted);letter-spacing:1px;text-transform:uppercase;">{{ section.settings.card_meta | default: 'RF-welded, Field-tested' }}</span>
+      <div class="of-hero__media{% if section.settings.show_panel %} of-hero__media--panel{% endif %}" style="--photo-max-w:{{ card_max_w }}px;--photo-max-h:{{ card_max_h }}px;" data-reveal>
+        <div class="of-hero__frame">
+          <div class="of-hero__photo" role="img" aria-label="{{ section.settings.card_alt | default: 'Radio Dry Bag worn by an ocean rescue lifeguard' | escape }}" style="background-image:url('{{ card_url }}');height:calc(100% * 100 / {{ card_keep }});"></div>
         </div>
+        {%- if section.settings.spec_tag != blank -%}
+          <p class="of-hero__spec">{{ section.settings.spec_tag }}</p>
+        {%- endif -%}
       </div>
-    </div>
     {%- endunless -%}
+
+    <div class="of-hero__body">
+      <div class="of-rule" data-reveal></div>
+      {%- if section.settings.subheading != blank -%}
+        <p class="of-lede" style="color:var(--of-on-dark);max-width:44ch;margin:0 0 30px;" data-reveal>{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      <div class="of-hero__cta" data-reveal>
+        {%- if section.settings.signup_label != blank -%}
+          <p class="of-hero__cta-label">{{ section.settings.signup_label }}</p>
+        {%- endif -%}
+
+        {%- if cta_mode == 'preorder' -%}
+          <a href="{{ section.settings.preorder_link | default: routes.all_products_collection_url }}" class="of-btn of-btn--primary">{{ section.settings.preorder_label | default: 'Preorder' }}</a>
+        {%- else -%}
+          {%- form 'customer', id: 'launch-signup', class: 'of-hero__form' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="of-hero__success" role="status">{{ section.settings.signup_success | default: "You're on the list. We'll email you as soon as preorders open." }}</p>
+            {%- else -%}
+              <input type="hidden" name="contact[tags]" value="newsletter,launch-list">
+              <div class="of-hero__field-row">
+                <label for="LaunchSignupEmail" class="of-visually-hidden">Email address</label>
+                <input id="LaunchSignupEmail" class="of-hero__input" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" autocapitalize="off" spellcheck="false" required{% if form.errors %} aria-invalid="true" aria-describedby="LaunchSignupError"{% endif %}>
+                <button type="submit" class="of-btn of-btn--primary of-hero__submit">{{ section.settings.signup_button | default: 'Notify Me' }}</button>
+              </div>
+              {%- if form.errors -%}
+                <p id="LaunchSignupError" class="of-hero__error" role="alert">{{ form.errors | default_errors }}</p>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endform -%}
+        {%- endif -%}
+
+        {%- if section.settings.signup_note != blank -%}
+          <p class="of-hero__note">{{ section.settings.signup_note }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.credibility != blank -%}
+        <p class="of-hero__cred" data-reveal>{{ section.settings.credibility }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_target | default: '#how-its-built' }}" class="of-hero__link" data-reveal>{{ section.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
   </div>
+
   {%- if section.settings.show_scroll -%}
     <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;">
       <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(207,224,221,0.7);">Scroll</span>
@@ -51,25 +102,116 @@
   {%- endif -%}
 </section>
 
+<style>
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  [id="how-its-built"] { scroll-margin-top: 24px; }
+
+  /* Mobile / tablet (default): text, then photo under the headline, then the rest */
+  .of-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "media" "body";
+    row-gap: 28px;
+    align-content: center;
+  }
+  .of-hero__grid--solo { grid-template-areas: "head" "body"; }
+  .of-hero__head { grid-area: head; }
+  .of-hero__body { grid-area: body; }
+  .of-hero__media { grid-area: media; position: relative; width: 100%; }
+  .of-hero__frame { position: relative; z-index: 1; overflow: hidden; aspect-ratio: 1002 / 654; border-bottom: 3px solid var(--of-orange); }
+  /* The photo is taller than its frame and anchored to the bottom, so "Photo top crop" trims only the top. */
+  .of-hero__photo { position: absolute; left: 0; right: 0; bottom: 0; background-repeat: no-repeat; background-size: cover; background-position: center bottom; }
+  .of-hero__media--panel::before { display: none; }
+  .of-hero__spec { position: relative; z-index: 1; margin: 12px 0 0; font-family: var(--of-font-display); font-weight: 700; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--of-muted); }
+  .of-hero__spec::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: var(--of-orange); }
+  .of-hero__body .of-rule { margin-top: 0; }
+
+  /* Desktop: wide layout, text aligned with the logo, photo full-bleed to the right edge and full hero height */
+  @media (min-width: 901px) {
+    .of-hero {
+      --hero-max: calc(1800px / var(--of-body-zoom, 1));
+      --hero-gutter: max(4%, calc((100% - var(--hero-max)) / 2));
+      --hero-gap: 56px;
+      --hero-photo: calc((100% - var(--hero-gutter)) * 0.58);
+    }
+    #MainContent .of-hero .of-hero__inner {
+      max-width: none !important;
+      padding-left: var(--hero-gutter) !important;
+      padding-right: calc(var(--hero-photo) + var(--hero-gap)) !important;
+    }
+    #MainContent .of-hero .of-hero__grid--solo { padding-right: var(--hero-gutter) !important; }
+    .of-hero__grid { grid-template-areas: "head" "body"; row-gap: 0; }
+    .of-hero__head { align-self: end; }
+    .of-hero__body { align-self: start; }
+    .of-hero__body .of-rule { margin-top: 10px; }
+    .of-hero__media { position: absolute; top: 0; right: 0; bottom: 0; width: var(--hero-photo); max-width: var(--photo-max-w); max-height: var(--photo-max-h); }
+    .of-hero__frame { position: absolute; inset: 0; aspect-ratio: auto; }
+    .of-hero__spec { position: absolute; left: 20px; bottom: 18px; z-index: 2; margin: 0; padding: 7px 12px; color: var(--of-on-dark); background: rgba(15, 36, 35, 0.72); border-radius: 3px; }
+    .of-hero__media--panel::before { display: block; content: ""; position: absolute; z-index: 0; top: 24px; right: 0; bottom: 24px; left: -24px; background: rgba(207, 224, 221, 0.08); border: 1px solid rgba(143, 168, 168, 0.18); border-radius: 8px 0 0 8px; }
+  }
+  /* On the homepage the hero slides under the transparent header; start the photo below the header */
+  @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
+    .template-index .of-hero__media { top: calc(var(--of-header-h, 123px) / var(--of-body-zoom, 1)); }
+  }
+
+  .of-hero__cta { margin: 0 0 22px; max-width: 520px; }
+  .of-hero__cta-label { margin: 0 0 10px; font-family: var(--of-font-display); font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
+  .of-hero__field-row { display: flex; gap: 10px; }
+  .of-hero__input { flex: 1 1 auto; min-width: 0; padding: 0 18px; min-height: 54px; font: inherit; font-size: 16px; color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(207, 224, 221, 0.4); border-radius: 6px; }
+  .of-hero__input::placeholder { color: rgba(207, 224, 221, 0.65); }
+  .of-hero__input:focus { outline: none; border-color: var(--of-orange); background: rgba(255, 255, 255, 0.12); }
+  .of-hero__submit { flex: 0 0 auto; white-space: nowrap; }
+  .of-hero__note { margin: 10px 0 0; font-size: 14px; color: var(--of-muted); }
+  .of-hero__success { margin: 0; padding: 14px 18px; font-size: 16px; font-weight: 600; color: #fff; background: rgba(255, 255, 255, 0.08); border-left: 3px solid var(--of-orange); border-radius: 0 6px 6px 0; }
+  .of-hero__error { margin: 10px 0 0; font-size: 14px; color: #ffb8a6; }
+  .of-hero__cred { margin: 0 0 16px; max-width: 46ch; font-size: 14px; line-height: 1.55; color: var(--of-on-dark); opacity: 0.8; }
+  .of-hero__link { display: inline-block; font-family: var(--of-font-display); font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #fff; text-decoration: underline; text-decoration-color: var(--of-orange); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .of-hero__link:hover { color: var(--of-orange-lt); }
+
+  @media (max-width: 420px) {
+    .of-hero__field-row { flex-direction: column; }
+    .of-hero__submit { width: 100%; }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Hero",
   "settings": [
     { "type": "image_picker", "id": "bg_image", "label": "Background image" },
-    { "type": "text", "id": "badge_1", "label": "Badge 1 (solid)", "default": "Made by Lifeguards" },
-    { "type": "text", "id": "badge_2", "label": "Badge 2 (outline)", "default": "First Responders" },
-    { "type": "textarea", "id": "heading", "label": "Heading (line breaks allowed)", "default": "Radio\nDry Bag" },
-    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Waterproof radio protection forged by lifeguards. Built to keep your radio dry, dustproof, and sealed against salt and sand in the worst conditions the ocean can throw at it." },
-    { "type": "text", "id": "button_1_label", "label": "Button 1 label", "default": "Explore the Product" },
-    { "type": "url", "id": "button_1_link", "label": "Button 1 link" },
-    { "type": "text", "id": "button_2_label", "label": "Button 2 label", "default": "Read Our Story" },
-    { "type": "url", "id": "button_2_link", "label": "Button 2 link" },
-    { "type": "header", "content": "Preview card" },
-    { "type": "image_picker", "id": "card_image", "label": "Card image" },
-    { "type": "range", "id": "card_zoom", "label": "Card image zoom", "min": 100, "max": 200, "step": 5, "unit": "%", "default": 130 }, { "type": "range", "id": "card_focus_y", "label": "Card image vertical position (0 = top, 100 = bottom)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 }, { "type": "text", "id": "card_title", "label": "Card title", "default": "In the field" },
-    { "type": "text", "id": "card_meta", "label": "Card meta", "default": "RF-welded, Field-tested" },
-    { "type": "checkbox", "id": "show_card", "label": "Show preview card", "default": true },
-    { "type": "checkbox", "id": "show_scroll", "label": "Show scroll cue", "default": true }
+    { "type": "text", "id": "badge_1", "label": "Small line above headline", "default": "Forged by the ocean. Built for the job." },
+    { "type": "textarea", "id": "heading", "label": "Headline (line breaks allowed)", "default": "The Radio\nDry Bag" },
+    { "type": "textarea", "id": "subheading", "label": "Subheadline", "default": "Built for ocean rescue. Ready for anyone who needs their radio working after the waves hit." },
+    { "type": "header", "content": "Call to action" },
+    {
+      "type": "select",
+      "id": "cta_mode",
+      "label": "CTA mode",
+      "options": [
+        { "value": "email", "label": "Email signup" },
+        { "value": "preorder", "label": "Preorder button" }
+      ],
+      "default": "email",
+      "info": "Switch to Preorder button on launch day. The email field is hidden in that mode."
+    },
+    { "type": "text", "id": "signup_label", "label": "Label above the field", "default": "Launching Spring 2027. Get notified at launch." },
+    { "type": "text", "id": "signup_button", "label": "Email button text", "default": "Notify Me" },
+    { "type": "text", "id": "signup_note", "label": "Small text under the field", "default": "Be first in line when preorders open." },
+    { "type": "text", "id": "signup_success", "label": "Success message", "default": "You're on the list. We'll email you as soon as preorders open." },
+    { "type": "text", "id": "preorder_label", "label": "Preorder button label", "default": "Preorder" },
+    { "type": "url", "id": "preorder_link", "label": "Preorder button link" },
+    { "type": "header", "content": "Below the call to action" },
+    { "type": "textarea", "id": "credibility", "label": "Credibility line", "default": "Designed by an ocean-rescue lifeguard after watching \"waterproof\" gear fail on duty." },
+    { "type": "text", "id": "link_label", "label": "Text link", "default": "See how it's built →" },
+    { "type": "text", "id": "link_target", "label": "Text link target", "default": "#how-its-built", "info": "Use #how-its-built to scroll to the How it's built section." },
+    { "type": "header", "content": "Product photo" },
+    { "type": "image_picker", "id": "card_image", "label": "Photo" },
+    { "type": "text", "id": "card_alt", "label": "Photo description (alt text)", "default": "Radio Dry Bag worn by an ocean rescue lifeguard" },
+    { "type": "range", "id": "card_crop", "label": "Photo top crop", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 10, "info": "Trims the top of the photo. 10% stops just below the chin." },
+    { "type": "text", "id": "spec_tag", "label": "Spec tag", "default": "Model RDB01" },
+    { "type": "checkbox", "id": "show_panel", "label": "Show soft panel behind photo", "default": false, "info": "Useful if a future photo is too small to fill the space sharply." },
+    { "type": "checkbox", "id": "show_card", "label": "Show photo", "default": true },
+    { "type": "checkbox", "id": "show_scroll", "label": "Show scroll cue", "default": false }
   ],
   "presets": [{ "name": "Hero" }]
 }
