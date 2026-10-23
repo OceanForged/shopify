@@ -28,5 +28,13 @@
     "settings": [
       { "type": "range", "id": "page_width", "label": "Max content width", "min": 1120, "max": 1440, "step": 20, "unit": "px", "default": 1280 }
     ]
+  },
+  {
+    "name": "SEO & link previews",
+    "settings": [
+      { "type": "text", "id": "og_site_name", "label": "Site name in link previews (og:site_name)", "default": "Ocean Forged" },
+      { "type": "text", "id": "home_seo_title", "label": "Homepage title", "default": "Ocean Forged | Waterproof Radio Dry Bag, Built for Ocean Rescue" },
+      { "type": "textarea", "id": "home_seo_description", "label": "Homepage meta description", "default": "The RDB01 Radio Dry Bag: RF-welded seams, a TRU® Zip waterproof zipper, and a low-profile harness. Built for ocean rescue. Launching Spring 2027. Get notified." }
+    ]
   }
 ]
