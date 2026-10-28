@@ -17,9 +17,9 @@
     assign og_img_h = 630
     assign og_img_alt = og_img.alt
   else
-    assign og_img_url = 'product-worn.jpg' | asset_url | append: '&width=1200' | prepend: 'https:'
+    assign og_img_url = 'product-worn.jpg' | asset_url | append: '&width=1200&height=630&crop=center' | prepend: 'https:'
     assign og_img_w = 1200
-    assign og_img_h = 768
+    assign og_img_h = 630
     assign og_img_alt = 'Lifeguard in a red rescue vest wearing the Ocean Forged Radio Dry Bag across the chest'
   endif
 -%}
