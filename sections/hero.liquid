@@ -129,7 +129,7 @@
   /* Desktop: wide layout, text aligned with the logo, photo full-bleed to the right edge and full hero height */
   @media (min-width: 901px) {
     .of-hero {
-      --hero-max: calc(1800px / var(--of-body-zoom, 1));
+      --hero-max: calc(1800px);
       --hero-gutter: max(4%, calc((100% - var(--hero-max)) / 2));
       --hero-gap: 56px;
       --hero-photo: calc((100% - var(--hero-gutter)) * 0.58);
@@ -151,7 +151,7 @@
   }
   /* On the homepage the hero slides under the transparent header; start the photo below the header */
   @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
-    .template-index .of-hero__media { top: calc(var(--of-header-h, 123px) / var(--of-body-zoom, 1)); }
+    .template-index .of-hero__media { top: calc(var(--of-header-h, 123px)); }
   }
 
   .of-hero__cta { margin: 0 0 22px; max-width: 520px; }

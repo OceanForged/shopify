@@ -1,0 +1,28 @@
+{%- comment -%}
+  Product page image. Never displays a photo larger than its natural pixel size.
+  With no image: shows a gray labelled placeholder in the theme editor only; renders nothing on the live site.
+  Params: image, placeholder, alt, ratio_w + ratio_h (optional crop box), position, sizes, loading
+{%- endcomment -%}
+{%- if image != blank -%}
+  {%- liquid
+    assign cap = image.width
+    if ratio_w and ratio_h
+      assign cap_by_h = image.height | times: ratio_w | divided_by: ratio_h
+      if cap_by_h < cap
+        assign cap = cap_by_h
+      endif
+    endif
+    assign img_alt = alt | default: image.alt
+    assign img_pos = position | default: 'center center'
+    assign img_style = 'object-position:' | append: img_pos
+    assign img_sizes = sizes | default: '100vw'
+    assign img_loading = loading | default: 'lazy'
+  -%}
+  <div class="rdb-img{% if ratio_w %} rdb-img--crop{% endif %}" style="max-width:{{ cap }}px;{% if ratio_w %}aspect-ratio:{{ ratio_w }} / {{ ratio_h }};{% endif %}">
+    {{ image | image_url: width: image.width | image_tag: widths: '360, 540, 720, 900, 1080, 1440, 1800, 2400', sizes: img_sizes, loading: img_loading, alt: img_alt, style: img_style }}
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="rdb-ph"{% if ratio_w %} style="aspect-ratio:{{ ratio_w }} / {{ ratio_h }};"{% endif %}>
+    <span>{{ placeholder | default: 'Add a photo' }}</span>
+  </div>
+{%- endif -%}

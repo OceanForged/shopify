@@ -1,0 +1,79 @@
+{%- comment -%}
+  Product page text + photos section. Photos are blocks; with no photos the text is shown on its own, centered.
+{%- endcomment -%}
+{%- liquid
+  assign visible = 0
+  for block in section.blocks
+    if block.settings.image != blank or request.design_mode
+      assign visible = visible | plus: 1
+    endif
+  endfor
+-%}
+<section class="rdb-story rdb-story--{{ section.settings.style }} rdb-story--{{ section.settings.layout }} rdb-story--media-{{ section.settings.image_side }}{% if visible > 0 %} has-media{% else %} no-media{% endif %}"{% if section.settings.anchor_id != blank %} id="{{ section.settings.anchor_id | handle }}"{% endif %}>
+  <div class="of-container rdb-story__inner">
+    <div class="rdb-story__text" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="of-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="of-display of-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="rdb-story__body">{{ section.settings.text | newline_to_br }}</p>
+      {%- endif -%}
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url | default: '/pages/team-orders' }}" class="of-btn of-btn--primary">{{ section.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
+    {%- if visible > 0 -%}
+      <div class="rdb-story__media{% if visible > 1 %} rdb-story__media--multi{% endif %}" style="--rdb-cols:{{ visible }};" data-reveal>
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image != blank or request.design_mode -%}
+            <div class="rdb-story__item" {{ block.shopify_attributes }}>
+              {%- render 'rdb-image', image: block.settings.image, placeholder: block.settings.placeholder, alt: block.settings.alt, sizes: '(min-width: 901px) 45vw, 100vw' -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product text + photos",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Heading" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    {
+      "type": "select", "id": "layout", "label": "Layout", "default": "side",
+      "options": [ { "value": "side", "label": "Text beside photos" }, { "value": "stacked", "label": "Text above photos" } ]
+    },
+    {
+      "type": "select", "id": "image_side", "label": "Photo side (beside layout)", "default": "right",
+      "options": [ { "value": "right", "label": "Right" }, { "value": "left", "label": "Left" } ]
+    },
+    {
+      "type": "select", "id": "style", "label": "Background", "default": "white",
+      "options": [ { "value": "white", "label": "White" }, { "value": "light", "label": "Light gray" }, { "value": "dark", "label": "Dark teal" } ]
+    },
+    { "type": "text", "id": "link_label", "label": "Button label" },
+    { "type": "url", "id": "link_url", "label": "Button link" },
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "info": "Lets links jump to this section, e.g. #field-tested" }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "alt", "label": "Photo description (alt text)" },
+        { "type": "text", "id": "placeholder", "label": "Placeholder label (theme editor only)" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Product text + photos" }]
+}
+{% endschema %}
