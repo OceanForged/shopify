@@ -4,7 +4,8 @@
   # Online Store > Preferences if one is set, then the theme setting, then the homepage hero photo.
   assign og_img = blank
   assign og_img_url = blank
-  if request.page_type == 'product' and product.featured_image
+  # Portrait product photos crop badly to the wide preview shape, so those products use the hero photo instead.
+  if request.page_type == 'product' and product.featured_image and product.featured_image.width >= product.featured_image.height
     assign og_img = product.featured_image
   elsif request.page_type != 'product' and page_image
     assign og_img = page_image
