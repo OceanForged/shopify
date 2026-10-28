@@ -1,14 +1,26 @@
 {% comment %} Basic SEO / social meta tags {% endcomment %}
 {%- liquid
+  # Link-preview image: the product photo on product pages; elsewhere the social image from
+  # Online Store > Preferences if one is set, then the theme setting, then the homepage hero photo.
   assign og_img = blank
+  assign og_img_url = blank
   if request.page_type == 'product' and product.featured_image
     assign og_img = product.featured_image
-  elsif page_image
+  elsif request.page_type != 'product' and page_image
     assign og_img = page_image
   elsif settings.share_image != blank
     assign og_img = settings.share_image
+  endif
+  if og_img != blank
+    assign og_img_url = og_img | image_url: width: 1200, height: 630, crop: 'center' | prepend: 'https:'
+    assign og_img_w = 1200
+    assign og_img_h = 630
+    assign og_img_alt = og_img.alt
   else
-    assign og_img = images['Finalproduct1.jpg']
+    assign og_img_url = 'product-worn.jpg' | asset_url | append: '&width=1200' | prepend: 'https:'
+    assign og_img_w = 1200
+    assign og_img_h = 768
+    assign og_img_alt = 'Lifeguard in a red rescue vest wearing the Ocean Forged Radio Dry Bag across the chest'
   endif
 -%}
 <meta property="og:site_name" content="{{ settings.og_site_name | default: shop.name | escape }}">
@@ -18,19 +30,14 @@
 {%- if seo_description != blank -%}
   <meta property="og:description" content="{{ seo_description | escape }}">
 {%- endif -%}
-{%- if og_img != blank -%}
-  {%- assign og_img_url = og_img | image_url: width: 1200, height: 630, crop: 'center' | prepend: 'https:' -%}
-  <meta property="og:image" content="{{ og_img_url }}">
-  <meta property="og:image:secure_url" content="{{ og_img_url }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ og_img.alt | default: seo_title | default: page_title | escape }}">
-{%- endif -%}
+<meta property="og:image" content="{{ og_img_url }}">
+<meta property="og:image:secure_url" content="{{ og_img_url }}">
+<meta property="og:image:width" content="{{ og_img_w }}">
+<meta property="og:image:height" content="{{ og_img_h }}">
+<meta property="og:image:alt" content="{{ og_img_alt | default: seo_title | default: page_title | escape }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ seo_title | default: page_title | escape }}">
 {%- if seo_description != blank -%}
   <meta name="twitter:description" content="{{ seo_description | escape }}">
 {%- endif -%}
-{%- if og_img != blank -%}
-  <meta name="twitter:image" content="{{ og_img_url }}">
-{%- endif -%}
+<meta name="twitter:image" content="{{ og_img_url }}">
