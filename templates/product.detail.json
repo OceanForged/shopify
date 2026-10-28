@@ -9,19 +9,13 @@
  */
 {
   "sections": {
-    "product_detail": {
-      "type": "product-detail",
+    "main": {
+      "type": "main-product",
       "disabled": true,
-      "settings": {
-        "product": "radio-dry-bag",
-        "title": "Radio Dry Bag",
-        "eyebrow": "Ocean Forged · Product 01",
-        "subtitle": "Made by lifeguards. Built for real world rescues.",
-        "bulk_link": "/pages/team-orders"
-      }
+      "settings": {}
     }
   },
   "order": [
-    "product_detail"
+    "main"
   ]
 }

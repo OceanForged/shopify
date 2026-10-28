@@ -9,72 +9,208 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
-      "settings": {
-        "eyebrow": "Ocean Forged · RDB-01",
-        "tagline": "Made by lifeguards. Built to survive real conditions, not just real rescues.",
-        "buy_label": "Add to Cart",
-        "secondary_label": "",
-        "secondary_link": "",
-        "presale_note": "The first production run is on the way. Join the list to be the first to know when it ships.",
-        "presale_label": "Join the List",
-        "presale_link": "shopify://pages/team-orders"
-      }
-    },
-    "anatomy": {
-      "type": "product-anatomy",
+    "top": {
+      "type": "rdb-hero",
       "blocks": {
-        "l1": {
-          "type": "label",
+        "p1": {
+          "type": "image",
           "settings": {
-            "side": "left",
-            "title": "Waterproof Self-Healing TRU® Zip Zipper",
-            "body": "Reseals itself with a slide. Fast, reliable access. Even with cold or wet hands."
+            "alt": "Radio Dry Bag worn across the chest over an ocean rescue PFD",
+            "placeholder": "",
+            "image": "shopify:\/\/shop_images\/product-worn.jpg",
+            "position": "center center"
           }
         },
-        "l2": {
-          "type": "label",
+        "p2": {
+          "type": "image",
           "settings": {
-            "side": "left",
-            "title": "Welded Seams. No Threads or Glue",
-            "body": "RF-welded TPU construction removes every traditional failure point."
+            "alt": "Lifeguard on the beach wearing the Radio Dry Bag over a wetsuit",
+            "placeholder": "",
+            "image": "shopify:\/\/shop_images\/worn-front-beach.jpg",
+            "position": "center top"
           }
         },
-        "r1": {
-          "type": "label",
+        "p3": {
+          "type": "image",
           "settings": {
-            "side": "right",
-            "title": "Durable Yet Flexible Waterproof Shell",
-            "body": "Tough enough for the rocks, flexible enough to wear all day."
+            "alt": "Radio Dry Bag worn across the chest with a handheld radio inside",
+            "placeholder": "",
+            "image": "shopify:\/\/shop_images\/Finalproduct1.jpg",
+            "position": "center center"
           }
         },
-        "r2": {
-          "type": "label",
+        "p4": {
+          "type": "image",
           "settings": {
-            "side": "right",
-            "title": "Secure Low-Profile Harness",
-            "body": "Stays locked in place during active rescues. Comfortable for all-day wear."
-          }
-        },
-        "r3": {
-          "type": "label",
-          "settings": {
-            "side": "right",
-            "title": "Molded EVA Back Panel",
-            "body": "A contoured EVA back for support and comfort during extended wear."
+            "alt": "Radio Dry Bag shown from an angle, radio visible through the clear window",
+            "placeholder": "",
+            "image": "shopify:\/\/shop_images\/Finalproduct3.jpg",
+            "position": "center center"
           }
         }
       },
       "block_order": [
-        "l1",
-        "l2",
-        "r1",
-        "r2",
-        "r3"
+        "p3",
+        "p2",
+        "p4",
+        "p1"
       ],
       "settings": {
-        "eyebrow": "Specs"
+        "model_label": "Model RDB01",
+        "heading": "The Radio Dry Bag",
+        "subheading": "Built for ocean rescue. Ready for anyone who needs their radio working after the waves hit.",
+        "signup_label": "Launching Spring 2027. Get notified at launch.",
+        "signup_button": "Notify Me",
+        "signup_note": "Be first in line when preorders open.",
+        "signup_success": "You're on the list. We'll email you as soon as preorders open.",
+        "ratio": "portrait"
+      }
+    },
+    "load": {
+      "type": "rdb-story",
+      "blocks": {
+        "i1": {
+          "type": "image",
+          "settings": {
+            "alt": "",
+            "placeholder": "Loading sequence: 3 photos. Bag open, radio going in, zipped shut. Charcoal background."
+          }
+        }
+      },
+      "block_order": [
+        "i1"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Load it fast. Seal it tight.",
+        "text": "When a call comes in, you don't have time to line up clips or fold down a roll-top. The RDB01 opens along its length with one zipper, so the radio drops straight in and comes straight out, antenna and all. Zip it once and it's sealed.",
+        "layout": "side",
+        "image_side": "right",
+        "style": "white",
+        "link_label": "",
+        "anchor_id": ""
+      }
+    },
+    "window": {
+      "type": "rdb-story",
+      "blocks": {
+        "i1": {
+          "type": "image",
+          "settings": {
+            "alt": "",
+            "placeholder": "Close-up: hand pressing radio controls through the clear window, display readable."
+          }
+        }
+      },
+      "block_order": [
+        "i1"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Stays Sealed Through Every Call",
+        "text": "A clear window lets you read the display and press the buttons through the case. You can talk and hear while it's zipped, so the seal stays closed through the whole call.",
+        "layout": "side",
+        "image_side": "left",
+        "style": "light",
+        "link_label": "",
+        "anchor_id": ""
+      }
+    },
+    "built": {
+      "type": "rdb-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "alt": "",
+            "placeholder": "Macro of a welded seam, side lighting, water droplets.",
+            "title": "RF-welded seams",
+            "text": "No stitching, no glue. The seams are fused with radio-frequency welding, so there are no needle holes for water to find."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "alt": "",
+            "placeholder": "Close-up of the zipper half open, water beading on it.",
+            "title": "TRU<sup>®<\/sup> Zip",
+            "text": "A waterproof, self-healing zipper built for repeated opening in sand and salt."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "alt": "",
+            "placeholder": "Back of the bag showing the molded panel.",
+            "title": "Molded EVA back panel",
+            "text": "Holds its shape against your body, so it won't flop or sag during a run, a paddle, or a rescue."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "alt": "",
+            "placeholder": "Harness laid out flat, plus buckle close-up.",
+            "title": "Low-profile harness",
+            "text": "Padded shoulder strap, adjustable chest strap, and a quick-release buckle, plus an anchor point. It stays put during active rescues."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "How it's built",
+        "intro": "",
+        "anchor_id": "how-its-built"
+      }
+    },
+    "field": {
+      "type": "rdb-story",
+      "blocks": {
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/in-surf-rocks.jpg",
+            "alt": "Lifeguard standing in the surf by the rocks wearing the Radio Dry Bag",
+            "placeholder": ""
+          }
+        },
+        "i2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/on-board-kneeling.jpg",
+            "alt": "Lifeguard kneeling on a rescue board in the water wearing the Radio Dry Bag",
+            "placeholder": ""
+          }
+        },
+        "i3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/on-board-sitting.jpg",
+            "alt": "Lifeguard sitting on a rescue board beyond the break wearing the Radio Dry Bag",
+            "placeholder": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Field-tested on the Northern California coast",
+        "text": "Designed by an ocean-rescue lifeguard after watching \"waterproof\" gear fail on duty. Prototypes have been worn on shift in cold, heavy surf. The first production run is being finalized now.",
+        "layout": "stacked",
+        "image_side": "right",
+        "style": "white",
+        "link_label": "",
+        "anchor_id": "field-tested"
       }
     },
     "specs": {
@@ -83,50 +219,50 @@
         "s1": {
           "type": "spec",
           "settings": {
-            "label": "Construction",
-            "value": "RF-welded TPU"
+            "label": "Model",
+            "value": "RDB01"
           }
         },
         "s2": {
           "type": "spec",
           "settings": {
-            "label": "Closure",
-            "value": "TRU® Zip self-healing waterproof zipper"
+            "label": "Interior",
+            "value": "14¼\" × 3¾\" × 2¼\""
           }
         },
         "s3": {
           "type": "spec",
           "settings": {
-            "label": "Protection",
-            "value": "Waterproof. Dustproof. Sandproof."
+            "label": "Fits",
+            "value": "Handheld radios with antenna"
           }
         },
         "s4": {
           "type": "spec",
           "settings": {
-            "label": "Carry",
-            "value": "Secure low-profile harness system"
-          }
-        },
-        "s6": {
-          "type": "spec",
-          "settings": {
-            "label": "Back Panel",
-            "value": "Molded EVA back for support & comfort"
-          }
-        },
-        "s7": {
-          "type": "spec",
-          "settings": {
-            "label": "Inside Dimensions",
-            "value": "14¼\" × 3¾\" × 2¼\""
+            "label": "Material",
+            "value": "RF-welded TPU"
           }
         },
         "s5": {
           "type": "spec",
           "settings": {
-            "label": "Fits",
-            "value": "Handheld radios and other critical gear"
+            "label": "Closure",
+            "value": "TRU<sup>®<\/sup> Zip waterproof zipper"
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "label": "Carry",
+            "value": "Padded harness, adjustable chest strap, quick-release buckle, anchor point"
+          }
+        },
+        "s7": {
+          "type": "spec",
+          "settings": {
+            "label": "Back panel",
+            "value": "Molded EVA"
           }
         }
       },
@@ -135,83 +271,103 @@
         "s2",
         "s3",
         "s4",
+        "s5",
         "s6",
-        "s7",
-        "s5"
+        "s7"
       ],
       "settings": {
-        "heading": "Specifications",
-        "note": "Retail, agency and bulk-order pricing available upon request."
+        "heading": "Specs",
+        "note": "",
+        "image": "shopify:\/\/shop_images\/Finalproduct3.jpg",
+        "image_alt": "Radio Dry Bag shown from an angle, radio visible through the clear window"
       }
     },
-    "audience": {
-      "type": "audience-grid",
+    "faq": {
+      "type": "rdb-faq",
       "blocks": {
-        "a1": {
-          "type": "audience",
+        "q1": {
+          "type": "item",
           "settings": {
-            "title": "Lifeguards",
-            "body": "Keep radios dry and reachable through every rescue, all day on the sand and in the surf. Where it all started."
+            "question": "Which radios does it fit?",
+            "answer": "Most full-size handheld radios, including the antenna, up to 14¼\" long inside."
           }
         },
-        "a2": {
-          "type": "audience",
+        "q2": {
+          "type": "item",
           "settings": {
-            "title": "First Responders",
-            "body": "Reliable radio protection in the harshest environments, so your equipment is ready the moment it matters most."
+            "question": "Can I use the radio without opening the bag?",
+            "answer": "Yes. You can read the display, press the buttons, talk, and hear through the case while it's zipped."
           }
         },
-        "a3": {
-          "type": "audience",
+        "q3": {
+          "type": "item",
           "settings": {
-            "title": "Surf & Water Rescue",
-            "body": "Built for pounding surf, salt and sand. Sealed protection that takes the impact and keeps your radio working."
+            "question": "Is it waterproof?",
+            "answer": "It's designed to be fully waterproof, with RF-welded seams and a waterproof TRU<sup>®<\/sup> Zip closure. We'll publish the confirmed rating once production samples finish testing."
           }
         },
-        "a4": {
-          "type": "audience",
+        "q4": {
+          "type": "item",
           "settings": {
-            "title": "MARINE PROFESSIONALS",
-            "body": "Harbor masters, marina staff, and other on-the-water professionals who need reliable radio protection through wet, physical shifts."
+            "question": "How do I wear it?",
+            "answer": "Across the chest, with the shoulder strap and chest strap snugged down so it sits flat. It works over a wetsuit or PFD."
           }
         },
-        "a5": {
-          "type": "audience",
+        "q5": {
+          "type": "item",
           "settings": {
-            "title": "Water Sports & Recreation",
-            "body": "Kayakers, kite surfers, fishermen, whitewater rafters, sailors, boaters, and paddlers. Anyone recreating on the water who needs a radio, phone, or keys to stay dry and within reach."
+            "question": "When does it ship?",
+            "answer": "We're targeting Spring 2027. Join the list and you'll hear first when preorders open."
           }
         }
       },
       "block_order": [
-        "a1",
-        "a2",
-        "a3",
-        "a4",
-        "a5"
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
       ],
       "settings": {
-        "eyebrow": "Who it's for",
-        "heading": "Built for the people the ocean tests.",
-        "intro": "Designed for lifeguards and professionals operating in harsh environments where reliable radio protection is critical. Comfortable enough for all-day wear."
+        "heading": "FAQ"
       }
     },
-    "cta": {
-      "type": "cta-band",
+    "team": {
+      "type": "rdb-story",
+      "blocks": {
+        "i1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/crew-helmets.jpg",
+            "alt": "Rescue crew in helmets and PFDs",
+            "placeholder": ""
+          }
+        }
+      },
+      "block_order": [
+        "i1"
+      ],
       "settings": {
         "eyebrow": "",
-        "heading": "Want to follow the build?",
-        "body": "The first production run is on the way, and agencies are already lining up. Get pricing built for your unit.",
-        "button_label": "Team Orders",
-        "button_link": "shopify://pages/team-orders"
+        "heading": "Outfitting a team?",
+        "text": "Lifeguard agencies, rescue crews and clubs can request team pricing.",
+        "layout": "side",
+        "image_side": "left",
+        "style": "dark",
+        "link_label": "Request team pricing",
+        "link_url": "shopify:\/\/pages\/team-orders",
+        "anchor_id": ""
       }
     }
   },
   "order": [
-    "main",
-    "anatomy",
+    "top",
+    "load",
+    "window",
+    "built",
+    "field",
     "specs",
-    "audience",
-    "cta"
+    "faq",
+    "team"
   ]
 }

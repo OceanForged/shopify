@@ -48,7 +48,7 @@
     function setHeight() { root.style.setProperty('--of-header-h', header.offsetHeight + 'px'); }
     function update() {
       var hero = document.querySelector('.template-index .of-hero');
-      var past = hero ? hero.getBoundingClientRect().bottom <= header.offsetHeight : true;
+      var past = hero ? window.pageYOffset > 4 : true;
       var open = (nav && nav.classList.contains('is-open')) || (drawer && drawer.classList.contains('is-open'));
       header.classList.toggle('is-solid', past || !!open);
     }
@@ -71,4 +71,40 @@
 
   /* re-run reveal inside Shopify theme editor when sections reload */
   document.addEventListener('shopify:section:load', initReveal);
+})();
+
+/* ---------- sticky header: stays with the visitor, hides on scroll down, slides back on scroll up ---------- */
+(function () {
+  var header = document.querySelector('.of-header');
+  var wrap = header && header.parentElement;
+  if (!header || !wrap || wrap === document.body) return;
+  wrap.classList.add('of-sticky-wrap');
+  var lastY = window.pageYOffset || 0;
+  var ticking = false;
+  function menuOpen() {
+    var nav = document.querySelector('.of-nav');
+    var drawer = document.querySelector('.of-cartd');
+    return (nav && nav.classList.contains('is-open')) || (drawer && drawer.classList.contains('is-open'));
+  }
+  function update() {
+    ticking = false;
+    var y = Math.max(window.pageYOffset || 0, 0);
+    var dy = y - lastY;
+    header.classList.toggle('is-pinned', y > 4);
+    if (y <= header.offsetHeight || menuOpen()) {
+      wrap.classList.remove('is-hidden');
+      lastY = y;
+    } else if (dy > 8) {
+      wrap.classList.add('is-hidden');
+      lastY = y;
+    } else if (dy < -8) {
+      wrap.classList.remove('is-hidden');
+      lastY = y;
+    }
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  wrap.addEventListener('focusin', function () { wrap.classList.remove('is-hidden'); });
+  update();
 })();
