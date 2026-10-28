@@ -2,7 +2,7 @@
   if section.settings.image != blank
     assign img_url = section.settings.image | image_url: width: 1600
   else
-    assign img_url = 'ocean-deep.jpg' | asset_url
+    assign img_url = 'ocean-deep.jpg' | asset_url | append: '&width=1600'
   endif
   assign order = section.settings.image_position
 -%}

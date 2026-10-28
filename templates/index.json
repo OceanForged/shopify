@@ -24,8 +24,8 @@
         "preorder_link": "",
         "credibility": "Designed by an ocean-rescue lifeguard after watching \"waterproof\" gear fail on duty.",
         "link_label": "See how it's built →",
-        "link_target": "\/products\/radio-dry-bag#how-its-built",
-        "card_alt": "Radio Dry Bag worn by an ocean rescue lifeguard",
+        "link_target": "/products/radio-dry-bag#how-its-built",
+        "card_alt": "Lifeguard in a red rescue vest wearing the Radio Dry Bag across the chest, with surf behind",
         "card_crop": 10,
         "spec_tag": "Model RDB01",
         "show_panel": false,
@@ -45,7 +45,7 @@
         "f2": {
           "type": "item",
           "settings": {
-            "text": "TRU<sup>®<\/sup> Zip Waterproof Zipper"
+            "text": "TRU<sup>®</sup> Zip Waterproof Zipper"
           }
         },
         "f3": {
@@ -119,7 +119,7 @@
         "heading": "Built to one standard.\nThe rescue standard.",
         "intro": "After watching 'waterproof' gear fail in the field, again and again. Here's what we built differently.",
         "button_label": "See Full Product Details",
-        "button_link": "shopify:\/\/products\/radio-dry-bag"
+        "button_link": "shopify://products/radio-dry-bag"
       }
     },
     "proof": {
@@ -131,7 +131,7 @@
         "heading": "There are no second chances.",
         "body": "Ocean Forged was discovered on the beach, not in a boardroom. As lifeguards and first responders, we learned the hard way that most \"waterproof\" radio bags fail when you need them most. So we built something better.",
         "button_label": "Our Story",
-        "button_link": "shopify:\/\/pages\/about"
+        "button_link": "shopify://pages/about"
       }
     },
     "cta": {
@@ -141,7 +141,7 @@
         "heading": "Wear it with pride. Help fund what's next.",
         "body": "Early apparel runs help support the development and testing of Ocean Forged's first technical product.",
         "button_label": "Shop Shirts",
-        "button_link": "shopify:\/\/pages\/shop"
+        "button_link": "shopify://pages/shop"
       }
     }
   },

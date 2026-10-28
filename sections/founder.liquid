@@ -2,12 +2,12 @@
   if section.settings.image != blank
     assign img_url = section.settings.image | image_url: width: 1200
   else
-    assign img_url = 'lifeguard-bridge-1.jpeg' | asset_url
+    assign img_url = 'lifeguard-bridge-1.jpeg' | asset_url | append: '&width=1400'
   endif
 -%}
 <section class="of-bg-deep">
   <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;align-items:stretch;" class="of-founder">
-    <div style="min-height:520px;background-image:url('{{ img_url }}');background-size:cover;background-position:center {{ section.settings.image_focus | default: 20 }}%;" data-reveal></div>
+    <div role="img" aria-label="{{ section.settings.image_alt | default: 'Lifeguard in a red rescue vest on a rescue jet ski near the Golden Gate Bridge' | escape }}" style="min-height:520px;background-image:url('{{ img_url }}');background-size:cover;background-position:center {{ section.settings.image_focus | default: 20 }}%;" data-reveal></div>
     <div style="padding:84px 56px;display:flex;flex-direction:column;justify-content:center;" data-reveal>
       <p class="of-eyebrow">{{ section.settings.eyebrow | default: 'The Founder' }}</p>
       <h2 class="of-display of-h2 of-text-white" style="line-height:0.98;margin-bottom:10px;">{{ section.settings.name | default: 'Duke Miskiv' }}</h2>
@@ -39,6 +39,7 @@
   "name": "Founder",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "image_alt", "label": "Photo description (alt text)" },
     { "type": "range", "id": "image_focus", "label": "Photo vertical focus", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 20 },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Founder" },
     { "type": "text", "id": "name", "label": "Name", "default": "Duke Miskiv" },

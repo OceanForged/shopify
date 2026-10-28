@@ -10,7 +10,7 @@
              alt="{{ shop.name | escape }}" style="height:{{ section.settings.logo_height | default: 54 }}px;width:auto;">
       {%- else -%}
         <img src="{{ 'logo-mark-transparent.png' | asset_url }}" alt="{{ shop.name | escape }}" style="height:{{ section.settings.logo_height | default: 56 }}px;width:auto;">
-      {%- endif -%}<img src="{{ 'logo-dark.png' | file_url }}" class="of-brand__logo-dark" width="580" height="470" alt="" aria-hidden="true" style="height:{{ section.settings.logo_height | default: 54 }}px;width:auto;"></span>
+      {%- endif -%}<img src="{{ 'logo-dark.png' | file_url | append: '&width=240' }}" class="of-brand__logo-dark" width="580" height="470" alt="" aria-hidden="true" style="height:{{ section.settings.logo_height | default: 54 }}px;width:auto;"></span>
       {%- if section.settings.show_brand_text -%}
         <span class="of-brand__type">{{ section.settings.brand_line_1 | default: 'OCEAN' }}<br>{{ section.settings.brand_line_2 | default: 'FORGED' }}</span>
       {%- endif -%}

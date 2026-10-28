@@ -25,12 +25,23 @@
         <a href="{{ section.settings.link_url | default: '/pages/team-orders' }}" class="of-btn of-btn--primary">{{ section.settings.link_label }}</a>
       {%- endif -%}
     </div>
+    {%- liquid
+      if visible > 1 and section.settings.layout == 'stacked'
+        assign story_sizes = '(min-width: 601px) 33vw, 80vw'
+      elsif visible > 1
+        assign story_sizes = '(min-width: 901px) 25vw, (min-width: 601px) 33vw, 80vw'
+      elsif section.settings.layout == 'stacked'
+        assign story_sizes = '(min-width: 901px) 760px, 100vw'
+      else
+        assign story_sizes = '(min-width: 901px) 45vw, 100vw'
+      endif
+    -%}
     {%- if visible > 0 -%}
       <div class="rdb-story__media{% if visible > 1 %} rdb-story__media--multi{% endif %}" style="--rdb-cols:{{ visible }};" data-reveal>
         {%- for block in section.blocks -%}
           {%- if block.settings.image != blank or request.design_mode -%}
             <div class="rdb-story__item" {{ block.shopify_attributes }}>
-              {%- render 'rdb-image', image: block.settings.image, placeholder: block.settings.placeholder, alt: block.settings.alt, sizes: '(min-width: 901px) 45vw, 100vw' -%}
+              {%- render 'rdb-image', image: block.settings.image, placeholder: block.settings.placeholder, alt: block.settings.alt, sizes: story_sizes -%}
             </div>
           {%- endif -%}
         {%- endfor -%}

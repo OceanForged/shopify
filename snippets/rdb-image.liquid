@@ -17,9 +17,13 @@
     assign img_style = 'object-position:' | append: img_pos
     assign img_sizes = sizes | default: '100vw'
     assign img_loading = loading | default: 'lazy'
+    assign img_priority = 'auto'
+    if img_loading == 'eager'
+      assign img_priority = 'high'
+    endif
   -%}
   <div class="rdb-img{% if ratio_w %} rdb-img--crop{% endif %}" style="max-width:{{ cap }}px;{% if ratio_w %}aspect-ratio:{{ ratio_w }} / {{ ratio_h }};{% endif %}">
-    {{ image | image_url: width: image.width | image_tag: widths: '360, 540, 720, 900, 1080, 1440, 1800, 2400', sizes: img_sizes, loading: img_loading, alt: img_alt, style: img_style }}
+    {{ image | image_url: width: image.width | image_tag: widths: '360, 540, 720, 900, 1080, 1440, 1800, 2400', sizes: img_sizes, loading: img_loading, fetchpriority: img_priority, alt: img_alt, style: img_style }}
   </div>
 {%- elsif request.design_mode -%}
   <div class="rdb-ph"{% if ratio_w %} style="aspect-ratio:{{ ratio_w }} / {{ ratio_h }};"{% endif %}>
