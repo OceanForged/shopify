@@ -497,3 +497,7 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
   #MainContent .of-hero h1.of-display { font-size: clamp(46px, 4.7vw, 72px) !important; }
 }
 
+/* Homepage hero photo on phones: show it immediately (no fade-in) so it appears as soon as it loads */
+@media (max-width: 749px) {
+  #MainContent .of-hero__media[data-reveal] { opacity: 1; transform: none; transition: none; }
+}
