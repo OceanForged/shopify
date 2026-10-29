@@ -528,7 +528,7 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
   /* the table sets the row height; the photo fills exactly that height */
   #MainContent .of-specs .of-specs__media { position: relative; min-height: 0; }
   #MainContent .of-specs .of-specs__media .rdb-img { position: absolute; inset: 0; max-width: none !important; height: 100%; }
-  #MainContent .of-specs .of-specs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55% !important; }
+  #MainContent .of-specs .of-specs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 75% !important; } /* keeps the radio window, bag bottom and harness strap in frame */
   /* even rows, tighter padding that scales with the screen height */
   #MainContent .of-specs .of-specs__row { padding-top: clamp(9px, 1.6vh, 18px) !important; padding-bottom: clamp(9px, 1.6vh, 18px) !important; }
   #MainContent .of-specs .of-specs__value { line-height: 1.35; }
