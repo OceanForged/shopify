@@ -29,13 +29,50 @@
     var toggle = document.querySelector('.of-nav__toggle');
     var nav = document.querySelector('.of-nav');
     if (!toggle || !nav) return;
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
+    var openY = 0;
+    function isOpen() { return nav.classList.contains('is-open'); }
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+      if (open) openY = window.pageYOffset || 0;
+    }
+    toggle.addEventListener('click', function () { setOpen(!isOpen()); });
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) nav.classList.remove('is-open');
+      if (e.target.closest('a')) setOpen(false);
     });
+
+    /* Tapping outside the open menu closes it. Uses pointer events because iPhone Safari does not
+       send click events to the page for taps on plain text or images. Taps on the menu, the menu
+       button or the cart drawer don't count, so the tap that opens the menu can't close it. */
+    var downX = null, downY = 0, swallowUntil = 0;
+    function outside(t) {
+      return !(nav.contains(t) || toggle.contains(t) || (t.closest && t.closest('.of-cartd')));
+    }
+    document.addEventListener('pointerdown', function (e) {
+      downX = null;
+      if (!isOpen() || !outside(e.target)) return;
+      downX = e.clientX; downY = e.clientY;
+    }, true);
+    document.addEventListener('pointerup', function (e) {
+      if (downX === null || !isOpen()) return;
+      var moved = Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY);
+      downX = null;
+      if (moved > 10) return;
+      setOpen(false);
+      swallowUntil = Date.now() + 500;
+    }, true);
+    document.addEventListener('pointercancel', function () { downX = null; }, true);
+    /* the tap that closes the menu shouldn't also press the button or link under it */
+    document.addEventListener('click', function (e) {
+      if (Date.now() < swallowUntil && outside(e.target)) {
+        swallowUntil = 0; e.preventDefault(); e.stopPropagation();
+      }
+    }, true);
+
+    /* Scrolling the page 30px or more closes it (Safari's address bar moving or a tiny touch won't) */
+    window.addEventListener('scroll', function () {
+      if (isOpen() && Math.abs((window.pageYOffset || 0) - openY) >= 30) setOpen(false);
+    }, { passive: true });
   }
 
   /* ---------- header: transparent over homepage hero, solid elsewhere ---------- */
