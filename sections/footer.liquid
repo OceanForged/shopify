@@ -35,6 +35,7 @@
           {%- if section.settings.phone != blank -%}<a href="tel:{{ section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">{{ section.settings.phone }}</a>{%- endif -%}
           {%- if section.settings.email != blank -%}<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>{%- endif -%}
           {%- if section.settings.website != blank -%}<span>{{ section.settings.website }}</span>{%- endif -%}
+          <a href="https://www.instagram.com/oceanforgedgear/" class="of-footer__ig" target="_blank" rel="noopener" aria-label="Ocean Forged on Instagram" style="display:inline-flex;align-self:flex-start;padding:6px;margin:-6px;">{% render 'icon-instagram', size: 22 %}</a>
         </div>
       </div>
     </div>
