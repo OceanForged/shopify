@@ -519,16 +519,18 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
 @media (min-width: 901px) {
   #MainContent .of-specs { padding-top: clamp(16px, 3.5vh, 64px); padding-bottom: clamp(16px, 3.5vh, 64px); }
   #MainContent .of-specs .of-specs__inner--media {
-    grid-template-areas: ". title" "media list" ". note";
+    grid-template-areas: "media title" "media list" ". note";
     grid-template-rows: auto auto auto;
     align-items: stretch;
   }
   #MainContent .of-specs .of-specs__title { margin-bottom: 16px !important; align-self: end; }
   #MainContent .of-specs .of-specs__title::after { margin-top: 10px; }
-  /* the table sets the row height; the photo fills exactly that height */
+  /* the heading and table set the height; the photo runs from the top of the SPECS letters to the bottom of the table.
+     0.133em is the gap between the top of the heading box and the top of its capital letters (Montserrat), at the heading's own size.
+     The photo keeps a portrait shape (0.82 wide : 1 tall) so the whole bag fits; it sits against the table side of its column. */
   #MainContent .of-specs .of-specs__media { position: relative; min-height: 0; }
-  #MainContent .of-specs .of-specs__media .rdb-img { position: absolute; inset: 0; max-width: none !important; height: 100%; }
-  #MainContent .of-specs .of-specs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 75% !important; } /* keeps the radio window, bag bottom and harness strap in frame */
+  #MainContent .of-specs .of-specs__media .rdb-img { position: absolute; top: calc(0.133 * clamp(30px, 3.4vw, 46px)); bottom: 0; right: 0; left: auto; height: auto; width: auto; aspect-ratio: 0.82; max-width: 100% !important; }
+  #MainContent .of-specs .of-specs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 43% !important; } /* keeps the logo tab, the full clear window with the radio and the bag bottom in frame */
   /* even rows, tighter padding that scales with the screen height */
   #MainContent .of-specs .of-specs__row { padding-top: clamp(9px, 1.6vh, 18px) !important; padding-bottom: clamp(9px, 1.6vh, 18px) !important; }
   #MainContent .of-specs .of-specs__value { line-height: 1.35; }
