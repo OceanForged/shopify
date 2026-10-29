@@ -7,7 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="canonical" href="{{ canonical_url }}">
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      {%- liquid
+        # logo-dark.png is the full logo (wave + "OCEAN FORGED"); crop it to just the wave so the icon is readable at tab size.
+        assign fav = settings.favicon
+        if fav.src contains 'logo-dark'
+          assign fav_32 = fav | image_url: width: 32, height: 32, crop: 'region', crop_left: 174, crop_top: 0, crop_width: 232, crop_height: 232
+          assign fav_96 = fav | image_url: width: 96, height: 96, crop: 'region', crop_left: 174, crop_top: 0, crop_width: 232, crop_height: 232
+          assign fav_180 = fav | image_url: width: 180, height: 180, crop: 'region', crop_left: 174, crop_top: 0, crop_width: 232, crop_height: 232
+        else
+          assign fav_32 = fav | image_url: width: 32, height: 32
+          assign fav_96 = fav | image_url: width: 96, height: 96
+          assign fav_180 = fav | image_url: width: 180, height: 180
+        endif
+      -%}
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ fav_32 }}">
+      <link rel="icon" type="image/png" sizes="96x96" href="{{ fav_96 }}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ fav_180 }}">
     {%- endif -%}
 
     {%- liquid
