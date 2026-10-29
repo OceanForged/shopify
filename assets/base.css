@@ -503,10 +503,11 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
 }
 
 /* Phones and tablets (900px and narrower): the closed phone menu is fully hidden, not just slid off-screen,
-   and nothing can make the page wider than the screen (iPhone Safari ignores overflow-x: hidden on body when zooming out). */
+   and nothing can make the page wider than the screen (iPhone Safari ignores overflow-x: hidden on body when zooming out).
+   Do not put overflow clipping on .of-header: the menu hangs below the header, and iPhone Safari clips it there
+   as soon as the slide-in animation ends, so the menu vanishes. */
 @media (max-width: 900px) {
   html, body { overflow-x: clip; }
-  .of-header { overflow-x: clip; }
   .of-nav { visibility: hidden; transition: transform 0.3s, visibility 0s linear 0.3s; }
   .of-nav.is-open { visibility: visible; transition: transform 0.3s; }
 }
