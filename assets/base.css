@@ -532,6 +532,7 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
   /* even rows, tighter padding that scales with the screen height */
   #MainContent .of-specs .of-specs__row { padding-top: clamp(9px, 1.6vh, 18px) !important; padding-bottom: clamp(9px, 1.6vh, 18px) !important; }
   #MainContent .of-specs .of-specs__value { line-height: 1.35; }
+  #MainContent .of-specs .of-specs__value sup { line-height: 0; } /* the ® doesn't make its row taller */
 }
 /* short laptop screens (700px tall or less): values 18px so the section still fits */
 @media (min-width: 901px) and (max-height: 700px) {
