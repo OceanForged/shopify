@@ -20,7 +20,7 @@
           <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Phone</span><span style="color:#fff;font-weight:600;">{{ section.settings.phone }}</span></div>
         {%- endif -%}
         {%- if section.settings.email != blank -%}
-          <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Email</span><span style="color:#fff;font-weight:600;">{{ section.settings.email }}</span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Email</span><a href="mailto:{{ section.settings.email | strip }}" style="color:#fff;font-weight:600;">{{ section.settings.email }}</a></div>
         {%- endif -%}
         {%- if section.settings.website != blank -%}
           <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--of-muted);width:64px;">Web</span><span style="color:#fff;font-weight:600;">{{ section.settings.website }}</span></div>
