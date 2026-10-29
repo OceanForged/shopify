@@ -501,3 +501,12 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
 @media (max-width: 749px) {
   #MainContent .of-hero__media[data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* Phones and tablets (900px and narrower): the closed phone menu is fully hidden, not just slid off-screen,
+   and nothing can make the page wider than the screen (iPhone Safari ignores overflow-x: hidden on body when zooming out). */
+@media (max-width: 900px) {
+  html, body { overflow-x: clip; }
+  .of-header { overflow-x: clip; }
+  .of-nav { visibility: hidden; transition: transform 0.3s, visibility 0s linear 0.3s; }
+  .of-nav.is-open { visibility: visible; transition: transform 0.3s; }
+}
