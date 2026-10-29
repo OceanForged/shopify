@@ -511,3 +511,29 @@ h1, h2, h3, h4, .of-display, .rdb-card__title, .rdb-faq__item summary { text-wra
   .of-nav { visibility: hidden; transition: transform 0.3s, visibility 0s linear 0.3s; }
   .of-nav.is-open { visibility: visible; transition: transform 0.3s; }
 }
+
+/* Product page SPECS, laptops and desktops (901px and wider):
+   the photo sits beside the table and is exactly as tall as it (top and bottom edges line up; the photo is cropped to fill),
+   and the heading, red bar, photo and full table fit on one laptop screen below the sticky header.
+   Phones are not affected. */
+@media (min-width: 901px) {
+  #MainContent .of-specs { padding-top: clamp(16px, 3.5vh, 64px); padding-bottom: clamp(16px, 3.5vh, 64px); }
+  #MainContent .of-specs .of-specs__inner--media {
+    grid-template-areas: ". title" "media list" ". note";
+    grid-template-rows: auto auto auto;
+    align-items: stretch;
+  }
+  #MainContent .of-specs .of-specs__title { margin-bottom: 16px !important; align-self: end; }
+  #MainContent .of-specs .of-specs__title::after { margin-top: 10px; }
+  /* the table sets the row height; the photo fills exactly that height */
+  #MainContent .of-specs .of-specs__media { position: relative; min-height: 0; }
+  #MainContent .of-specs .of-specs__media .rdb-img { position: absolute; inset: 0; max-width: none !important; height: 100%; }
+  #MainContent .of-specs .of-specs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55% !important; }
+  /* even rows, tighter padding that scales with the screen height */
+  #MainContent .of-specs .of-specs__row { padding-top: clamp(9px, 1.6vh, 18px) !important; padding-bottom: clamp(9px, 1.6vh, 18px) !important; }
+  #MainContent .of-specs .of-specs__value { line-height: 1.35; }
+}
+/* short laptop screens (700px tall or less): values 18px so the section still fits */
+@media (min-width: 901px) and (max-height: 700px) {
+  #MainContent .of-specs .of-specs__value { font-size: 18px; }
+}
